@@ -5,11 +5,9 @@
 * @desc     position表
 */
 
-class position_Model extends base_Model
+class position extends base_Model
 {
-    private $table;
-
-    public function __construct()
+    function __construct()
     {
         $this->table = 'position';
     }

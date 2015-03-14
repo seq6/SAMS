@@ -5,11 +5,9 @@
 * @desc     envirconfig表
 */
 
-class envirconfig_Model extends base_Model
+class envirconfig extends base_Model
 {
-    private $table;
-
-    public function __construct()
+    function __construct()
     {
         $this->table = 'envirconfig';
     }

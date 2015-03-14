@@ -5,11 +5,9 @@
 * @desc     hardware表
 */
 
-class hardware_Model extends base_Model
+class hardware extends base_Model
 {
-    private $table;
-
-    public function __construct()
+    function __construct()
     {
         $this->table = 'hardware';
     }

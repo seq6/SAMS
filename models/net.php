@@ -5,11 +5,9 @@
 * @desc     net表
 */
 
-class net_Model extends base_Model
+class net extends base_Model
 {
-    private $table;
-
-    public function __construct()
+    function __construct()
     {
         $this->table = 'net';
     }

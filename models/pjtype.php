@@ -2,14 +2,14 @@
 
 /**
 * @author   zhangji
-* @desc     pjRange表
+* @desc     pjType表
 */
 
-class pjRange_Model extends base_Model
+class pjType extends base_Model
 {
     function __construct()
     {
-        parent::__construct('pjRange');
+        $this->table = 'pjType';
     }
 }
 

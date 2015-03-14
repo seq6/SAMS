@@ -6,8 +6,11 @@
 */
 class base_Model extends CI_Model
 {
+    public $table;
+
     function __construct()
     {
+        $table = null;
     }
 
     /**
@@ -65,7 +68,6 @@ class base_Model extends CI_Model
             return false;
         }
         else {
-
             $this->db->from($this->table);
 
             if ($sort !== null) {

@@ -5,11 +5,9 @@
 * @desc     project表
 */
 
-class project_Model extends base_Model
+class project extends base_Model
 {
-    private $table;
-
-    public function __construct()
+    function __construct()
     {
         $this->table = 'project';
     }

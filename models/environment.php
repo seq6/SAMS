@@ -5,11 +5,9 @@
 * @desc     environment表
 */
 
-class environment_Model extends base_Model
+class environment extends base_Model
 {
-    private $table;
-
-    public function __construct()
+    function __construct()
     {
         $this->table = 'environment';
     }

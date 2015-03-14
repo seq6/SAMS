@@ -2,14 +2,14 @@
 
 /**
 * @author   zhangji
-* @desc     staff表
+* @desc     pjRange表
 */
 
-class staff extends base_Model
+class pjRange extends base_Model
 {
     function __construct()
     {
-        $this->table = 'staff';
+         $this->table = 'pjRange';
     }
 }
 

@@ -20,6 +20,10 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('welcome_message');
+		$this->load->model('pjType');
+		$obj = new pjType;
+		$res = $obj->get_item(null,0,0,true);
+		var_dump($res);
 		//$res = $this->db->query('select * FROM test1');
 		//var_dump($res);
 		//foreach($res->result() as $r)
