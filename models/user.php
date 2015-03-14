@@ -5,11 +5,13 @@
 * @desc     user表
 */
 
-class User_Model extends Base_Model
+class user_Model extends base_Model
 {
-    function __construct()
+    private $table;
+
+    public function __construct()
     {
-        parent::__construct('user');
+        $this->table = 'user';
     }
 }
 

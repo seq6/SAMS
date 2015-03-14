@@ -5,11 +5,13 @@
 * @desc     net表
 */
 
-class net_Model extends Base_Model
+class net_Model extends base_Model
 {
-    function __construct()
+    private $table;
+
+    public function __construct()
     {
-        parent::__construct('net');
+        $this->table = 'net';
     }
 }
 

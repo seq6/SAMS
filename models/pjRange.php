@@ -5,7 +5,7 @@
 * @desc     pjRange表
 */
 
-class pjRange_Model extends Base_Model
+class pjRange_Model extends base_Model
 {
     function __construct()
     {

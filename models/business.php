@@ -5,11 +5,13 @@
 * @desc     business表
 */
 
-class business_Model extends Base_Model
+class business_Model extends base_Model
 {
-    function __construct()
+    private $table;
+
+    public function __construct()
     {
-        parent::__construct('business');
+        $this->table = 'business';
     }
 }
 

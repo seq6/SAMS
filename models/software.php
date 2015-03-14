@@ -5,11 +5,13 @@
 * @desc     software表
 */
 
-class software_Model extends Base_Model
+class software_Model extends base_Model
 {
-    function __construct()
+    private $table;
+
+    public function __construct()
     {
-        parent::__construct('software');
+        $this->table = 'software';
     }
 }
 

@@ -5,11 +5,13 @@
 * @desc     party表
 */
 
-class party_Model extends Base_Model
+class party_Model extends base_Model
 {
-    function __construct()
+    private $table;
+
+    public function __construct()
     {
-        parent::__construct('party');
+        $this->table = 'party';
     }
 }
 

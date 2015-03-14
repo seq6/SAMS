@@ -20,13 +20,12 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('welcome_message');
-		$res = $this->db->query('select * FROM test1');
+		//$res = $this->db->query('select * FROM test1');
 		//var_dump($res);
-		foreach($res->result() as $r)
-		{
-			echo "<br/>";
-			var_dump($r);
-		}
+		//foreach($res->result() as $r)
+		//{
+		//	echo "<br/>";
+		//	var_dump($r);
 	}
 }
 

@@ -5,11 +5,13 @@
 * @desc     staff表
 */
 
-class staff_Model extends Base_Model
+class staff_Model extends base_Model
 {
-    function __construct()
+    private $table;
+
+    public function __construct()
     {
-        parent::__construct('staff');
+        $this->table = 'staff';
     }
 }
 

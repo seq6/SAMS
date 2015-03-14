@@ -5,11 +5,13 @@
 * @desc     hardconfig表
 */
 
-class hardconfig_Model extends Base_Model
+class hardconfig_Model extends base_Model
 {
-    function __construct()
+    private $table;
+
+    public function __construct()
     {
-        parent::__construct('hardconfig');
+        $this->table = 'hardconfig';
     }
 }
 
