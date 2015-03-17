@@ -1,3 +1,4 @@
+<hr />
 <footer data-am-widget="footer" class="am-footer am-footer-default">
   <div class="am-footer-miscs">
     <p>copyright© zhangji 807718857@qq.com</p>

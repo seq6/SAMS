@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
+<head>
   <meta charset="UTF-8">
   <title>安全风险评估管理系统</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,5 +11,9 @@
   <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
   <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
 </head>
-<body></body>
+<body>
+	<?php include_once 'header.php' ?>
+
+	<?php include_once 'footer.php' ?>
+</body>
 </html>
