@@ -4,8 +4,10 @@
 
 <header class="am-topbar admin-header">
   <div class="am-topbar-brand">
-    <a href="#">安全风险评估管理系统</a>
-    <span class="am-badge am-badge-danger">v0.7</span>
+    <h1>
+      <a href="#">安全风险评估管理系统</a>
+      <span class="am-badge am-badge-danger">v0.7</span>
+    </h1>
   </div>
 
   <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}">
