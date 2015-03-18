@@ -2,14 +2,14 @@
   <div class="am-offcanvas-bar admin-offcanvas-bar">
     <ul class="am-list admin-sidebar-list">
       <li><a href="admin-index.html"><span class="am-icon-home"></span>
-        <?php echo $data['project']['name']; ?></a>
+        <?php echo 'XXXXX';//$project['name']; ?></a>
       </li>
       <li class="admin-parent">
         <a class="am-cf" data-am-collapse="{target: '#collapse-pre-nav'}"> 前期准备</a>
-        <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-pre-nav">
+        <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-pre-nav">
           <li><a href="pre_intro">项目简介</a></li>
           <li><a href="pre_info">项目信息</a></li>
-          <li><a href="pre_menber">项目人员</a></li>
+          <li><a href="pre_member">项目人员</a></li>
           <li><a href="pre_parts">评估双方</a></li>
           <li><a href="pre_other">其他任务</a></li>
           <li><a href="pre_start">项目启动</a></li>
@@ -17,7 +17,7 @@
       </li>
       <li class="admin-parent">
         <a class="am-cf" data-am-collapse="{target: '#collapse-sur-nav'}"> 系统调查</a>
-        <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-sur-nav">
+        <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-sur-nav">
           <li><a href="sur_hard">硬件资源</a></li>
           <li><a href="sur_soft">软件资源</a></li>
           <li><a href="sur_person">人员资源</a></li>
@@ -39,8 +39,8 @@
 
     <div class="am-panel am-panel-default admin-sidebar-panel">
       <div class="am-panel-bd">
-        <p><span class="am-icon-tag"></span> <?php echo $data['tag']['title']; ?></p>
-        <p><?php echo $data['tag']['content']; ?></p>
+        <p><span class="am-icon-tag"></span> <?php echo $tag['title']; ?></p>
+        <p><?php echo $tag['content']; ?></p>
       </div>
     </div>
   </div>

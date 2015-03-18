@@ -22,7 +22,7 @@
 
     <div class="admin-content">
       <div class="am-cf am-padding">
-        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">项目启动</strong> / <small>start</small></div>
+        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">网络系统</strong> / <small>net</small></div>
       </div>
       <hr/>
     </div>
