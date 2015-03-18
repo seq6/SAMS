@@ -8,7 +8,7 @@
 class Els_login extends CI_Controller {
 
     public function index() {
-        $this->load->view('login');
+        $this->load->view('els_login');
     }
 
 }
