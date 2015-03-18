@@ -42,7 +42,7 @@
     <br>
     <br>
 
-    <form method="post" action="project" class="am-form">
+    <form method="post" action="els_help" class="am-form">
       <label id="laber_email" for="email">邮箱:</label>
       <input type="email" name="email" id="email" maxlength="20">
       <br>
@@ -63,7 +63,7 @@
   </div>
 </div>
 
-<?php include_once 'footer.php' ?>
+<?php include_once 'static/footer.php' ?>
 
 <script type="text/javascript">
     var who = 1;
@@ -82,6 +82,14 @@
             $('#email').attr('disabled','disabled');
             who = 0;
         }
+    }
+
+    function check () {
+        var email = $('#email').value();
+        var pwd = $('#pwd').value();
+        if (email === '' || pwd === '') {
+            alert("请填写正确的邮箱和密码");
+        };
     }
 </script>
 </body>
