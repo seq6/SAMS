@@ -5,10 +5,10 @@
 * @desc     ###########
 */
 
-class Pre_intro extends CI_Controller {
+class Pre_member extends CI_Controller {
 
     public function index() {
-        $this->load->view('');
+        $this->load->view('pre_member');
     }
 
 }

@@ -8,7 +8,7 @@
 class Sur_net extends CI_Controller {
 
     public function index() {
-        $this->load->view('');
+        $this->load->view('sur_net');
     }
 
 }

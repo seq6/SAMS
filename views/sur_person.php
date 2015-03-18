@@ -22,27 +22,9 @@
 
     <div class="admin-content">
       <div class="am-cf am-padding">
-        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">帮助页面</strong> / <small>Help Page</small></div>
+        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">人员资源</strong> / <small>persons</small></div>
       </div>
       <hr/>
-
-      <div class="am-g">
-        <div class="am-u-sm-12 am-u-sm-centered">
-          <h2>Amaze UI 1.0.0 Beta</h2>
-          <p>对于 Amaze UI，我们不是创造者。</p>
-          <p>Amaze UI 的诞生，依托于 GitHub 及其他技术社区上一些优秀的资源；Amaze UI 的成长，则离不开用户的支持。</p>
-          <p>感谢开源！感谢有你！</p>
-          <hr/>
-        </div>
-
-        <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
-          <h3>Bug 反馈</h3>
-          <p>感谢对 Amaze UI 的关注和支持，如遇到 Bug 或者使用问题，可以通过以下途径反馈给我们：</p>
-          <ol>
-            <li>在 GitHub 项目主页提交 <a href="">Issue</a>。</li>
-            <li>在 GitHub 项目主页提交 <a href="">Issue</a>。</li>
-        </div>
-      </div>
     </div>
 
   </div>

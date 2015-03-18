@@ -8,7 +8,7 @@
 class Els_register extends CI_Controller {
 
     public function index() {
-        $this->load->view('help');
+        $this->load->view('els_register');
     }
 
 }

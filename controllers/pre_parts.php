@@ -8,7 +8,7 @@
 class Pre_parts extends CI_Controller {
 
     public function index() {
-        $this->load->view('');
+        $this->load->view('pre_parts');
     }
 
 }

@@ -5,8 +5,8 @@
         <?php echo $data['project']['name']; ?></a>
       </li>
       <li class="admin-parent">
-        <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"> 前期准备</a>
-        <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+        <a class="am-cf" data-am-collapse="{target: '#collapse-pre-nav'}"> 前期准备</a>
+        <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-pre-nav">
           <li><a href="pre_intro">项目简介</a></li>
           <li><a href="pre_info">项目信息</a></li>
           <li><a href="pre_menber">项目人员</a></li>
@@ -16,8 +16,8 @@
         </ul>
       </li>
       <li class="admin-parent">
-        <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"> 系统调查</a>
-        <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+        <a class="am-cf" data-am-collapse="{target: '#collapse-sur-nav'}"> 系统调查</a>
+        <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-sur-nav">
           <li><a href="sur_hard">硬件资源</a></li>
           <li><a href="sur_soft">软件资源</a></li>
           <li><a href="sur_person">人员资源</a></li>
