@@ -10,10 +10,11 @@
   <meta http-equiv="Cache-Control" content="no-siteapp" />
   <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
   <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="assets/css/admin.css">
 </head>
 <body>
-	<?php include_once 'header.php' ?>
+  <?php include_once 'header.php' ?>
 
-	<?php include_once 'footer.php' ?>
+  <?php include_once 'footer.php' ?>
 </body>
 </html>
