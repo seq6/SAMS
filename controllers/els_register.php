@@ -8,7 +8,10 @@
 class Els_register extends CI_Controller {
 
     public function index() {
-        $this->load->view('els_register');
-    }
+        $this->session->unset_userdata('uid');
+        $this->session->unset_userdata('pid');
+        $this->session->unset_userdata('email');
 
+        $this->load->view('els_login');
+    }
 }
