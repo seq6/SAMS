@@ -14,7 +14,7 @@ class user extends base_Model
 
     public function check($email = '', $pwd = '', $isAdmin = FALSE)
     {
-        if ($pwd !== '') {
+        if ($pwd === '') {
             return FALSE;
         }
         else {
@@ -23,7 +23,7 @@ class user extends base_Model
                 $md5Pwd = md5($pwd);
                 foreach ($theAdmin as $key => $value) {
                     if ($md5Pwd === $value['pwd']) {
-                        return TRUE;
+                        return $value;
                     }
                 }
             }
@@ -32,7 +32,7 @@ class user extends base_Model
                 $md5Pwd = md5($pwd);
                 foreach ($theUser as $key => $value) {
                     if ($md5Pwd === $value['pwd']) {
-                        return TRUE;
+                        return $value;
                     }
                 }
             }

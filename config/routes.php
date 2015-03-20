@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = 'els_login';
+$route['default_controller'] = 'welcome';
 
 $route['404_override'] = '';
 

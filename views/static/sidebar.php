@@ -39,8 +39,14 @@
 
     <div class="am-panel am-panel-default admin-sidebar-panel">
       <div class="am-panel-bd">
-        <p><span class="am-icon-tag"></span> <?php echo $tag['title']; ?></p>
-        <p><?php echo $tag['content']; ?></p>
+        <?php 
+          if (isset($tag['title']) && $tag['title'] != '') {
+            echo '<p><span class="am-icon-tag"></span>'.$tag['title'].'</p>';
+          }
+          if (isset($tag['content']) && $tag['content'] != '') {
+            echo $tag['content'];
+          }
+        ?>
       </div>
     </div>
   </div>

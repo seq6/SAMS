@@ -42,13 +42,21 @@
     <br>
     <br>
 
-    <form method="post" action="els_help" class="am-form">
+    <form method="post" action="els_login" class="am-form">
       <input type="hidden" id="ID" name="ID" value="user">
       <label id="laber_email" for="email">邮箱:</label>
       <input type="email" name="email" id="email" maxlength="20" placeholder="请输入邮箱...">
       <br>
       <label id="laber_pwd" for="password">密码:</label>
       <input type="password" name="password" id="password" maxlength="20" placeholder="请输入密码...">
+
+      <?php if (isset($pwdError) && $pwdError == 1) {
+        echo '<div class="am-alert am-alert-danger" data-am-alert>
+                <button type="button" class="am-close">&times;</button>
+                <p>请输入正确的邮箱及密码</p>
+              </div>';
+      } ?>
+
       <br>
       <label for="remember-me">
         <input id="remember-me" type="checkbox" disabled="disabled">
@@ -56,7 +64,7 @@
       </label>
       <br />
       <div class="am-cf">
-        <input type="submit" onclick="check()" value="登 录" class="am-btn am-btn-primary am-btn-sm am-fl">
+        <input type="submit" value="登 录" class="am-btn am-btn-primary am-btn-sm am-fl">
         <input type="submit" value="忘记密码? " class="am-btn am-btn-default am-btn-sm am-fr" disabled="disabled">
       </div>
     </form>
@@ -75,7 +83,7 @@
         if (who == 0) {
             $('#theUser').hide();
             $('#theAdmin').show();
-            $('#theID').attr('value', 'user');
+            $('#ID').attr('value', 'user');
             $('#email').removeAttr('disabled');
             $('#email').attr('placeholder', '请输入邮箱...');
             $('#password').attr('placeholder', '请输入密码...');
@@ -83,7 +91,7 @@
         } else {
             $('#theUser').show();
             $('#theAdmin').hide();
-            $('#theID').attr('value', 'admin');
+            $('#ID').attr('value', 'admin');
             $('#email').attr('disabled','disabled');
             $('#email').attr('placeholder', '');
             $('#password').attr('placeholder', '请输入管理员密码...');
@@ -100,9 +108,6 @@
         }
         else if (ID === 'user' && (pwd == '' || email == '')) {
             alert("请填写邮箱及密码");
-        }
-        else {
-          
         }
     }
 </script>
