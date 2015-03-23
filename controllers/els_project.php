@@ -8,6 +8,8 @@
 class Els_project extends CI_Controller {
 
     public function index() {
+    	$this->load->model('project');
+
         $this->load->view('els_project');
     }
 

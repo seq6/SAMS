@@ -11,6 +11,12 @@ class project extends base_Model
     {
         $this->table = 'project';
     }
+
+    public function get_project()
+    {
+        $res = array();
+        return $res;
+    }
 }
 
 ?>
