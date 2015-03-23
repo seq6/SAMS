@@ -5,7 +5,7 @@
 <header class="am-topbar admin-header">
   <div class="am-topbar-brand">
     <h1>
-      <a href="#"><small>安全风险评估管理系统</small></a>
+      <a href="project"><small>安全风险评估管理系统</small></a>
       <span class="am-badge am-badge-danger">v0.7</span>
     </h1>
   </div>
@@ -18,8 +18,8 @@
   <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
 
   <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
-    <li><a href="els_help"><span class="am-icon-puzzle-piece"></span> 帮助</a></li>
-    <li><a href="els_help"><span class="am-icon-user-plus"></span> 注册</a></li>
-    <li><a href="els_register"><span class="am-icon-sign-out"></span> 注销</a></li> 
+    <li><a href="help"><span class="am-icon-puzzle-piece"></span> 帮助</a></li>
+    <li><a href="signup"><span class="am-icon-user-plus"></span> 注册</a></li>
+    <li><a href="signout"><span class="am-icon-sign-out"></span> 注销</a></li> 
   </ul>
 </header>

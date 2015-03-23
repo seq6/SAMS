@@ -9,12 +9,12 @@ class Welcome extends CI_Controller {
 
     public function index()
     {
-        $uid = $this->session->userdata('uid');
-        if ($uid === FALSE) {
-            $this->load->view('els_login');
+        $said = isset($_SESSION['said']) ? $_SESSION['said'] : FALSE;
+        if ($said === FALSE) {
+            $this->load->view('login');
         }
         else {
-            $this->load->view('els_help');
+            $this->load->view('help');
         }
     }
 }

@@ -4,7 +4,7 @@
 * @author   zhangji
 * @desc     封装对数据库的增删改查操作
 */
-class base_Model extends CI_Model
+class Base_model extends CI_Model
 {
     public $table;
 
