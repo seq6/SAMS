@@ -7,12 +7,18 @@
 
 class Project extends CI_Controller {
 
-    public function index() {
-    	$this->load->model('project');
-    	$objProject = new project;
-    	
+    private $data;
 
-        $this->load->view('els_project');
+    function __construct() {
+        parent::__construct();
+        $data = array();
+    }
+
+    public function index() {
+        $this->load->model('project_model');
+        $objProject = new project_model;
+
+        $this->load->view('project');
     }
 
 }

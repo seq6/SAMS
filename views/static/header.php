@@ -6,7 +6,7 @@
   <div class="am-topbar-brand">
     <h1>
       <a href="project"><small>安全风险评估管理系统</small></a>
-      <span class="am-badge am-badge-danger">v0.7</span>
+      <span class="am-badge am-badge-danger">v0.16</span>
     </h1>
   </div>
 

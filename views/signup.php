@@ -14,9 +14,18 @@
 </head>
 <body>
 
-<?php include_once 'header.php' ?>
+<?php include_once 'static/header.php' ?>
 
-<?php include_once 'footer.php' ?>
+<div class="am-g">
+  <form method="post" action="signup" onsubmit="return check()" class="am-form">
+    <label>sssss</label>
+    <input type="text">
+    <label>aaaaaa</label>
+    <input type="text">
+  </form>
+</div>
+
+<?php include_once 'static/footer.php' ?>
 
 </body>
 </html>

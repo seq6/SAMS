@@ -42,7 +42,7 @@
     <br>
     <br>
 
-    <form method="post" action="els_login" class="am-form" onsubmit="return check()" >
+    <form method="post" action="login" class="am-form" onsubmit="return check()" >
       <input type="hidden" id="said" name="said" value="user">
       <label id="laber_email" for="email">邮箱:</label>
       <input type="email" name="email" id="email" maxlength="20" placeholder="请输入邮箱...">
@@ -75,9 +75,14 @@
 <?php include_once 'static/footer.php' ?>
 
 <script type="text/javascript">
-    var who = 1;
-    $('#theUser').hide();
-    $('#theAdmin').show();
+    <?php 
+        if (isset($said) && $said == 'admin') {
+            echo 'var who = 1;is_who();';
+        }
+        else {
+            echo 'var who = 0;is_who();';
+        }
+    ?>
 
     function is_who () {
         if (who == 0) {
@@ -88,7 +93,8 @@
             $('#email').attr('placeholder', '请输入邮箱...');
             $('#password').attr('placeholder', '请输入密码...');
             who = 1;
-        } else {
+        }
+        else {
             $('#theUser').show();
             $('#theAdmin').hide();
             $('#said').attr('value', 'admin');

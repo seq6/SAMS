@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<?php include_once 'header.php' ?>
+<?php include_once 'static/header.php' ?>
 
 <table class="am-table am-table-striped am-table-hover">
   <thead>
@@ -31,12 +31,12 @@
     <?php
       if ($count == 0) {
           echo '<tr>
-          <td>0</td>
+          <td>X</td>
           <td>尚无项目</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td>X</td>
+          <td>X</td>
+          <td>X</td>
+          <td>X</td>
           </tr>';
       }
       else {
@@ -86,7 +86,7 @@
   ?>
 </ul>
 
-<?php include_once 'footer.php' ?>
+<?php include_once 'static/footer.php' ?>
 
 <script type="text/javascript">
 
