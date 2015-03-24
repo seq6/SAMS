@@ -8,9 +8,10 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
-  <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
-  <link rel="stylesheet" href="assets/css/admin.css">
+  <?php
+    echo '<link rel="alternate icon" type="image/png" href="'.URL_ROOT.'assets/i/favicon.png">';
+    echo '<link rel="stylesheet" href="'.URL_ROOT.'assets/css/amazeui.min.css"/>';
+  ?>
 </head>
 <body>
 
@@ -19,7 +20,6 @@
 <div class="am-g">
   <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
     <form method="post" action="signup" onsubmit="return check()" class="am-form">
-      <br />
       <br />
       <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">新项目</strong> / <small>new project</small></div>
       <br />
@@ -46,10 +46,16 @@
 
       <div class="am-form-group">
         <select id="theUserId" name="theUserId">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
+          <?php
+            if (isset($user) && !empty($user)) {
+                foreach ($user as $u) {
+                    echo '<option value="'.$u['id'].'">'.$u['name'].'</option>';
+                }
+            }
+            else {
+                echo '<option value="0">暂无负责人</option>';
+            }
+          ?>
         </select>
         <span class="am-form-caret"></span>
       </div>
@@ -112,6 +118,7 @@
 
     function check () {
         var pName = $('#pName').val();
+        var theUserId = $('#theUserId').val();
         var userName = $('#userName').val();
         var email = $('#email').val();
         var password = $('#password').val();
@@ -120,18 +127,26 @@
             alert('请填写项目名');
             return false;
         }
-        else if (theUser == 'newUser') {
-            if (userName == null || userName == '' || email == null 
-                || email == '' || password == null || password == '') {
-                alert('请将新用户信息填写完整');
-                return false;
+        else {
+            if (theUser == 'newUser') {
+                if (userName == null || userName == '' || email == null 
+                    || email == '' || password == null || password == '') {
+                    alert('请将新用户信息填写完整');
+                    return false;
+                }
+                else {
+                    return true;
+                }
             }
             else {
-                return true;
+                if (theUserId == 0) {
+                    alert('请注册新负责人');
+                    return false;
+                }
+                else {
+                    return true;
+                }
             }
-        }
-        else {
-            return true;
         }
     }
 </script>

@@ -8,8 +8,10 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
-  <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
+  <?php
+    echo '<link rel="alternate icon" type="image/png" href="'.URL_ROOT.'assets/i/favicon.png">';
+    echo '<link rel="stylesheet" href="'.URL_ROOT.'assets/css/amazeui.min.css"/>';
+  ?>
   <style>
     .header {
       text-align: center;
@@ -89,6 +91,8 @@
             $('#theUser').hide();
             $('#theAdmin').show();
             $('#said').attr('value', 'user');
+            $('#email').val('');
+            $('#password').val('');
             $('#email').removeAttr('disabled');
             $('#email').attr('placeholder', '请输入邮箱...');
             $('#password').attr('placeholder', '请输入密码...');
@@ -98,6 +102,8 @@
             $('#theUser').show();
             $('#theAdmin').hide();
             $('#said').attr('value', 'admin');
+            $('#email').val('');
+            $('#password').val('');
             $('#email').attr('disabled','disabled');
             $('#email').attr('placeholder', '');
             $('#password').attr('placeholder', '请输入管理员密码...');

@@ -19,7 +19,7 @@ class User_model extends Base_model
         }
         else {
             if ($isAdmin) {
-                $theAdmin = $this->get_item(array('`isadmin`' => '1'), 0, 0, TRUE);
+                $theAdmin = $this->get_item(array('`isadmin`' => 1), 0, 0, TRUE);
                 $md5Pwd = md5($pwd);
                 foreach ($theAdmin as $key => $value) {
                     if ($md5Pwd === $value['pwd']) {
@@ -28,7 +28,7 @@ class User_model extends Base_model
                 }
             }
             else {
-                $theUser = $this->get_item(array('`name`' => $email), 0, 0, TRUE);
+                $theUser = $this->get_item(array('`email`' => $email), 0, 0, TRUE);
                 $md5Pwd = md5($pwd);
                 foreach ($theUser as $key => $value) {
                     if ($md5Pwd === $value['pwd']) {
@@ -38,6 +38,16 @@ class User_model extends Base_model
             }
             return FALSE;
         }
+    }
+
+    public function get_all_admin()
+    {
+        return $this->get_item(array('`isadmin`' => 1), 0, 0, TRUE);
+    }
+
+    public function get_all_user()
+    {
+        return $this->get_item(array('`isadmin`' => 0), 0, 0, FALSE);
     }
 }
 
