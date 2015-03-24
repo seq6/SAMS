@@ -65,7 +65,7 @@
       <br />
       <div class="am-cf">
         <input type="submit" value="登 录" class="am-btn am-btn-primary am-btn-sm am-fl">
-        <input type="submit" value="忘记密码? " class="am-btn am-btn-default am-btn-sm am-fr" disabled="disabled">
+        <input type="button" value="忘记密码? " class="am-btn am-btn-default am-btn-sm am-fr" onclick="forget_pwd()">
       </div>
     </form>
 
@@ -130,6 +130,10 @@
             default:
                 return true;
         }
+    }
+
+    function forget_pwd () {
+        alert('忘了就忘了吧');
     }
 </script>
 </body>

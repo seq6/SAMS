@@ -17,15 +17,123 @@
 <?php include_once 'static/header.php' ?>
 
 <div class="am-g">
-  <form method="post" action="signup" onsubmit="return check()" class="am-form">
-    <label>sssss</label>
-    <input type="text">
-    <label>aaaaaa</label>
-    <input type="text">
-  </form>
+  <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
+    <form method="post" action="signup" onsubmit="return check()" class="am-form">
+      <br />
+      <br />
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">新项目</strong> / <small>new project</small></div>
+      <br />
+      <hr />
+      
+
+      <div class="am-input-group">
+        <span class="am-input-group-label"><i class="am-icon-cube"></i></span>
+        <input id="pName" name="pName" type="text" class="am-form-field" placeholder="请输入新项目名称...">
+      </div>
+      <br />
+      <br />
+
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">项目负责人</strong> / <small>admin of the project</small></div>
+      <br />
+      <hr />
+
+      <div class="am-radio">
+        <label>
+          <input type="radio" name="theUser" value="oldUser" onclick="choose_list()" checked="checked">
+          从列表中选择
+        </label>
+      </div>
+
+      <div class="am-form-group">
+        <select id="theUserId" name="theUserId">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+        <span class="am-form-caret"></span>
+      </div>
+
+      <div class="am-radio">
+        <label>
+          <input type="radio" name="theUser" value="newUser" onclick="signup_newuser()">
+          注册新负责人
+        </label>
+      </div>
+      <div class="am-input-group">
+        <span class="am-input-group-label"><i class="am-icon-user"></i></span>
+        <input type="text" id="userName" name="userName" class="am-form-field" placeholder="请输入用户名..." maxlength="20" disabled="disabled">
+      </div>
+      <br />
+      <div class="am-input-group">
+        <span class="am-input-group-label"><i class="am-icon-envelope-square"></i></span>
+        <input type="text" id="email" name="email" class="am-form-field" placeholder="请输入邮箱地址..." maxlength="20" disabled="disabled">
+      </div>
+      <br />
+      <div class="am-input-group">
+        <span class="am-input-group-label"><i class="am-icon-lock"></i></span>
+        <input type="text" id="password" name="password" class="am-form-field" placeholder="请输入密码..." maxlength="20" disabled="disabled">
+      </div>
+      <br />
+
+      <div class="am-cf">
+        <input type="submit" value="注 册" class="am-btn am-btn-success am-btn-sm am-fl">
+        <button type="reset" class="am-btn am-btn-default am-btn-sm" onclick="reset_form()">重 置</button>
+      </div>
+    </form>
+  </div>
 </div>
 
 <?php include_once 'static/footer.php' ?>
 
+<script type="text/javascript">
+
+    var theUser = 'oldUser';
+
+    function choose_list () {
+        $('#theUserId').removeAttr('disabled');
+        $('#userName').attr('disabled','disabled');
+        $('#email').attr('disabled','disabled');
+        $('#password').attr('disabled','disabled');
+        theUser = 'oldUser';
+    }
+
+    function signup_newuser () {
+        $('#theUserId').attr('disabled','disabled');
+        $('#userName').removeAttr('disabled');
+        $('#email').removeAttr('disabled');
+        $('#password').removeAttr('disabled');
+        theUser = 'newUser';
+    }
+
+    function reset_form () {
+        choose_list();
+    }
+
+    function check () {
+        var pName = $('#pName').val();
+        var userName = $('#userName').val();
+        var email = $('#email').val();
+        var password = $('#password').val();
+
+        if (pName == null || pName == '') {
+            alert('请填写项目名');
+            return false;
+        }
+        else if (theUser == 'newUser') {
+            if (userName == null || userName == '' || email == null 
+                || email == '' || password == null || password == '') {
+                alert('请将新用户信息填写完整');
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+        else {
+            return true;
+        }
+    }
+</script>
 </body>
 </html>
