@@ -34,11 +34,11 @@ class Signup extends CI_Controller
         }
         else {
             $thie->data['user'] = $this->objUserModel->get_all_user();
-            $this->load->view('signup', $thie->data);
+            $this->load->view('signup', $this->data);
         }
     }
 
-    public function form()
+    private function form()
     {
         // get post
         $pName     = isset($_POST['pName'])    ? $_POST['pName']     : '';
@@ -48,18 +48,20 @@ class Signup extends CI_Controller
         $email     = isset($_POST['email'])    ? $_POST['email']     : '';
         $password  = isset($_POST['password']) ? $_POST['password']  : '';
 
-        
-
         switch ($theUser) {
             case 'oldUser': {
-                # code...
+                $pid = $this->objProjectModel->add($pName);
+                $this->data['error'] = $this->objUserModel->add_user_pid($theUserId, $pid);
             }
             case 'newUser': {
-                # code...
+                $pid = $this->objProjectModel->add($pName);
+                $this->data['error'] = $this->add($userName, $email, $password, $pid);
             }
             default: {
-
+                $this->data['error'] = 1;
             }
         }
+
+        $this->view->('signup', $this->data);
     }
 }

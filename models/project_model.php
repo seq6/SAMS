@@ -28,8 +28,13 @@ class Project_model extends Base_model
 
     public function del($pid = 0)
     {
-        $conds = array('id' => $pid);
-        return $this->delete_item($conds);
+        if ($pid <= 0 || !is_int($pid)) {
+            return FALSE;
+        }
+        else {
+            $conds = array('id' => $pid);
+            return $this->delete_item($conds);
+        }
     }
 
     public function update($pid, $newData)

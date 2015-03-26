@@ -19,7 +19,11 @@
 
   <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
     <li><a href="help"><span class="am-icon-puzzle-piece"></span> 帮助</a></li>
-    <li><a href="signup"><span class="am-icon-user-plus"></span> 注册</a></li>
+    <?php
+      if (isset($_SESSION['said']) && $_SESSION['said'] == 'admin') {
+        echo '<li><a href="signup"><span class="am-icon-user-plus"></span> 注册</a></li>';
+      }
+    ?>
     <li><a href="signout"><span class="am-icon-sign-out"></span> 注销</a></li> 
   </ul>
 </header>

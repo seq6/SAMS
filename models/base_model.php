@@ -10,6 +10,8 @@ class Base_model extends CI_Model
 
     function __construct()
     {
+        parent::__construct();
+
         $table = null;
     }
 
@@ -62,7 +64,7 @@ class Base_model extends CI_Model
     * @params array $conds 查询条件; int $limit 查询条数; int $offset 偏移量; bool $needAll 是否返回全部符合条件记录; array|string $orderBy 排序
     * @return array 未找到返回空数组
     **/
-    public function get_item($conds = null, $limit = 0, $offset = 0, $needAll = false, $orderBy = null, $sort = null)
+    public function get_item($conds = null, $limit = 1, $offset = 0, $needAll = false, $orderBy = null, $sort = null)
     {
         if ($this->table === null) {
             return false;

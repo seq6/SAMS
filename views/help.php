@@ -9,8 +9,10 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp" />
   <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
-  <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
-  <link rel="stylesheet" href="assets/css/admin.css">
+  <?php
+    echo '<link rel="alternate icon" type="image/png" href="'.URL_ROOT.'assets/i/favicon.png">';
+    echo '<link rel="stylesheet" href="'.URL_ROOT.'assets/css/amazeui.min.css"/>';
+  ?>
 </head>
 <body>
 

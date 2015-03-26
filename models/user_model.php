@@ -40,6 +40,31 @@ class User_model extends Base_model
         }
     }
 
+    public function add($name = '', $email = '', $pwd = '', $pid = '')
+    {
+        if ($name == '' || $email == '' || $pwd == '') {
+            return FALSE;
+        }
+        else {
+            $user = array('`name`' => $name, '`email`' => $email, '`pwd`' => $pwd, '`auth`' => '{"'.$pid.'"}');
+            return $this->add_item($user);
+        }
+    }
+
+    public function add_user_pid($uid = 0, $pid = 0)
+    {
+        if (($uid <= 0 || is_int($uid)) || ($pid <= 0 || is_int($pid))) {
+            return FALSE;
+        }
+        else {
+            $userData = $this->get_item(array('`id`' => $uid));
+            $arrTmp = json_decode($userData['auth']);
+            array_push($arrTmp, $pid);
+            $userData['auth'] = $arrTmp;
+            return $this->update_item(array('`id`' => $uid), $userData);
+        }
+    }
+
     public function get_all_admin()
     {
         return $this->get_item(array('`isadmin`' => 1), 0, 0, TRUE);
