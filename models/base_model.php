@@ -56,7 +56,12 @@ class Base_model extends CI_Model
         if ($this->table === null) {
             return false;
         }
-        return $this->db->where($conds)->update($this->table, $newData);
+        else {
+            if ($conds != null && !empty($conds)) {
+                $this->db->where($conds);
+            }
+            return $this->db->update($this->table, $newData);
+        }
     }
 
     /**
@@ -83,8 +88,11 @@ class Base_model extends CI_Model
                 }
             }
 
-            if ($needAll === false) {
+            if ($conds != null && !empty($conds)) {
                 $this->db->where($conds);
+            }
+
+            if ($needAll === false) {
                 $this->db->limit($limit, $offset);
             }
         }

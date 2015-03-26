@@ -78,7 +78,7 @@
       <br />
       <div class="am-input-group">
         <span class="am-input-group-label"><i class="am-icon-lock"></i></span>
-        <input type="text" id="password" name="password" class="am-form-field" placeholder="请输入密码..." maxlength="20" disabled="disabled">
+        <input type="password" id="password" name="password" class="am-form-field" placeholder="请输入密码..." maxlength="20" disabled="disabled">
       </div>
       <br />
 

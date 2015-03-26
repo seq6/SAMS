@@ -24,6 +24,8 @@ class Signup extends CI_Controller
 
         $this->load->model('user_model');
         $this->objUserModel = new user_model;
+
+        $this->data['user'] = $this->objUserModel->get_all_user();
     }
 
     public function index()
@@ -33,7 +35,6 @@ class Signup extends CI_Controller
             $this->form();
         }
         else {
-            $thie->data['user'] = $this->objUserModel->get_all_user();
             $this->load->view('signup', $this->data);
         }
     }
@@ -51,17 +52,20 @@ class Signup extends CI_Controller
         switch ($theUser) {
             case 'oldUser': {
                 $pid = $this->objProjectModel->add($pName);
-                $this->data['error'] = $this->objUserModel->add_user_pid($theUserId, $pid);
+                $this->objUserModel->add_user_pid($theUserId, $pid);
+                break;
             }
             case 'newUser': {
                 $pid = $this->objProjectModel->add($pName);
-                $this->data['error'] = $this->add($userName, $email, $password, $pid);
+                $this->objUserModel->add_user($userName, $email, $password, $pid);
+                break;
             }
             default: {
                 $this->data['error'] = 1;
+                break;
             }
         }
 
-        $this->view->('signup', $this->data);
+        $this->load->view('signup', $this->data);
     }
 }

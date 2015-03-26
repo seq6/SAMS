@@ -12,14 +12,14 @@ class User_model extends Base_model
         $this->table = 'user';
     }
 
-    public function check($email = '', $pwd = '', $isAdmin = FALSE)
+    public function check($email = '', $pwd = '', $isAdmin = false)
     {
         if ($pwd === '') {
-            return FALSE;
+            return false;
         }
         else {
             if ($isAdmin) {
-                $theAdmin = $this->get_item(array('`isadmin`' => 1), 0, 0, TRUE);
+                $theAdmin = $this->get_all_admin();
                 $md5Pwd = md5($pwd);
                 foreach ($theAdmin as $key => $value) {
                     if ($md5Pwd === $value['pwd']) {
@@ -28,7 +28,7 @@ class User_model extends Base_model
                 }
             }
             else {
-                $theUser = $this->get_item(array('`email`' => $email), 0, 0, TRUE);
+                $theUser = $this->get_item(array('`email`' => $email, '`isadmin`' => 0), 0, 0, true);
                 $md5Pwd = md5($pwd);
                 foreach ($theUser as $key => $value) {
                     if ($md5Pwd === $value['pwd']) {
@@ -36,43 +36,61 @@ class User_model extends Base_model
                     }
                 }
             }
-            return FALSE;
+            return false;
         }
     }
 
-    public function add($name = '', $email = '', $pwd = '', $pid = '')
+    private function exist_email($email)
     {
-        if ($name == '' || $email == '' || $pwd == '') {
-            return FALSE;
+        $res = $this->get_item(array('email' => $email));
+        if (empty($res)) {
+            return false;
         }
         else {
-            $user = array('`name`' => $name, '`email`' => $email, '`pwd`' => $pwd, '`auth`' => '{"'.$pid.'"}');
-            return $this->add_item($user);
+            return true;
+        }
+    }
+
+    public function add_user($name = '', $email = '', $pwd = '', $pid = '')
+    {
+        if ($name == '' || $email == '' || $pwd == '') {
+            return false;
+        }
+        else {
+            if ($this->exist_email($email)) {
+                return false;
+            }
+            else {
+                $user = array(  '`name`'  => $name,
+                            '`email`' => $email,
+                            '`pwd`'   => md5($pwd),
+                            '`auth`'  => json_encode(array($pid)));
+                return $this->add_item($user);
+            }
         }
     }
 
     public function add_user_pid($uid = 0, $pid = 0)
     {
-        if (($uid <= 0 || is_int($uid)) || ($pid <= 0 || is_int($pid))) {
-            return FALSE;
+        if ($uid <= 0 || $pid <= 0) {
+            return false;
         }
         else {
             $userData = $this->get_item(array('`id`' => $uid));
-            $arrTmp = json_decode($userData['auth']);
+            $arrTmp = json_decode($userData[0]['auth']);
             array_push($arrTmp, $pid);
-            $userData['auth'] = $arrTmp;
-            return $this->update_item(array('`id`' => $uid), $userData);
+            return $this->update_item(array('`id`' => $uid), array('auth' => json_encode($arrTmp)));
         }
     }
 
     public function get_all_admin()
     {
-        return $this->get_item(array('`isadmin`' => 1), 0, 0, TRUE);
+        return $this->get_item(array('`isadmin`' => 1), 0, 0, true);
     }
 
     public function get_all_user()
     {
-        return $this->get_item(array('`isadmin`' => 0), 0, 0, FALSE);
+        return $this->get_item(array('isadmin' => 0), 0, 0, true);
     }
 }
 

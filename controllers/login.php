@@ -9,9 +9,16 @@ class Login extends CI_Controller
 {
     private $data;
 
+    private $objUserModel;
+
     function __construct()
     {
         parent::__construct();
+
+        $this->data = array();
+
+        $this->load->model('user_model');
+        $this->objUserModel = new user_model;
     }
 
     public function index()
@@ -31,14 +38,11 @@ class Login extends CI_Controller
         $email = isset($_POST['email'])    ? $_POST['email']    : '';
         $pwd   = isset($_POST['password']) ? $_POST['password'] : '';
 
-        $this->load->model('user_model');
-        $objUserModel = new user_model;
-
         switch ($said) {
             //admin login
             case 'admin': {
-                $adminData = $objUserModel->check('', $pwd, TRUE);
-                if ($adminData === FALSE) {
+                $adminData = $this->objUserModel->check('', $pwd, true);
+                if ($adminData == false) {
                     $this->data['pwdError'] = 1;
                     $this->data['said'] = 'admin';
                     $this->load->view('login', $this->data);
@@ -52,8 +56,8 @@ class Login extends CI_Controller
             }
             //user login
             case 'user': {
-                $userData = $objUserModel->check('', $pwd, TRUE);
-                if ($userData === FALSE) {
+                $userData = $this->objUserModel->check($email, $pwd, false);
+                if ($userData == false) {
                     $this->data['pwdError'] = 1;
                     $this->data['said'] = 'user';
                     $this->load->view('login', $this->data);

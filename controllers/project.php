@@ -5,19 +5,36 @@
 * @desc     项目列表页面
 */
 
-class Project extends CI_Controller {
+class Project extends CI_Controller
+{
 
     private $data;
 
-    function __construct() {
-        parent::__construct();
-        $data = array();
-    }
+    private $objProjectModel;
 
-    public function index() {
+    function __construct()
+    {
+        parent::__construct();
+
+        $data = array();
+
         $this->load->model('project_model');
         $objProject = new project_model;
+    }
 
+    public function index()
+    {
+        switch ($_SESSION['said']) {
+            case 'admin': {
+
+            }
+            case 'user': {
+
+            }
+            default:
+                # code...
+                break;
+        }
         $this->load->view('project');
     }
 
