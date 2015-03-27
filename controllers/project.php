@@ -12,6 +12,8 @@ class Project extends CI_Controller
 
     private $objProjectModel;
 
+    private $objUserModel;
+
     function __construct()
     {
         parent::__construct();
@@ -19,23 +21,42 @@ class Project extends CI_Controller
         $data = array();
 
         $this->load->model('project_model');
-        $objProject = new project_model;
+        $this->objProjectModel = new project_model;
+
+        $this->load->model('user_model');
+        $this->objUserModel = new user_model;
     }
 
     public function index()
     {
-        switch ($_SESSION['said']) {
-            case 'admin': {
-
-            }
-            case 'user': {
-
-            }
-            default:
+        if (!empty($_POST)) {
+            $this->form();
+            $this->load->view('project', $this->data);
+        }
+        else {
+            switch ($_SESSION['said']) {
+                case 'admin': {
+                    $this->data['count'] = $this->objProjectModel->get_project_count();
+                    $this->data['project'] = $this->objProjectModel->get();
+                    break;
+                }
+                case 'user': {
+                    $this->data['count'] = $this->objProjectModel->get_project_count(array('uid'=>$_SESSION['uid']));
+                    $this->data['project'] = $this->objProjectModel->get(array('uid'=>$_SESSION['uid']));
+                    break;
+                }
+                default:
                 # code...
                 break;
+            }
+            $this->load->view('project', $this->data);
         }
-        $this->load->view('project');
+        
+    }
+
+    private function form()
+    {
+        # code...
     }
 
 }

@@ -9,15 +9,14 @@ class Project_model extends Base_model
 {
     function __construct()
     {
+        parent::__construct();
+
         $this->table = 'project';
     }
 
-    public function get($limit = 10, $offset = 0)
+    public function get($conds = null, $limit = 10, $offset = 0)
     {
-        $res = array();
-        $res['count'] = $this->get_count();
-        $res['data'] = $this->get_item(null, $limit, $offset);
-        return $res;
+        return $this->get_item($conds, $limit, $offset);
     }
 
     public function add($pName = '')
@@ -40,6 +39,11 @@ class Project_model extends Base_model
     public function update($pid, $newData)
     {
         return $this->update_item(array('id' => $pid), $newData);
+    }
+
+    public function get_project_count($conds = null)
+    {
+        return $this->get_count($conds);
     }
 }
 

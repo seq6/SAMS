@@ -23,7 +23,6 @@ class Login extends CI_Controller
 
     public function index()
     {
-
         if (!empty($_POST)) {
             $this->form();
         }
@@ -32,7 +31,7 @@ class Login extends CI_Controller
         }
     }
 
-    public function form()
+    private function form()
     {
         $said  = isset($_POST['said'])     ? $_POST['said']     : '';
         $email = isset($_POST['email'])    ? $_POST['email']    : '';
@@ -64,8 +63,10 @@ class Login extends CI_Controller
                 }
                 else {
                     $_SESSION['said'] = 'user';
+                    $_SESSION['uid'] = $userData['id'];
                     $_SESSION['name'] = $userData['name'];
                     $_SESSION['email'] = $email;
+                    $_SESSION['auth'] = $userData['auth'];
                     header("location:help");
                 }
                 break;

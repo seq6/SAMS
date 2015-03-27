@@ -110,7 +110,15 @@ class Base_model extends CI_Model
         if ($this->table === null) {
             return false;
         }
-        return $this->db->from($this->table)->where($conds)->count_all_results();
+        else {
+            $this->db->from($this->table);
+
+            if ($conds != null && !empty($conds)) {
+                $this->db->where($conds);
+            }
+
+            return $this->db->count_all_results();
+        }
     }
 
     /**

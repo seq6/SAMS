@@ -18,7 +18,24 @@
 
 <?php include_once 'static/header.php' ?>
 
-<table class="am-table am-table-striped am-table-hover">
+
+<div class="am-g">
+<div class="am-u-lg-8 am-u-md-8 am-u-sm-centered">
+
+<br />
+<div class="am-fl am-cf">
+  <?php
+    if ($_SESSION['said'] == 'admin') {
+        echo '<strong class="am-text-primary am-text-lg">项目列表</strong> / <small>list of all projects</small></div>';
+    }
+    else {
+        echo '<strong class="am-text-primary am-text-lg">我的项目</strong> / <small>my projects</small></div>';
+    }
+  ?>
+<br />
+<hr />
+
+<table class="am-table am-table-bordered am-table-striped am-table-hover">
   <thead>
     <tr>
       <th>项目号</th>
@@ -27,6 +44,7 @@
       <th>启动时间</th>
       <th>关闭时间</th>
       <th>更新时间</th>
+      <th>负责人</th>
     </tr>
   </thead>
   <tbody>
@@ -39,17 +57,19 @@
           <td>X</td>
           <td>X</td>
           <td>X</td>
+          <td>X<td>
           </tr>';
       }
       else {
           foreach ($project as $p) {
               echo '<tr onclick="project('.$p['id'].')">
               <td>'.$p['id'].'</td>
-              <td>'.$p['name'].'</td>
+              <td><a href="pre/introduction/?pid='.$p['id'].'">'.$p['name'].'</a></td>
               <td>'.$p['status'].'</td>
               <td>'.$p['starttime'].'</td>
               <td>'.$p['endtime'].'</td>
               <td>'.$p['updatetime'].'</td>
+              <td>'.$p['uid'].'</td>
               </tr>';
           }
       }
@@ -87,6 +107,9 @@
     }
   ?>
 </ul>
+
+</div>
+</div>
 
 <?php include_once 'static/footer.php' ?>
 
