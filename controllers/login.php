@@ -49,7 +49,7 @@ class Login extends CI_Controller
                 else {
                     $_SESSION['said'] = 'admin';
                     $_SESSION['name'] = $adminData['name'];
-                    header("location:help");
+                    header("location:project");
                 }
                 break;
             }
@@ -67,7 +67,7 @@ class Login extends CI_Controller
                     $_SESSION['name'] = $userData['name'];
                     $_SESSION['email'] = $email;
                     $_SESSION['auth'] = $userData['auth'];
-                    header("location:help");
+                    header("location:project");
                 }
                 break;
             }

@@ -12,6 +12,7 @@
   <?php
     echo '<link rel="alternate icon" type="image/png" href="'.URL_ROOT.'assets/i/favicon.png">';
     echo '<link rel="stylesheet" href="'.URL_ROOT.'assets/css/amazeui.min.css"/>';
+    echo '<link rel="stylesheet" href="'.URL_ROOT.'assets/css/admin.css">';
   ?>
 </head>
 <body>
@@ -20,7 +21,7 @@
 
   <div class="am-cf admin-main">
 
-  <?php include_once 'static/sidebar.php'; ?>
+  <?php //include_once 'static/sidebar.php'; ?>
 
     <div class="admin-content">
       <div class="am-cf am-padding">

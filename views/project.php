@@ -12,6 +12,7 @@
   <?php
     echo '<link rel="alternate icon" type="image/png" href="'.URL_ROOT.'assets/i/favicon.png">';
     echo '<link rel="stylesheet" href="'.URL_ROOT.'assets/css/amazeui.min.css"/>';
+    echo '<link rel="stylesheet" href="'.URL_ROOT.'assets/css/admin.css">';
   ?>
 </head>
 <body>
