@@ -5,9 +5,16 @@
 * @desc     ###########
 */
 
-class Member extends CI_Controller {
+class Member extends CI_Controller
+{
 
-    public function index() {
+    function __construct()
+    {
+        parent::__construct();
+    }
+
+    public function index()
+    {
         $this->load->view('pre/member');
     }
 

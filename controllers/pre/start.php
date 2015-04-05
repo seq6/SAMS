@@ -5,10 +5,15 @@
 * @desc     ###########
 */
 
-class Start extends CI_Controller {
-
-    public function index() {
-        $this->load->view('pre/start');
+class Start extends CI_Controller
+{
+    function __construct()
+    {
+        parent::__construct();
     }
 
+    public function index()
+    {
+        $this->load->view('pre/start');
+    }
 }

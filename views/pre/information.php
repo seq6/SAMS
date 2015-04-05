@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html>
 <head>
   <meta charset="UTF-8">
   <title>安全风险评估管理系统</title>

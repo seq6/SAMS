@@ -5,9 +5,15 @@
 * @desc     ###########
 */
 
-class Environment extends CI_Controller {
+class Environment extends CI_Controller
+{
+    function __construct()
+    {
+        parent::__construct();
+    }
 
-    public function index() {
+    public function index()
+    {
         $this->load->view('sur/environment');
     }
 

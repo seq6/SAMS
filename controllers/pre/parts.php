@@ -5,9 +5,15 @@
 * @desc     ###########
 */
 
-class Parts extends CI_Controller {
+class Parts extends CI_Controller
+{
+    function __construct()
+    {
+        parent::__construct();
+    }
 
-    public function index() {
+    public function index()
+    {
         $this->load->view('pre/parts');
     }
 
