@@ -11,8 +11,11 @@ class PjRange_model extends Base_model
     {
         parent::__construct();
 
-         $this->table = 'pjRange';
+        $this->table = 'pjRange';
+    }
+
+    public function get_range()
+    {
+        return $this->get_item(null, 0, 0, true);
     }
 }
-
-?>

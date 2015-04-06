@@ -48,30 +48,19 @@
       </thead>
       <tbody>
         <?php
-          if ($count == 0) {
-              echo '<tr>
-              <td>X</td>
-              <td>尚无项目</td>
-              <td>X</td>
-              <td>X</td>
-              <td>X</td>
-              <td>X</td>
-              <td>X<td>
-              </tr>';
-          }
-          else {
-              foreach ($project as $p) {
-                  echo '<tr onclick="project('.$p['id'].')">
-                  <td>'.$p['id'].'</td>
-                  <td><a href="pre/introduction/?pid='.$p['id'].'">'.$p['name'].'</a></td>
-                  <td>'.$p['status'].'</td>
-                  <td>'.$p['starttime'].'</td>
-                  <td>'.$p['endtime'].'</td>
-                  <td>'.$p['updatetime'].'</td>
-                  <td>'.$p['uid'].'</td>
-                  </tr>';
-              }
-          }
+            if (isset($project) && !empty($project)) {
+                foreach ($project as $p) {
+                    echo '<tr onclick="project('.$p['id'].')">
+                        <td>'.$p['id'].'</td>
+                        <td><a href="pre/introduction/?pid='.$p['id'].'">'.$p['name'].'</a></td>
+                        <td>'.$p['status'].'</td>
+                        <td>'.$p['starttime'].'</td>
+                        <td>'.$p['endtime'].'</td>
+                        <td>'.$p['updatetime'].'</td>
+                        <td>'.$p['uid'].'</td>
+                        </tr>';
+                }
+            }
         ?>
       </tbody>
     </table>

@@ -13,6 +13,9 @@ class Hardconfig_model extends Base_model
 
         $this->table = 'hardconfig';
     }
-}
 
-?>
+    public function get_hard_config()
+    {
+    	return $this->get_item(null, 0, 0, true);
+    }
+}

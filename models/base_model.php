@@ -11,8 +11,6 @@ class Base_model extends CI_Model
     function __construct()
     {
         parent::__construct();
-
-        $table = null;
     }
 
     /**
@@ -38,7 +36,7 @@ class Base_model extends CI_Model
     * @params array $conds 删除条件; int $limit 删除函数
     * @return bool true 删除成功, false 删除失败
     **/
-    public function delete_item($conds = array(), $limit = 0)
+    public function delete_item($conds = array(), $limit = 1)
     {
         if ($this->table === null) {
             return false;

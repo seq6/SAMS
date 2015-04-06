@@ -64,9 +64,9 @@ class User_model extends Base_model
             }
             else {
                 $user = array(  '`name`'  => $name,
-                            '`email`' => $email,
-                            '`pwd`'   => md5($pwd),
-                            '`auth`'  => json_encode(array($pid)));
+                                '`email`' => $email,
+                                '`pwd`'   => md5($pwd),
+                                '`auth`'  => json_encode(array($pid)));
                 return $this->add_item($user);
             }
         }
@@ -95,5 +95,3 @@ class User_model extends Base_model
         return $this->get_item(array('isadmin' => 0), 0, 0, true);
     }
 }
-
-?>

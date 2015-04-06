@@ -13,6 +13,9 @@ class Position_model extends Base_model
 
         $this->table = 'position';
     }
-}
 
-?>
+    public function get_position()
+    {
+    	return $this->get_item(null, 0, 0, true);
+    }
+}
