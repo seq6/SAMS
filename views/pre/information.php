@@ -27,7 +27,6 @@
     <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">项目信息</strong> / <small>information</small></div>
     </div>
     <hr/>
-  </div>
 
   <div class="am-tabs am-margin" data-am-tabs>
     <ul class="am-tabs-nav am-nav am-nav-tabs">
@@ -37,6 +36,12 @@
 
     <div class="am-tabs-bd">
       <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+        <div class="am-g am-margin-top">
+          <div class="am-u-sm-4 am-u-md-2 am-text-right">项目名称</div>
+          <div class="am-u-sm-8 am-u-md-10">
+            <input type="text" value="">
+          </div>
+        </div>
         <div class="am-g am-margin-top">
           <div class="am-u-sm-4 am-u-md-2 am-text-right">项目类型</div>
           <div class="am-u-sm-8 am-u-md-10">
@@ -74,14 +79,34 @@
             </div>
           </div>
         </div>
+        <div class="am-g am-margin-top">
+          <div class="am-u-sm-4 am-u-md-2 am-text-right">更新时间</div>
+          <div class="am-u-sm-8 am-u-md-10">
+            <input type="text" disabled="">
+          </div>
+        </div>
       </div>
-      <div class="am-tab-panel am-fade" id="tab2"></div>
+      <div class="am-tab-panel am-fade" id="tab2">
+        <div class="am-g am-margin-top">
+          <div class="am-u-sm-4 am-u-md-2 am-text-right">项目目标</div>
+          <div class="am-u-sm-8 am-u-md-10">
+            <textarea rows="4"></textarea>
+          </div>
+        </div>
+        <div class="am-g am-margin-top">
+          <div class="am-u-sm-4 am-u-md-2 am-text-right">项目描述</div>
+          <div class="am-u-sm-8 am-u-md-10">
+            <textarea rows="4"></textarea>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
   <div class="am-margin">
     <button type="button" class="am-btn am-btn-primary am-btn-xs">提交保存</button>
-    <button type="button" class="am-btn am-btn-primary am-btn-xs">重 置</button>
+    <button type="reset" class="am-btn am-btn-primary am-btn-xs">重 置</button>
+  </div>
   </div>
 </div>
 

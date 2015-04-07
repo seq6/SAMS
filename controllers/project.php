@@ -2,7 +2,7 @@
 
 /**
 * @author   zhangji
-* @desc     项目列表页面
+* @desc     项目列表
 */
 
 class Project extends CI_Controller
@@ -18,7 +18,7 @@ class Project extends CI_Controller
     {
         parent::__construct();
 
-        $data = array();
+        $this->data = array();
 
         $this->load->model('project_model');
         $this->objProjectModel = new project_model;

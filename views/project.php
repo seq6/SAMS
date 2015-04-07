@@ -50,15 +50,16 @@
         <?php
             if (isset($project) && !empty($project)) {
                 foreach ($project as $p) {
-                    echo '<tr onclick="project('.$p['id'].')">
-                        <td>'.$p['id'].'</td>
-                        <td><a href="pre/introduction/?pid='.$p['id'].'">'.$p['name'].'</a></td>
-                        <td>'.$p['status'].'</td>
-                        <td>'.$p['starttime'].'</td>
-                        <td>'.$p['endtime'].'</td>
-                        <td>'.$p['updatetime'].'</td>
-                        <td>'.$p['uid'].'</td>
-                        </tr>';
+                    $dom = '<tr onclick="project('.$p['id'].')">';
+                    $dom .= '<td>'.$p['id'].'</td>';
+                    $dom .= '<td><a href="pre/information/?pid='.$p['id'].'">'.$p['name'].'</a></td>';
+                    $dom .= '<td>'.$p['status'].'</td>';
+                    $dom .= '<td>'.$p['starttime'].'</td>';
+                    $dom .= '<td>'.$p['endtime'].'</td>';
+                    $dom .= '<td>'.$p['updatetime'].'</td>';
+                    $dom .= '<td>'.$p['uid'].'</td>';
+                    $dom .= '</tr>';
+                    echo $dom;
                 }
             }
         ?>

@@ -42,15 +42,13 @@ class User_model extends Base_model
         }
     }
 
-    private function exist_email($email)
+    public function get_user($email = '', $pwd = '')
     {
-        $res = $this->get_item(array('email' => $email));
-        if (empty($res)) {
-            return false;
+        $theUser = $this->get_item(array('email' => $email, 'pwd' => md5($pwd), 'isadmin' => 0));
+        if (is_array($theUser) && !empty($theUser)) {
+            return $theUser[0];
         }
-        else {
-            return true;
-        }
+        return false;
     }
 
     public function add_user($name = '', $email = '', $pwd = '', $pid = '')
@@ -93,5 +91,16 @@ class User_model extends Base_model
     public function get_all_user()
     {
         return $this->get_item(array('isadmin' => 0), 0, 0, true);
+    }
+
+    private function exist_email($email)
+    {
+        $res = $this->get_item(array('email' => $email));
+        if (empty($res)) {
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 }

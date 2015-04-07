@@ -27,6 +27,69 @@
         <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">项目人员</strong> / <small>members</small></div>
       </div>
       <hr/>
+
+      <table class="am-table am-table-bordered am-table-striped am-table-hover">
+      <thead>
+        <tr>
+          <th>姓名</th>
+          <th>性别</th>
+          <th>电话</th>
+          <th>手机</th>
+          <th>电子邮箱</th>
+          <th>岗位</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+            if (isset($members) && !empty($m)) {
+                foreach ($project as $p) {
+                    $dom = '<tr onclick="project('.$p['id'].')">';
+                    $dom .= '<td>'.$p['id'].'</td>';
+                    $dom .= '<td><a href="pre/information/?pid='.$p['id'].'">'.$p['name'].'</a></td>';
+                    $dom .= '<td>'.$p['status'].'</td>';
+                    $dom .= '<td>'.$p['starttime'].'</td>';
+                    $dom .= '<td>'.$p['endtime'].'</td>';
+                    $dom .= '<td>'.$p['updatetime'].'</td>';
+                    $dom .= '<td>'.$p['uid'].'</td>';
+                    $dom .= '</tr>';
+                    echo $dom;
+                }
+            }
+        ?>
+      </tbody>
+    </table>
+
+    <ul class="am-pagination">
+      <?php
+        $pNo = isset($pageNo) ? $pageNo : 1;
+        $count = 1;
+        $allPage = ($count - 1) / 10 + 1;
+        if ($pNo != 1) {
+            echo '<li><a href="project?pageNo=1">&laquo;</li>';
+        }
+        else {
+            echo '<li class="am-disabled"><a href="project?pageNo=1">&laquo;</li>';
+        }
+        $startNo = ($pNo - 2) >= 1 ? ($pNo - 2) : 1;
+        $endNo = ($pNo + 2) <= $allPage ? ($pNo + 2) : $allPage;
+        for ($i = $startNo; $i <= $endNo; $i++) {
+            if ($i == $pNo) {
+                echo '<li class="am-active"><a href="project?pageNo='.$i.'">'.$i.'</li>';
+            }
+            else {
+                echo '<li><a href="project?pageNo='.$i.'">'.$i.'</li>';
+            }
+        }
+        if ($endNo != $allPage) {
+            echo '<li><a href="project?pageNo='.$allPage.'">&raquo;</li>';
+        }
+        else {
+            echo '<li class="am-disabled"><a href="project?pageNo='.$allPage.'">&raquo;</li>';
+        }
+      ?>
+    </ul>
+
     </div>
 
   </div>
