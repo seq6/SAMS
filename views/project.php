@@ -37,9 +37,9 @@
     <table class="am-table am-table-bordered am-table-striped am-table-hover">
       <thead>
         <tr>
-          <th>项目号</th>
-          <th>项目名称</th>
-          <th>项目状态</th>
+          <th>ID</th>
+          <th>项目</th>
+          <th>状态</th>
           <th>启动时间</th>
           <th>关闭时间</th>
           <th>更新时间</th>
