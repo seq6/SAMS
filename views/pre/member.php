@@ -38,27 +38,6 @@
           </div>
         </div>
       </div>
-      <div class="am-u-sm-12 am-u-md-3">
-        <div class="am-form-group">
-          <select data-am-selected="{btnSize: 'sm'}">
-            <option value="option1">所有类别</option>
-            <option value="option2">IT业界</option>
-            <option value="option3">数码产品</option>
-            <option value="option3">笔记本电脑</option>
-            <option value="option3">平板电脑</option>
-            <option value="option3">只能手机</option>
-            <option value="option3">超极本</option>
-          </select>
-        </div>
-      </div>
-      <div class="am-u-sm-12 am-u-md-3">
-        <div class="am-input-group am-input-group-sm">
-          <input type="text" class="am-form-field">
-          <span class="am-input-group-btn">
-            <button class="am-btn am-btn-default" type="button">搜索</button>
-          </span>
-        </div>
-      </div>
     </div>
 
     <div class="am-g">
@@ -79,41 +58,83 @@
             </thead>
             <tbody>
               <tr>
-                <td><input type="checkbox" /></td>
-                <td>1</td>
-                <td><a href="#">Business management</a></td>
-                <td>default</td>
-                <td class="am-hide-sm-only">测试1号</td>
-                <td class="am-hide-sm-only">2014年9月4日 7:28:47</td>
-                <td>
-                  <div class="am-btn-toolbar">
-                    <div class="am-btn-group am-btn-group-xs">
-                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button>
-                      <button class="am-btn am-btn-default am-btn-xs am-hide-sm-only"><span class="am-icon-copy"></span> 复制</button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</button>
-                    </div>
-                  </div>
-                </td>
+                <?php
+                    $dom = '';
+                    $tool = '<div class="am-btn-toolbar">
+                              <div class="am-btn-group am-btn-group-xs">
+                                <button class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                                    <span class="am-icon-pencil-square-o"></span> 编辑
+                                </button>
+                                <button class="am-btn am-btn-default am-btn-xs am-hide-sm-only">
+                                    <span class="am-icon-copy"></span> 复制
+                                </button>
+                                <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+                                    <span class="am-icon-trash-o"></span> 删除
+                                </button>
+                              </div>
+                            </div>';
+                    if (isset($members) && !empty($members)) {
+                        $i = ($pageNo - 1) * 10 + 1;
+                        foreach ($members as $key => $m) {
+                            $dom .= '<td><input id="'.$m['id'].'" type="checkbox" /></td>';
+                            $dom .= '<td>'.$i.'</td>';
+                            $dom .= '<td>'.$m['name'].'</td>';
+                            $sex = ($m['sex'] == 1) ? '男' : '女';
+                            $dom .= '<td class="am-hide-sm-only>'.$sex.'</td>';
+                            $dom .= '<td class="am-hide-sm-only>'.$m['phone'].'</td>';
+                            $dom .= '<td class="am-hide-sm-only>'.$m['mobile'].'</td>';
+                            $dom .= '<td>'.$m['position'].'</td>';
+                            $dom .= '<td>'.$tool.'</td>';
+                            $i++;
+                        }
+                    }
+                ?>
               </tr>
             </tbody>
           </table>
 
           <div class="am-cf">
-            共 15 条记录
+            <?php
+              echo '共'.$count.'条记录';
+            ?>
             <div class="am-fr">
               <ul class="am-pagination">
-                <li class="am-disabled"><a href="#">«</a></li>
-                <li class="am-active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">»</a></li>
+                <?php
+                    if (!isset($pageNo)) {
+                        $pageNo = 1;
+                    }
+                    if (!isset($count)) {
+                        $count = 0;
+                    }
+                    $allPage = ($count - 1) / 10 + 1;
+                    if ($pageNo != 1) {
+                        echo '<li><a href="project?pageNo=1">&laquo;</a></li>';
+                    }
+                    else {
+                        echo '<li class="am-disabled"><a href="project?pageNo=1">&laquo;</a></li>';
+                    }
+                    $startNo = ($pageNo - 2) >= 1 ? ($pageNo - 2) : 1;
+                    $endNo = ($pageNo + 2) <= $allPage ? ($pageNo + 2) : $allPage;
+                    for ($i = $startNo; $i <= $endNo; $i++) {
+                        if ($i == $pageNo) {
+                            echo '<li class="am-active"><a href="project?pageNo='.$i.'">'.$i.'</a></li>';
+                        }
+                        else {
+                            echo '<li><a href="project?pageNo='.$i.'">'.$i.'</a></li>';
+                        }
+                    }
+                    if ($endNo != $allPage) {
+                        echo '<li><a href="project?pageNo='.$allPage.'">&raquo;</a></li>';
+                    }
+                    else {
+                        echo '<li class="am-disabled"><a href="project?pageNo='.$allPage.'">&raquo;</a></li>';
+                    }
+
+                ?>
               </ul>
             </div>
           </div>
           <hr />
-          <p>注：.....</p>
         </form>
       </div>
     </div>

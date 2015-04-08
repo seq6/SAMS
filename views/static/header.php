@@ -21,12 +21,11 @@
 
   <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
     <?php
-      $dom = '<li><a href="'.URL_ROOT.'help"><span class="am-icon-puzzle-piece"></span> 帮助</a></li>';
+      echo '<li><a href="'.URL_ROOT.'help"><span class="am-icon-puzzle-piece"></span> 帮助</a></li>';
       if (isset($_SESSION['login']['said']) && $_SESSION['login']['said'] == 'admin') {
-        $dom .= '<li><a href="'.URL_ROOT.'signup"><span class="am-icon-user-plus"></span> 注册</a></li>';
+        echo '<li><a href="'.URL_ROOT.'signup"><span class="am-icon-user-plus"></span> 注册</a></li>';
       }
-      $dom .= '<li><a href="'.URL_ROOT.'signout"><span class="am-icon-sign-out"></span> 注销</a></li> ';
-      echo $dom;
+      echo '<li><a href="'.URL_ROOT.'signout"><span class="am-icon-sign-out"></span> 注销</a></li> ';
     ?>
   </ul>
 </header>

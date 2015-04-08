@@ -54,18 +54,18 @@
                     $dom .= '<td>'.$p['id'].'</td>';
                     $dom .= '<td><a href="pre/information/?pid='.$p['id'].'">'.$p['name'].'</a></td>';
                     switch ($p['status']) {
-                      case '0':
-                        $dom .= '<td>未启动</td>';
-                        break;
-                      case '1':
-                        $dom .= '<td>进行中</td>';
-                        break;
-                      case '2':
-                        $dom .= '<td>已关闭</td>';
-                        break;
-                      default:
-                        $dom .= '<td>error</td>';
-                        break;
+                        case '0':
+                            $dom .= '<td>未启动</td>';
+                            break;
+                        case '1':
+                            $dom .= '<td>进行中</td>';
+                            break;
+                        case '2':
+                            $dom .= '<td>已关闭</td>';
+                            break;
+                        default:
+                            $dom .= '<td>error</td>';
+                            break;
                     }
                     $dom .= '<td>'.$p['starttime'].'</td>';
                     $dom .= '<td>'.$p['endtime'].'</td>';
@@ -81,32 +81,34 @@
 
     <ul class="am-pagination">
       <?php
-        $pNo = isset($pageNo) ? $pageNo : 1;
+        if (!isset($pageNo)) {
+            $pageNo = 1;
+        }
         if (!isset($count)) {
-            $count = 1;
+            $count = 0;
         }
         $allPage = ($count - 1) / 10 + 1;
-        if ($pNo != 1) {
-            echo '<li><a href="project?pageNo=1">&laquo;</li>';
+        if ($pageNo != 1) {
+            echo '<li><a href="project?pageNo=1">&laquo;</a></li>';
         }
         else {
-            echo '<li class="am-disabled"><a href="project?pageNo=1">&laquo;</li>';
+            echo '<li class="am-disabled"><a href="project?pageNo=1">&laquo;</a></li>';
         }
-        $startNo = ($pNo - 2) >= 1 ? ($pNo - 2) : 1;
-        $endNo = ($pNo + 2) <= $allPage ? ($pNo + 2) : $allPage;
+        $startNo = ($pageNo - 2) >= 1 ? ($pageNo - 2) : 1;
+        $endNo = ($pageNo + 2) <= $allPage ? ($pageNo + 2) : $allPage;
         for ($i = $startNo; $i <= $endNo; $i++) {
-            if ($i == $pNo) {
-                echo '<li class="am-active"><a href="project?pageNo='.$i.'">'.$i.'</li>';
+            if ($i == $pageNo) {
+                echo '<li class="am-active"><a href="project?pageNo='.$i.'">'.$i.'</a></li>';
             }
             else {
-                echo '<li><a href="project?pageNo='.$i.'">'.$i.'</li>';
+                echo '<li><a href="project?pageNo='.$i.'">'.$i.'</a></li>';
             }
         }
         if ($endNo != $allPage) {
-            echo '<li><a href="project?pageNo='.$allPage.'">&raquo;</li>';
+            echo '<li><a href="project?pageNo='.$allPage.'">&raquo;</a></li>';
         }
         else {
-            echo '<li class="am-disabled"><a href="project?pageNo='.$allPage.'">&raquo;</li>';
+            echo '<li class="am-disabled"><a href="project?pageNo='.$allPage.'">&raquo;</a></li>';
         }
       ?>
     </ul>
@@ -117,14 +119,6 @@
 <?php include_once 'static/footer.php' ?>
 
 <script type="text/javascript">
-
-function page (pageNo = 0) {
-  // body...
-}
-
-function project (pid = 0) {
-    
-}
 
 </script>
 </body>

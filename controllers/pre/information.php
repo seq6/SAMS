@@ -41,6 +41,7 @@ class Information extends CI_Controller
             $this->form();
         }
         else {
+            //设置session
             if (!isset($_SESSION['project'])) {
                 $this->init_project();
             }

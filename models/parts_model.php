@@ -14,13 +14,14 @@ class Parts_model extends Base_model
         $this->table = 'parts';
     }
 
-    public function get_parts($id = 0)
+    public function get_part($id = 0)
     {
         if ($id == 0) {
             return false;
         }
         else {
-            return $this->get_item(array('id' => $id));
+            $res = $this->get_item(array('id' => $id));
+            return $res[0];
         }
     }
 

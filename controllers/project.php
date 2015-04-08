@@ -37,15 +37,21 @@ class Project extends CI_Controller
             if (isset($_SESSION['project'])) {
                 unset($_SESSION['project']);
             }
+
+            $pageNo = isset($_GET['pageNo']) ? $_GET['pageNo'] : 1;
+            $limit = 10;
+            $offset = ($pageNo - 1) * 10;
+
             switch ($_SESSION['login']['said']) {
                 case 'admin': {
                     $this->data['count'] = $this->objProjectModel->get_project_count();
-                    $this->data['project'] = $this->objProjectModel->get_projetcs();
+                    $this->data['project'] = $this->objProjectModel->get_projetcs(null, $limit, $offset);
                     break;
                 }
                 case 'user': {
-                    $this->data['count'] = $this->objProjectModel->get_project_count(array('uid'=>$_SESSION['login']['uid']));
-                    $this->data['project'] = $this->objProjectModel->get_projetc(array('uid'=>$_SESSION['login']['uid']));
+                    $uid = $_SESSION['login']['uid'];
+                    $this->data['count'] = $this->objProjectModel->get_project_count(array('uid'=>$uid));
+                    $this->data['project'] = $this->objProjectModel->get_projetc(array('uid'=>$uid));
                     break;
                 }
                 default:
@@ -53,6 +59,7 @@ class Project extends CI_Controller
                 break;
             }
             
+            $this->data['pageNo'] = $pageNo;
             $this->load->view('project', $this->data);
         }
         

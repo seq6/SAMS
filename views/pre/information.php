@@ -141,7 +141,8 @@
     <button type="button" class="am-btn am-btn-primary am-btn-xs">提交保存</button>
     <button type="reset" class="am-btn am-btn-primary am-btn-xs">重 置</button>
   </div>
-  </div>
+</div>
+
 </div>
 
 <a class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
