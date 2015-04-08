@@ -34,21 +34,25 @@ class Project extends CI_Controller
             $this->load->view('project', $this->data);
         }
         else {
-            switch ($_SESSION['said']) {
+            if (isset($_SESSION['project'])) {
+                unset($_SESSION['project']);
+            }
+            switch ($_SESSION['login']['said']) {
                 case 'admin': {
                     $this->data['count'] = $this->objProjectModel->get_project_count();
-                    $this->data['project'] = $this->objProjectModel->get();
+                    $this->data['project'] = $this->objProjectModel->get_projetcs();
                     break;
                 }
                 case 'user': {
-                    $this->data['count'] = $this->objProjectModel->get_project_count(array('uid'=>$_SESSION['uid']));
-                    $this->data['project'] = $this->objProjectModel->get(array('uid'=>$_SESSION['uid']));
+                    $this->data['count'] = $this->objProjectModel->get_project_count(array('uid'=>$_SESSION['login']['uid']));
+                    $this->data['project'] = $this->objProjectModel->get_projetc(array('uid'=>$_SESSION['login']['uid']));
                     break;
                 }
                 default:
                 # code...
                 break;
             }
+            
             $this->load->view('project', $this->data);
         }
         

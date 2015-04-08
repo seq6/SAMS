@@ -5,8 +5,8 @@
         <a>
           <span class="am-icon-home"></span>
           <?php
-            if (isset($_SESSION['pName']) && $_SESSION['pName'] != '') {
-                echo $_SESSION['pName'];
+            if (isset($_SESSION['project']['name']) && $_SESSION['project']['name'] != '') {
+                echo $_SESSION['project']['name'];
             }
           ?>
         </a>
@@ -16,7 +16,6 @@
         <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-pre-nav">
         <?php
           echo '
-            <li><a href="'.URL_ROOT.'pre/introduction"><span class="am-icon-check-circle admin-icon-yellow"></span> 项目简介</a></li>
             <li><a href="'.URL_ROOT.'pre/information"><span class="am-icon-check-circle"></span> 项目信息</a></li>
             <li><a href="'.URL_ROOT.'pre/member"><span class="am-icon-check-circle"></span> 项目人员</a></li>
             <li><a href="'.URL_ROOT.'pre/parts"><span class="am-icon-check-circle"></span> 评估双方</a></li>

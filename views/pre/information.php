@@ -39,7 +39,39 @@
         <div class="am-g am-margin-top">
           <div class="am-u-sm-4 am-u-md-2 am-text-right">项目名称</div>
           <div class="am-u-sm-8 am-u-md-10">
-            <input type="text" value="">
+            <?php
+              if (isset($_SESSION['project']['name']) && $_SESSION['project']['name'] != null) {
+                  echo '<input type="text" class="am-form-field" value="'.$_SESSION['project']['name'].'">';
+              }
+            ?>
+          </div>
+        </div>
+        <div class="am-g am-margin-top">
+          <div class="am-u-sm-4 am-u-md-2 am-text-right">项目状态</div>
+          <div class="am-u-sm-8 am-u-md-10">
+          <?php
+            if (isset($_SESSION['project']['status']) && $_SESSION['project']['status'] != null) {
+                switch ($_SESSION['project']['status']) {
+                    case '0':{
+                        $status = '未启动';
+                        break;
+                    }
+                    case '1':{
+                        $status = '进行中';
+                        break;
+                    }
+                    case '2':{
+                        $status = '已关闭';
+                        break;
+                    }
+                    default:{
+                        $status = 'error';
+                        break;
+                    }
+                }
+                echo '<label >'.$status.'</label>';
+            }
+          ?>
           </div>
         </div>
         <div class="am-g am-margin-top">
@@ -65,9 +97,12 @@
               <?php
                 if (isset($range) && !empty($range)) {
                     foreach ($range as $r) {
-                        echo '<label class="am-btn am-btn-default am-btn-xs">
-                                <input type="checkbox"> '.$r['name'].'
-                              </label>';
+                        if (in_array((int)$r['id'], $_SESSION['project']['range'])) {
+                            echo '<label class="am-btn am-btn-default am-btn-xs am-active"><input type="checkbox"> '.$r['name'].'</label>';
+                        }
+                        else {
+                            echo '<label class="am-btn am-btn-default am-btn-xs"><input type="checkbox"> '.$r['name'].'</label>';
+                        } 
                     }
                 }
               ?>
@@ -77,7 +112,11 @@
         <div class="am-g am-margin-top">
           <div class="am-u-sm-4 am-u-md-2 am-text-right">更新时间</div>
           <div class="am-u-sm-8 am-u-md-10">
-            <input type="text" disabled="">
+            <?php
+              if (isset($_SESSION['project']['updatetime']) && $_SESSION['project']['updatetime'] != null) {
+                  echo '<label >'.$_SESSION['project']['updatetime'].'</label>';
+              }
+            ?>
           </div>
         </div>
       </div>

@@ -15,12 +15,8 @@ class Signout extends CI_Controller
     public function index()
     {
         /* unset session */
-        $this->unset_session('said');
-        $this->unset_session('name');
-        $this->unset_session('email');
-        $this->unset_session('pid');
-        $this->unset_session('pre');
-        $this->unset_session('sur');
+        $this->unset_session('login');
+        $this->unset_session('project');
 
         header('location:login');
     }

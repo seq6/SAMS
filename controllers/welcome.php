@@ -15,8 +15,7 @@ class Welcome extends CI_Controller
 
     public function index()
     {
-        $said = isset($_SESSION['said']) ? $_SESSION['said'] : false;
-        if ($said === false || ($said != 'admin' && $said != 'user')) {
+        if (isset($_SESSION['login']) && !empty($_SESSION['login'])) {
             $this->load->view('login');
         }
         else {

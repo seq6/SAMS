@@ -24,7 +24,7 @@
 
     <div class="admin-content">
       <div class="am-cf am-padding">
-        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">评估双方</strong> / <small>partA-partB</small></div>
+        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">评估双方</strong> / <small>partA & partB</small></div>
       </div>
       <hr/>
     </div>

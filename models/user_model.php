@@ -44,9 +44,9 @@ class User_model extends Base_model
 
     public function get_user($email = '', $pwd = '')
     {
-        $theUser = $this->get_item(array('email' => $email, 'pwd' => md5($pwd), 'isadmin' => 0));
+        $res = $this->get_item(array('email' => $email, 'pwd' => md5($pwd), 'isadmin' => 0));
         if (is_array($theUser) && !empty($theUser)) {
-            return $theUser[0];
+            return $res[0];
         }
         return false;
     }
@@ -86,9 +86,10 @@ class User_model extends Base_model
         }
     }
 
-    public function get_all_admin()
+    public function get_admin()
     {
-        return $this->get_item(array('`isadmin`' => 1), 0, 0, true);
+        $res = $this->get_item(array('`isadmin`' => 1));
+        return $res[0];
     }
 
     public function get_all_user()

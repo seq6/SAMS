@@ -51,12 +51,12 @@ class Signup extends CI_Controller
 
         switch ($theUser) {
             case 'oldUser': {
-                $pid = $this->objProjectModel->add($pName);
+                $pid = $this->objProjectModel->add_projetc($pName);
                 $this->objUserModel->add_user_pid($theUserId, $pid);
                 break;
             }
             case 'newUser': {
-                $pid = $this->objProjectModel->add($pName);
+                $pid = $this->objProjectModel->add_projetc($pName);
                 $this->objUserModel->add_user($userName, $email, $password, $pid);
                 break;
             }

@@ -67,7 +67,14 @@
           <table class="am-table am-table-striped am-table-hover table-main">
             <thead>
               <tr>
-                <th class="table-check"><input type="checkbox" /></th><th class="table-id">ID</th><th class="table-title">标题</th><th class="table-type">类别</th><th class="table-author am-hide-sm-only">作者</th><th class="table-date am-hide-sm-only">修改日期</th><th class="table-set">操作</th>
+                <th class="table-check"><input type="checkbox" /></th>
+                <th>ID</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>电话</th>
+                <th>手机</th>
+                <th>岗位</th>
+                <th>操作</th>
               </tr>
             </thead>
             <tbody>

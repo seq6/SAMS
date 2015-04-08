@@ -24,7 +24,7 @@
   <br />
     <div class="am-fl am-cf">
       <?php
-        if ($_SESSION['said'] == 'admin') {
+        if ($_SESSION['login']['said'] == 'admin') {
             echo '<strong class="am-text-primary am-text-lg">项目列表</strong> / <small>list of all projects</small></div>';
         }
         else {
@@ -53,7 +53,20 @@
                     $dom = '<tr onclick="project('.$p['id'].')">';
                     $dom .= '<td>'.$p['id'].'</td>';
                     $dom .= '<td><a href="pre/information/?pid='.$p['id'].'">'.$p['name'].'</a></td>';
-                    $dom .= '<td>'.$p['status'].'</td>';
+                    switch ($p['status']) {
+                      case '0':
+                        $dom .= '<td>未启动</td>';
+                        break;
+                      case '1':
+                        $dom .= '<td>进行中</td>';
+                        break;
+                      case '2':
+                        $dom .= '<td>已关闭</td>';
+                        break;
+                      default:
+                        $dom .= '<td>error</td>';
+                        break;
+                    }
                     $dom .= '<td>'.$p['starttime'].'</td>';
                     $dom .= '<td>'.$p['endtime'].'</td>';
                     $dom .= '<td>'.$p['updatetime'].'</td>';
@@ -69,6 +82,9 @@
     <ul class="am-pagination">
       <?php
         $pNo = isset($pageNo) ? $pageNo : 1;
+        if (!isset($count)) {
+            $count = 1;
+        }
         $allPage = ($count - 1) / 10 + 1;
         if ($pNo != 1) {
             echo '<li><a href="project?pageNo=1">&laquo;</li>';

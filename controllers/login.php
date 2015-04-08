@@ -40,34 +40,36 @@ class Login extends CI_Controller
         switch ($said) {
             //admin login
             case 'admin': {
-                $adminData = $this->objUserModel->check('', $pwd, true);
-                if ($adminData == false) {
+                $adminData = $this->objUserModel->get_admin();
+                if (md5($pwd) === $adminData['pwd']) {
+                    $_SESSION['login'] = array();
+                    $_SESSION['login']['said'] = 'admin';
+                    $_SESSION['login']['name'] = $adminData['name'];
+                    header("location:project");
+                }
+                else {
                     $this->data['pwdError'] = 1;
                     $this->data['said'] = 'admin';
                     $this->load->view('login', $this->data);
-                }
-                else {
-                    $_SESSION['said'] = 'admin';
-                    $_SESSION['name'] = $adminData['name'];
-                    header("location:project");
                 }
                 break;
             }
             //user login
             case 'user': {
                 $userData = $this->objUserModel->check($email, $pwd, false);
-                if ($userData == false) {
+                if ($userData !== false) {
+                    $_SESSION['login'] = array();
+                    $_SESSION['login']['said'] = 'user';
+                    $_SESSION['login']['uid'] = $userData['id'];
+                    $_SESSION['login']['name'] = $userData['name'];
+                    $_SESSION['login']['email'] = $email;
+                    $_SESSION['login']['auth'] = json_decode($userData['auth']);
+                    header("location:project");
+                }
+                else {
                     $this->data['pwdError'] = 1;
                     $this->data['said'] = 'user';
                     $this->load->view('login', $this->data);
-                }
-                else {
-                    $_SESSION['said'] = 'user';
-                    $_SESSION['uid'] = $userData['id'];
-                    $_SESSION['name'] = $userData['name'];
-                    $_SESSION['email'] = $email;
-                    $_SESSION['auth'] = $userData['auth'];
-                    header("location:project");
                 }
                 break;
             }
