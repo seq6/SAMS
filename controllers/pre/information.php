@@ -9,6 +9,8 @@ class Information extends CI_Controller
 {
     private $data;
 
+    private $objProjectModel;
+
     private $objPjtypeModel;
 
     private $objPjrangeModel;
@@ -16,6 +18,9 @@ class Information extends CI_Controller
     function __construct()
     {
         parent::__construct();
+
+        $this->load->model('project_model');
+        $this->objProjectModel = new Project_model;
 
         $this->load->model('pjtype_model');
         $this->objPjtypeModel = new PjType_model;
@@ -36,6 +41,8 @@ class Information extends CI_Controller
             $this->form();
         }
         else {
+            $this->data['type'] = $this->objPjtypeModel->get_type();
+            $thie->data['range'] = $this->objPjrangeModel->get_range();
             $this->load->view('pre/information', $this->data);
         }
     }
@@ -44,5 +51,4 @@ class Information extends CI_Controller
     {
 
     }
-
 }

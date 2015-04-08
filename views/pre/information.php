@@ -46,8 +46,15 @@
           <div class="am-u-sm-4 am-u-md-2 am-text-right">项目类型</div>
           <div class="am-u-sm-8 am-u-md-10">
             <select data-am-selected="{btnSize: 'sm'}">
-              <option value="option1">内部评估</option>
-              <option value="option2">外部评估</option>
+              <?php
+                if (isset($type) && !empty($type)) {
+                    $i = 1;
+                    foreach ($type as $t) {
+                        echo '<option value="'.$t['id'].'">'.$t['name'].'</option>';
+                        $i++;
+                    }
+                }
+              ?>
             </select>
           </div>
         </div>
@@ -55,27 +62,15 @@
           <div class="am-u-sm-4 am-u-md-2 am-text-right">项目范围</div>
           <div class="am-u-sm-8 am-u-md-10">
             <div class="am-btn-group" data-am-button>
-              <label class="am-btn am-btn-default am-btn-xs">
-                <input type="checkbox"> 硬件资源
-              </label>
-              <label class="am-btn am-btn-default am-btn-xs">
-                <input type="checkbox"> 软件资源
-              </label>
-              <label class="am-btn am-btn-default am-btn-xs">
-                <input type="checkbox"> 人员资源
-              </label>
-              <label class="am-btn am-btn-default am-btn-xs">
-                <input type="checkbox"> 物理环境
-              </label>
-              <label class="am-btn am-btn-default am-btn-xs">
-                <input type="checkbox"> 网络环境
-              </label>
-              <label class="am-btn am-btn-default am-btn-xs">
-                <input type="checkbox"> 业务系统
-              </label>
-              <label class="am-btn am-btn-default am-btn-xs">
-                <input type="checkbox"> 安全管理
-              </label>
+              <?php
+                if (isset($range) && !empty($range)) {
+                    foreach ($range as $r) {
+                        echo '<label class="am-btn am-btn-default am-btn-xs">
+                                <input type="checkbox"> '.$r['name'].'
+                              </label>';
+                    }
+                }
+              ?>
             </div>
           </div>
         </div>

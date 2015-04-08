@@ -77,6 +77,9 @@ class User_model extends Base_model
         }
         else {
             $userData = $this->get_item(array('`id`' => $uid));
+            if ($userData == false) {
+                return false;
+            }
             $arrTmp = json_decode($userData[0]['auth']);
             array_push($arrTmp, $pid);
             return $this->update_item(array('`id`' => $uid), array('auth' => json_encode($arrTmp)));
