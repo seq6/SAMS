@@ -24,6 +24,11 @@ class Staff_model extends Base_model
         return $this->get_item(array('pid' => $pid), $limit, $offset);
     }
 
+    public function get_staffs_count($pid = 0)
+    {
+        return $this->get_count(array('pid' => $pid));
+    }
+
     public function add_staff($pid = 0, $partid = 0, $name = '', $sex = 0, $phone = '', $mobile = '', $email = '', $posid = 0)
     {
         $newData = array(   'pid'    => $pid,
