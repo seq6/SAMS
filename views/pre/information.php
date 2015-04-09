@@ -85,11 +85,16 @@
           <div class="am-g am-margin-top">
             <div class="am-u-sm-4 am-u-md-2 am-text-right">项目类型</div>
             <div class="am-u-sm-8 am-u-md-10">
-              <select id="pjType" name="pjType" onclick="type_desc()" data-am-selected="{btnSize: 'sm'}">
+              <select id="pjType" name="pjType" data-am-selected="{btnSize: 'sm'}">
               <?php
                 $i = 1;
                 foreach ($pjType as $t) {
-                    echo '<option value="'.$t['id'].'">'.$t['name'].'</option>';
+                    if ($t['id'] == $project['theType']) {
+                        echo '<option value="'.$t['id'].'" selected="selected">'.$t['name'].'</option>';
+                    }
+                    else {
+                        echo '<option value="'.$t['id'].'">'.$t['name'].'</option>';
+                    }
                     $i++;
                 }
               ?>
@@ -106,12 +111,15 @@
               <div class="am-btn-group" data-am-button>
               <?php
                 foreach ($pjRange as $r) {
+                    $active = '';
+                    $checked = '';
                     if (in_array((int)$r['id'], $project['range'])) {
-                        echo '<label class="am-btn am-btn-default am-btn-xs am-active"><input type="checkbox" checked="checked" name="pjRange[]" value="'.$r['id'].'"> '.$r['name'].'</label>';
+                        $active = ' am-active';
+                        $checked = ' checked="checked"';
                     }
-                    else {
-                        echo '<label class="am-btn am-btn-default am-btn-xs"><input type="checkbox" name="pjRange[]" value="'.$r['id'].'"> '.$r['name'].'</label>';
-                    } 
+                    echo '<label id="pjRange'.$r['id'].'" class="am-btn am-btn-default am-btn-xs'.$active.'" value="'.$r['id'].'">
+                            <input type="checkbox"'.$checked.' name="pjRange[]" value="'.$r['id'].'"> '.$r['name'].'
+                          </label>';
                 }
               ?>
               </div>
@@ -165,7 +173,7 @@
 
     <!--submit-->
     <div class="am-margin">
-      <button type="submit" class="am-btn am-btn-primary am-btn-xs">提交保存</button>
+      <button id="test" type="submit" class="am-btn am-btn-primary am-btn-xs">提交保存</button>
       <button type="reset" class="am-btn am-btn-primary am-btn-xs">重 置</button>
     </div>
     <!--submit-->
@@ -180,25 +188,32 @@
 <?php include_once VIEW_PATH.'static/footer.php'; ?>
 
 <script type="text/javascript">
-    $('#pjType').change(function (id) {
-        $('#desc1').text('ads');
+    //
+    var desc = {};
+    desc['type'] = {};
+    desc['range'] = {};
+    <?php
+        foreach ($pjType as $t) {
+            echo 'desc["type"]['.$t['id'].'] = "'.$t['theDesc'].'";';
+        }
+        foreach ($pjRange as $r) {
+            echo 'desc["range"]['.$r['id'].'] = "'.$r['theDesc'].'";';
+        }
+    ?>
+
+    //
+    $('#pjType').change(function () {
+        var id = $('#pjType').val();
+        $('#typeDesc').text(desc['type'][id]);
     });
-    function check_type (argument) {
-        
-    }
-    function check_range (argument) {
-        
-    }
-    function function_name (argument) {
-        // body...
-    }
-    function type_desc () {
-        alert('youyonga');
-        $('#disc').val('ads');
-    }
-    function range_desc (argument) {
-        // body...
-    }
+
+    //
+    <?php
+        foreach ($pjRange as $r) {
+            echo '$("#pjRange'.$r['id'].'").mouseover(function () {$("#rangeDesc").text(desc["range"]['.$r['id'].']);});'."\n";
+        }
+    ?>
+
 </script>
 </body>
 </html>
