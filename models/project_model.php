@@ -17,6 +17,9 @@ class Project_model extends Base_model
     public function get_projetc($id = 0)
     {
         $res = $this->get_item(array('id' => $id));
+        if ($res == false) {
+            return false;
+        }
         return $res[0];
     }
 

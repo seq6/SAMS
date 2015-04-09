@@ -8,11 +8,9 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <?php
-    echo '<link rel="alternate icon" type="image/png" href="'.URL_ROOT.'assets/i/favicon.png">';
-    echo '<link rel="stylesheet" href="'.URL_ROOT.'assets/css/amazeui.min.css"/>';
-    echo '<link rel="stylesheet" href="'.URL_ROOT.'assets/css/admin.css">';
-  ?>
+  <link rel="alternate icon" type="image/png" href="/assets/i/favicon.png">
+  <link rel="stylesheet" href="/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="/assets/css/admin.css">
 </head>
 <body>
 
@@ -20,38 +18,47 @@
 
 <div class="am-cf admin-main">
 
-<?php include_once VIEW_PATH.'static/sidebar.php'; ?>
+  <?php include_once VIEW_PATH.'static/sidebar.php'; ?>
 
-<div class="admin-content">
-  <div class="am-cf am-padding">
-    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">项目信息</strong> / <small>information</small></div>
+  <div class="admin-content">
+    <!--title-->
+    <div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">项目信息</strong> / <small>information</small></div>
     </div>
     <hr/>
+    <!--title end-->
 
-  <div class="am-tabs am-margin" data-am-tabs>
-    <ul class="am-tabs-nav am-nav am-nav-tabs">
-      <li class="am-active"><a href="#tab1">基本信息</a></li>
-      <li><a href="#tab2">详细信息</a></li>
-    </ul>
+    <!--form-->
+    <form class="am-form" action="/pre/information" method="post">
 
-    <div class="am-tabs-bd">
-      <div class="am-tab-panel am-fade am-in am-active" id="tab1">
-        <div class="am-g am-margin-top">
-          <div class="am-u-sm-4 am-u-md-2 am-text-right">项目名称</div>
-          <div class="am-u-sm-8 am-u-md-10">
-            <?php
-              if (isset($_SESSION['project']['name']) && $_SESSION['project']['name'] != null) {
-                  echo '<input type="text" class="am-form-field" value="'.$_SESSION['project']['name'].'">';
-              }
-            ?>
+    <!--tab-->
+    <div class="am-tabs am-margin" data-am-tabs>
+      <!--tab nav-->
+      <ul class="am-tabs-nav am-nav am-nav-tabs">
+        <li class="am-active"><a href="#tab1">基本信息</a></li>
+        <li><a href="#tab2">详细信息</a></li>
+      </ul>
+      <!--tab nav end-->
+      <!--tab content-->
+      <div class="am-tabs-bd">
+        <!--tab1-->
+        <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+          <!--pj name-->
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">项目名称</div>
+            <div class="am-u-sm-8 am-u-md-10">
+              <?php
+                echo '<input id="pjName" name="pjName" type="text" class="am-form-field" value="'.$project['name'].'">';
+              ?>
+            </div>
           </div>
-        </div>
-        <div class="am-g am-margin-top">
-          <div class="am-u-sm-4 am-u-md-2 am-text-right">项目状态</div>
-          <div class="am-u-sm-8 am-u-md-10">
-          <?php
-            if (isset($_SESSION['project']['status']) && $_SESSION['project']['status'] != null) {
-                switch ($_SESSION['project']['status']) {
+          <!--pj name end-->
+          <!--pj status-->
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">项目状态</div>
+            <div class="am-u-sm-8 am-u-md-10">
+            <?php
+                switch ($project['status']) {
                     case '0':{
                         $status = '未启动';
                         break;
@@ -69,88 +76,129 @@
                         break;
                     }
                 }
-                echo '<label >'.$status.'</label>';
-            }
-          ?>
-          </div>
-        </div>
-        <div class="am-g am-margin-top">
-          <div class="am-u-sm-4 am-u-md-2 am-text-right">项目类型</div>
-          <div class="am-u-sm-8 am-u-md-10">
-            <select data-am-selected="{btnSize: 'sm'}">
-              <?php
-                if (isset($type) && !empty($type)) {
-                    $i = 1;
-                    foreach ($type as $t) {
-                        echo '<option value="'.$t['id'].'">'.$t['name'].'</option>';
-                        $i++;
-                    }
-                }
-              ?>
-            </select>
-          </div>
-        </div>
-        <div class="am-g am-margin-top">
-          <div class="am-u-sm-4 am-u-md-2 am-text-right">项目范围</div>
-          <div class="am-u-sm-8 am-u-md-10">
-            <div class="am-btn-group" data-am-button>
-              <?php
-                if (isset($range) && !empty($range)) {
-                    foreach ($range as $r) {
-                        if (in_array((int)$r['id'], $_SESSION['project']['range'])) {
-                            echo '<label class="am-btn am-btn-default am-btn-xs am-active"><input type="checkbox"> '.$r['name'].'</label>';
-                        }
-                        else {
-                            echo '<label class="am-btn am-btn-default am-btn-xs"><input type="checkbox"> '.$r['name'].'</label>';
-                        } 
-                    }
-                }
-              ?>
+                echo '<label>'.$status.'</label>';
+            ?>
             </div>
           </div>
-        </div>
-        <div class="am-g am-margin-top">
-          <div class="am-u-sm-4 am-u-md-2 am-text-right">更新时间</div>
-          <div class="am-u-sm-8 am-u-md-10">
-            <?php
-              if (isset($_SESSION['project']['updatetime']) && $_SESSION['project']['updatetime'] != null) {
-                  echo '<label >'.$_SESSION['project']['updatetime'].'</label>';
-              }
-            ?>
+          <!--pj status end-->
+          <!--pj type-->
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">项目类型</div>
+            <div class="am-u-sm-8 am-u-md-10">
+              <select id="pjType" name="pjType" onclick="type_desc()" data-am-selected="{btnSize: 'sm'}">
+              <?php
+                $i = 1;
+                foreach ($pjType as $t) {
+                    echo '<option value="'.$t['id'].'">'.$t['name'].'</option>';
+                    $i++;
+                }
+              ?>
+              </select>
+              <br/>
+              <small><i id="typeDesc"></i></small>
+            </div>
           </div>
+          <!--pj type end-->
+          <!--pj range-->
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">项目范围</div>
+            <div class="am-u-sm-8 am-u-md-10">
+              <div class="am-btn-group" data-am-button>
+              <?php
+                foreach ($pjRange as $r) {
+                    if (in_array((int)$r['id'], $project['range'])) {
+                        echo '<label class="am-btn am-btn-default am-btn-xs am-active"><input type="checkbox" checked="checked" name="pjRange[]" value="'.$r['id'].'"> '.$r['name'].'</label>';
+                    }
+                    else {
+                        echo '<label class="am-btn am-btn-default am-btn-xs"><input type="checkbox" name="pjRange[]" value="'.$r['id'].'"> '.$r['name'].'</label>';
+                    } 
+                }
+              ?>
+              </div>
+              <br/>
+              <small><i id="rangeDesc"></i></small>
+            </div>
+          </div>
+          <!--pj range end-->
+          <!--pj update-->
+          <div class="am-g am-margin-top">
+            <div class="am-u-sm-4 am-u-md-2 am-text-right">更新时间</div>
+            <div class="am-u-sm-8 am-u-md-10">
+            <?php
+                echo '<label >'.$project['updatetime'].'</label>';
+            ?>
+            </div>
+          </div>
+          <!--pj update end-->
         </div>
-      </div>
-      <div class="am-tab-panel am-fade" id="tab2">
+        <!--tab1 end-->
+
+        <!--tab2-->
+        <div class="am-tab-panel am-fade" id="tab2">
+        <!--pj goal-->
         <div class="am-g am-margin-top">
           <div class="am-u-sm-4 am-u-md-2 am-text-right">项目目标</div>
           <div class="am-u-sm-8 am-u-md-10">
-            <textarea rows="4"></textarea>
+            <?php
+                echo '<textarea name="pjGoal" rows="6" maxlength="255" placeholder="必填...">'.$project['goal'].'</textarea>'
+            ?>
           </div>
         </div>
+        <!--pj goal end-->
+        <!--pj desc-->
         <div class="am-g am-margin-top">
           <div class="am-u-sm-4 am-u-md-2 am-text-right">项目描述</div>
           <div class="am-u-sm-8 am-u-md-10">
-            <textarea rows="4"></textarea>
+            <?php
+                echo '<textarea name="pjDesc" rows="6" maxlength="255" placeholder="必填...">'.$project['theDesc'].'</textarea>'
+            ?>
+            <small><i>用户可在此处添加项目目标、项目描述信息或自定义的项目信息，这些项目信息将在风险报告中展现</i></small>
           </div>
         </div>
+        <!--pj desc end-->
+        </div>
+        <!--tab2 end-->
       </div>
+      <!--tab content end-->
     </div>
+    <!--tab end-->
+
+    <!--submit-->
+    <div class="am-margin">
+      <button type="submit" class="am-btn am-btn-primary am-btn-xs">提交保存</button>
+      <button type="reset" class="am-btn am-btn-primary am-btn-xs">重 置</button>
+    </div>
+    <!--submit-->
+
+    </form>
+    <!--form end-->
+
   </div>
 
-  <div class="am-margin">
-    <button type="button" class="am-btn am-btn-primary am-btn-xs">提交保存</button>
-    <button type="reset" class="am-btn am-btn-primary am-btn-xs">重 置</button>
-  </div>
 </div>
-
-</div>
-
-<a class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
 
 <?php include_once VIEW_PATH.'static/footer.php'; ?>
 
 <script type="text/javascript">
-
+    $('#pjType').change(function (id) {
+        $('#desc1').text('ads');
+    });
+    function check_type (argument) {
+        
+    }
+    function check_range (argument) {
+        
+    }
+    function function_name (argument) {
+        // body...
+    }
+    function type_desc () {
+        alert('youyonga');
+        $('#disc').val('ads');
+    }
+    function range_desc (argument) {
+        // body...
+    }
 </script>
 </body>
 </html>

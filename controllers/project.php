@@ -51,7 +51,7 @@ class Project extends CI_Controller
                 case 'user': {
                     $uid = $_SESSION['login']['uid'];
                     $this->data['count'] = $this->objProjectModel->get_project_count(array('uid'=>$uid));
-                    $this->data['project'] = $this->objProjectModel->get_projetc(array('uid'=>$uid));
+                    $this->data['project'] = $this->objProjectModel->get_projetcs(array('uid'=>$uid), $limit, $offset);
                     break;
                 }
                 default:

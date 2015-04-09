@@ -8,31 +8,27 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <?php
-    echo '<link rel="alternate icon" type="image/png" href="'.URL_ROOT.'assets/i/favicon.png">';
-    echo '<link rel="stylesheet" href="'.URL_ROOT.'assets/css/amazeui.min.css"/>';
-    echo '<link rel="stylesheet" href="'.URL_ROOT.'assets/css/admin.css">';
-  ?>
+  <link rel="alternate icon" type="image/png" href="/assets/i/favicon.png">
+  <link rel="stylesheet" href="/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="/assets/css/admin.css">
 </head>
 <body>
 
-  <?php include_once VIEW_PATH.'static/header.php'; ?>
+<?php include_once VIEW_PATH.'static/header.php'; ?>
 
-  <div class="am-cf admin-main">
+<div class="am-cf admin-main">
 
-  <?php include_once VIEW_PATH.'static/sidebar.php'; ?>
+<?php include_once VIEW_PATH.'static/sidebar.php'; ?>
 
-    <div class="admin-content">
-      <div class="am-cf am-padding">
-        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">业务环境</strong> / <small>business</small></div>
-      </div>
-      <hr/>
+  <div class="admin-content">
+    <div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">业务环境</strong> / <small>business</small></div>
     </div>
-
+    <hr/>
   </div>
 
-  <a class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
+</div>
 
-  <?php include_once VIEW_PATH.'static/footer.php'; ?>
+<?php include_once VIEW_PATH.'static/footer.php'; ?>
 </body>
 </html>

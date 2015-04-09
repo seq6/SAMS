@@ -8,11 +8,9 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <?php
-    echo '<link rel="alternate icon" type="image/png" href="'.URL_ROOT.'assets/i/favicon.png">';
-    echo '<link rel="stylesheet" href="'.URL_ROOT.'assets/css/amazeui.min.css"/>';
-    echo '<link rel="stylesheet" href="'.URL_ROOT.'assets/css/admin.css">';
-  ?>
+  <link rel="alternate icon" type="image/png" href="/assets/i/favicon.png">
+  <link rel="stylesheet" href="/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="/assets/css/admin.css">
   <style>
     .header {
       text-align: center;
@@ -53,7 +51,7 @@
       <label id="laber_pwd" for="password">密码:</label>
       <input type="password" name="password" id="password" maxlength="20" placeholder="请输入密码...">
 
-      <?php if (isset($pwdError) && $pwdError == 1) {
+      <?php if (isset($error) && $error == 1) {
         echo '<div class="am-alert am-alert-danger" data-am-alert>
                 <button type="button" class="am-close">&times;</button>
                 <p>请输入正确的邮箱及密码</p>

@@ -8,11 +8,9 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <?php
-    echo '<link rel="alternate icon" type="image/png" href="'.URL_ROOT.'assets/i/favicon.png">';
-    echo '<link rel="stylesheet" href="'.URL_ROOT.'assets/css/amazeui.min.css"/>';
-    echo '<link rel="stylesheet" href="'.URL_ROOT.'assets/css/admin.css">';
-  ?>
+  <link rel="alternate icon" type="image/png" href="/assets/i/favicon.png">
+  <link rel="stylesheet" href="/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="/assets/css/admin.css">
 </head>
 <body>
 
@@ -20,14 +18,17 @@
 
 <div class="am-cf admin-main">
 
-<?php include_once VIEW_PATH.'static/sidebar.php'; ?>
+  <?php include_once VIEW_PATH.'static/sidebar.php'; ?>
 
   <div class="admin-content">
+    <!--title-->
     <div class="am-cf am-padding">
       <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">项目人员</strong> / <small>members</small></div>
     </div>
     <hr/>
+    <!--title end-->
 
+    <!--edit-->
     <div class="am-g">
       <div class="am-u-sm-12 am-u-md-6">
         <div class="am-btn-toolbar">
@@ -39,10 +40,12 @@
         </div>
       </div>
     </div>
+    <!--edit end-->
 
     <div class="am-g">
       <div class="am-u-sm-12">
         <form class="am-form">
+          <!--table-->
           <table class="am-table am-table-striped am-table-hover table-main">
             <thead>
               <tr>
@@ -92,7 +95,9 @@
               </tr>
             </tbody>
           </table>
+          <!--table end-->
 
+          <!--pagination-->
           <div class="am-cf">
             <?php
               echo '共'.$count.'条记录';
@@ -134,14 +139,20 @@
               </ul>
             </div>
           </div>
+          <!--pagination end-->
           <hr />
+
+          <!--submit-->
+          <div class="am-margin">
+            <button type="button" class="am-btn am-btn-primary am-btn-xs">提交保存</button>
+            <button type="reset" class="am-btn am-btn-primary am-btn-xs">重 置</button>
+          </div>
+          <!--submit end-->
         </form>
       </div>
     </div>
   </div>
 </div>
-
-<a class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
 
 <?php include_once VIEW_PATH.'static/footer.php'; ?>
 

@@ -72,7 +72,7 @@ class User_model extends Base_model
 
     public function add_user_pid($uid = 0, $pid = 0)
     {
-        if ($uid <= 0 || $pid <= 0) {
+        if ($uid == 0 || $pid == 0) {
             return false;
         }
         else {

@@ -9,11 +9,9 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp" />
   <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
-  <?php
-    echo '<link rel="alternate icon" type="image/png" href="'.URL_ROOT.'assets/i/favicon.png">';
-    echo '<link rel="stylesheet" href="'.URL_ROOT.'assets/css/amazeui.min.css"/>';
-    echo '<link rel="stylesheet" href="'.URL_ROOT.'assets/css/admin.css">';
-  ?>
+  <link rel="alternate icon" type="image/png" href="/assets/i/favicon.png">
+  <link rel="stylesheet" href="/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="/assets/css/admin.css">
 </head>
 <body>
 
@@ -23,6 +21,7 @@
   <div class="am-u-lg-8 am-u-md-8 am-u-sm-centered">
   <br />
     <div class="am-fl am-cf">
+    <!--said-->
       <?php
         if ($_SESSION['login']['said'] == 'admin') {
             echo '<strong class="am-text-primary am-text-lg">项目列表</strong> / <small>list of all projects</small></div>';
@@ -33,7 +32,9 @@
       ?>
     <br />
     <hr />
+    <!--said-->
 
+    <!--table-->
     <table class="am-table am-table-bordered am-table-striped am-table-hover">
       <thead>
         <tr>
@@ -78,7 +79,9 @@
         ?>
       </tbody>
     </table>
+    <!--table end-->
 
+    <!--pagination-->
     <ul class="am-pagination">
       <?php
         if (!isset($pageNo)) {
@@ -87,7 +90,7 @@
         if (!isset($count)) {
             $count = 0;
         }
-        $allPage = ($count - 1) / 10 + 1;
+        $allPage = (int)(($count - 1) / 10 + 1);
         if ($pageNo != 1) {
             echo '<li><a href="project?pageNo=1">&laquo;</a></li>';
         }
@@ -95,7 +98,7 @@
             echo '<li class="am-disabled"><a href="project?pageNo=1">&laquo;</a></li>';
         }
         $startNo = ($pageNo - 2) >= 1 ? ($pageNo - 2) : 1;
-        $endNo = ($pageNo + 2) <= $allPage ? ($pageNo + 2) : $allPage;
+        $endNo = (($pageNo + 2) <= $allPage) ? ($pageNo + 2) : $allPage;
         for ($i = $startNo; $i <= $endNo; $i++) {
             if ($i == $pageNo) {
                 echo '<li class="am-active"><a href="project?pageNo='.$i.'">'.$i.'</a></li>';
@@ -104,7 +107,7 @@
                 echo '<li><a href="project?pageNo='.$i.'">'.$i.'</a></li>';
             }
         }
-        if ($endNo != $allPage) {
+        if ($pageNo != $allPage) {
             echo '<li><a href="project?pageNo='.$allPage.'">&raquo;</a></li>';
         }
         else {
@@ -112,7 +115,7 @@
         }
       ?>
     </ul>
-
+    <!--pagination end-->
   </div>
 </div>
 

@@ -27,7 +27,7 @@ class Login extends CI_Controller
             $this->form();
         }
         else {
-            $this->load->view('login');
+            $this->load->view('login', $this->data);
         }
     }
 
@@ -48,7 +48,7 @@ class Login extends CI_Controller
                     header("location:project");
                 }
                 else {
-                    $this->data['pwdError'] = 1;
+                    $this->data['error'] = 1;
                     $this->data['said'] = 'admin';
                     $this->load->view('login', $this->data);
                 }
@@ -57,7 +57,7 @@ class Login extends CI_Controller
             //user login
             case 'user': {
                 $userData = $this->objUserModel->check($email, $pwd, false);
-                if ($userData !== false) {
+                if ($userData != false) {
                     $_SESSION['login'] = array();
                     $_SESSION['login']['said'] = 'user';
                     $_SESSION['login']['uid'] = $userData['id'];
@@ -67,7 +67,7 @@ class Login extends CI_Controller
                     header("location:project");
                 }
                 else {
-                    $this->data['pwdError'] = 1;
+                    $this->data['error'] = 1;
                     $this->data['said'] = 'user';
                     $this->load->view('login', $this->data);
                 }

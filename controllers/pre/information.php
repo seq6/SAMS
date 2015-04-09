@@ -45,8 +45,12 @@ class Information extends CI_Controller
             if (!isset($_SESSION['project'])) {
                 $this->init_project();
             }
-            $this->data['type'] = $this->objPjtypeModel->get_type();
-            $this->data['range'] = $this->objPjrangeModel->get_range();
+
+            $pid = $_SESSION['project']['pid'];
+            $this->data['project'] = $this->objProjectModel->get_projetc($pid);
+            $this->data['project']['range'] = json_decode($this->data['project']['theRange']);
+            $this->data['pjType'] = $this->objPjtypeModel->get_type();
+            $this->data['pjRange'] = $this->objPjrangeModel->get_range();
 
             $this->load->view('pre/information', $this->data);
         }
@@ -54,7 +58,11 @@ class Information extends CI_Controller
 
     private function form()
     {
-
+        $name = isset($_POST['pjName']) ? $_POST['pjName'] : '';
+        $type = isset($_POST['pjType']) ? $_POST['pjType'] : '';
+        $range= isset($_POST['pjRange'])? json_encode($_POST['pjRange']) : '';
+        $goal = isset($_POST['pjGoal']) ? $_POST['pjGoal'] : '';
+        $desc = isset($_POST['pjDesc']) ? $_POST['pjDesc'] : '';
     }
 
     private function init_project()
@@ -66,6 +74,7 @@ class Information extends CI_Controller
         $_SESSION['project']['pid'] = $project['id'];
         $_SESSION['project']['name'] = $project['name'];
         $_SESSION['project']['status'] = $project['status'];
+        /*
         $_SESSION['project']['type'] = $project['theType'];
         $_SESSION['project']['range'] = json_decode($project['theRange']);
         $_SESSION['project']['partA'] = $project['partA'];
@@ -73,5 +82,6 @@ class Information extends CI_Controller
         $_SESSION['project']['updatetime'] = $project['updatetime'];
         $_SESSION['project']['goal'] = $project['goal'];
         $_SESSION['project']['desc'] = $project['theDesc'];
+        */
     }
 }

@@ -16,10 +16,10 @@ class Welcome extends CI_Controller
     public function index()
     {
         if (isset($_SESSION['login']) && !empty($_SESSION['login'])) {
-            $this->load->view('login');
+            header("location:project");
         }
         else {
-            $this->load->view('project');
+            header("location:login");
         }
     }
 }

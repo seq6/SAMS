@@ -42,26 +42,28 @@ class Signup extends CI_Controller
     private function form()
     {
         // get post
-        $pName     = isset($_POST['pName'])    ? $_POST['pName']     : '';
-        $theUser   = isset($_POST['theUser'])  ? $_POST['theUser']   : '';
-        $theUserId = isset($_POST['theUserId'])? $_POST['theUserId'] : '';
-        $userName  = isset($_POST['userName']) ? $_POST['userName']  : '';
-        $email     = isset($_POST['email'])    ? $_POST['email']     : '';
-        $password  = isset($_POST['password']) ? $_POST['password']  : '';
+        $pName    = isset($_POST['pName'])    ? $_POST['pName']     : '';
+        $theUser  = isset($_POST['theUser'])  ? $_POST['theUser']   : '';
+        $uid      = isset($_POST['theUserId'])? $_POST['theUserId'] : '';
+        $userName = isset($_POST['userName']) ? $_POST['userName']  : '';
+        $email    = isset($_POST['email'])    ? $_POST['email']     : '';
+        $password = isset($_POST['password']) ? $_POST['password']  : '';
 
         switch ($theUser) {
             case 'oldUser': {
                 $pid = $this->objProjectModel->add_projetc($pName);
-                $this->objUserModel->add_user_pid($theUserId, $pid);
+                $this->objUserModel->add_user_pid($uid, $pid);
+                $this->objProjectModel->update_projetc($pid, array('uid' => $uid));
                 break;
             }
             case 'newUser': {
                 $pid = $this->objProjectModel->add_projetc($pName);
-                $this->objUserModel->add_user($userName, $email, $password, $pid);
+                $uid = $this->objUserModel->add_user($userName, $email, $password, $pid);
+                $this->objProjectModel->update_projetc($pid, array('uid' => $uid));
                 break;
             }
             default: {
-                $this->data['error'] = 1;
+                $this->data['error'] = 3;
                 break;
             }
         }
