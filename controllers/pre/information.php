@@ -40,35 +40,60 @@ class Information extends CI_Controller
         if (!empty($_POST)) {
             $this->form();
         }
-        else {
-            //设置session
-            if (!isset($_SESSION['project'])) {
-                $this->init_project();
-            }
 
-            $pid = $_SESSION['project']['pid'];
-            $this->data['project'] = $this->objProjectModel->get_projetc($pid);
-            $this->data['project']['range'] = json_decode($this->data['project']['theRange']);
-            $this->data['pjType'] = $this->objPjtypeModel->get_type();
-            $this->data['pjRange'] = $this->objPjrangeModel->get_range();
-
-            $this->load->view('pre/information', $this->data);
+        //设置session
+        if (!isset($_SESSION['project'])) {
+            $this->init_project();
         }
+
+        $pid = $_SESSION['project']['pid'];
+        $this->data['project'] = $this->objProjectModel->get_project($pid);
+        $this->data['project']['range'] = json_decode($this->data['project']['theRange']);
+        $this->data['pjType'] = $this->objPjtypeModel->get_type();
+        $this->data['pjRange'] = $this->objPjrangeModel->get_range();
+
+        $this->load->view('pre/information', $this->data);
+
     }
 
     private function form()
     {
+        $pid  = $_SESSION['project']['pid'];
         $name = isset($_POST['pjName']) ? $_POST['pjName'] : '';
         $type = isset($_POST['pjType']) ? $_POST['pjType'] : '';
-        $range= isset($_POST['pjRange'])? json_encode($_POST['pjRange']) : '';
+        $range= isset($_POST['pjRange'])? $_POST['pjRange']: '';
         $goal = isset($_POST['pjGoal']) ? $_POST['pjGoal'] : '';
         $desc = isset($_POST['pjDesc']) ? $_POST['pjDesc'] : '';
+
+        //
+        if (!is_array($range) || !in_array('1', $range) || !in_array('4', $range) || !in_array('6', $range)) {
+            $this->data['error'] = 2;
+            return;
+        }
+
+        //
+        $newData = array(   'name' => $name,
+                            'theType' => $type,
+                            'theRange' => json_encode($range),
+                            'goal' => $goal,
+                            'theDesc' => $desc);
+        $res = $this->objProjectModel->update_project($pid, $newData);
+
+        if ($res == false) {
+            $this->data['error'] = 2;
+        }
+        else {
+            $this->data['error'] = 1;
+            if ($name != $_SESSION['project']['name']) {
+                $_SESSION['project']['name'] = $name;
+            }
+        }
     }
 
     private function init_project()
     {
         $pid = isset($_GET['pid']) ? $_GET['pid'] : 0;
-        $project = $this->objProjectModel->get_projetc($pid);
+        $project = $this->objProjectModel->get_project($pid);
             
         $_SESSION['project'] = array();
         $_SESSION['project']['pid'] = $project['id'];

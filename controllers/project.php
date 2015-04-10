@@ -45,13 +45,13 @@ class Project extends CI_Controller
             switch ($_SESSION['login']['said']) {
                 case 'admin': {
                     $this->data['count'] = $this->objProjectModel->get_project_count();
-                    $this->data['project'] = $this->objProjectModel->get_projetcs(null, $limit, $offset);
+                    $this->data['project'] = $this->objProjectModel->get_projects(null, $limit, $offset);
                     break;
                 }
                 case 'user': {
                     $uid = $_SESSION['login']['uid'];
                     $this->data['count'] = $this->objProjectModel->get_project_count(array('uid'=>$uid));
-                    $this->data['project'] = $this->objProjectModel->get_projetcs(array('uid'=>$uid), $limit, $offset);
+                    $this->data['project'] = $this->objProjectModel->get_projects(array('uid'=>$uid), $limit, $offset);
                     break;
                 }
                 default:

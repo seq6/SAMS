@@ -28,6 +28,35 @@
     <hr/>
     <!--title end-->
 
+    <!--form req-->
+    <div class="am-g">
+      <div class="am-u-lg-8 am-u-sm-centered">
+      <?php
+      if (isset($error)) {
+        switch ($error) {
+            case 1:{
+                $color = ' am-alert-success';
+                $prompt = '数据提交成功';
+                break;
+            }
+            case 2:
+                $color = ' am-alert-danger';
+                $prompt = '数据提交失败';
+                break;
+            default:
+                $prompt = 'error!';
+                break;
+        }
+        echo '<div class="am-alert'.$color.'" data-am-alert>
+                <button type="button" class="am-close">&times;</button>
+                <p>'.$prompt.'</p>
+              </div>';
+      }
+      ?>
+      </div>
+    </div>
+    <!--form req end-->
+
     <!--form-->
     <form class="am-form" action="/pre/information" method="post">
 
@@ -197,7 +226,12 @@
             echo 'desc["type"]['.$t['id'].'] = "'.$t['theDesc'].'";';
         }
         foreach ($pjRange as $r) {
-            echo 'desc["range"]['.$r['id'].'] = "'.$r['theDesc'].'";';
+            if ($r['isreq'] == 1) {
+                echo 'desc["range"]['.$r['id'].'] = "***(必选)***  '.$r['theDesc'].'";';
+            }
+            else {
+                echo 'desc["range"]['.$r['id'].'] = "'.$r['theDesc'].'";';
+            }
         }
     ?>
 
@@ -213,6 +247,10 @@
             echo '$("#pjRange'.$r['id'].'").mouseover(function () {$("#rangeDesc").text(desc["range"]['.$r['id'].']);});'."\n";
         }
     ?>
+
+    function check_range (argument) {
+      // body...
+    }
 
 </script>
 </body>

@@ -14,7 +14,7 @@ class Project_model extends Base_model
         $this->table = 'project';
     }
 
-    public function get_projetc($id = 0)
+    public function get_project($id = 0)
     {
         $res = $this->get_item(array('id' => $id));
         if ($res == false) {
@@ -23,18 +23,18 @@ class Project_model extends Base_model
         return $res[0];
     }
 
-    public function get_projetcs($conds = null, $limit = 10, $offset = 0)
+    public function get_projects($conds = null, $limit = 10, $offset = 0)
     {
         return $this->get_item($conds, $limit, $offset);
     }
 
-    public function add_projetc($pName = '')
+    public function add_project($pName = '')
     {
         $newData = array('name' => $pName, 'status' => 0);
         return $this->add_item($newData);
     }
 
-    public function del_projetc($pid = 0)
+    public function del_project($pid = 0)
     {
         if ($pid <= 0 || !is_int($pid)) {
             return false;
@@ -45,7 +45,7 @@ class Project_model extends Base_model
         }
     }
 
-    public function update_projetc($pid, $newData)
+    public function update_project($pid, $newData)
     {
         return $this->update_item(array('id' => $pid), $newData);
     }
