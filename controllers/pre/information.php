@@ -2,7 +2,7 @@
 
 /**
 * @author   zhangji
-* @desc     ###########
+* @desc     项目信息
 */
 
 class Information extends CI_Controller

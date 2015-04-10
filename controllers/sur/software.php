@@ -2,7 +2,7 @@
 
 /**
 * @author   zhangji
-* @desc     ###########
+* @desc     软件资源
 */
 
 class Software extends CI_Controller

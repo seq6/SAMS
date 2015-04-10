@@ -2,7 +2,7 @@
 
 /**
 * @author   zhangji
-* @desc     ###########
+* @desc     业务系统
 */
 
 class Business extends CI_Controller

@@ -2,7 +2,7 @@
 
 /**
 * @author   zhangji
-* @desc     ###########
+* @desc     物理环境
 */
 
 class Environment extends CI_Controller

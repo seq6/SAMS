@@ -2,7 +2,7 @@
 
 /**
 * @author   zhangji
-* @desc     ###########
+* @desc     项目其他信息
 */
 
 class Other extends CI_Controller

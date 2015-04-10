@@ -2,7 +2,7 @@
 
 /**
 * @author   zhangji
-* @desc     ###########
+* @desc     人员资源
 */
 
 class Person extends CI_Controller

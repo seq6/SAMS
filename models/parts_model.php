@@ -38,10 +38,9 @@ class Parts_model extends Base_model
         return $this->add_item($newData);
     }
 
-    public function update_part($id = 0, $pid = 0, $name = '', $address = '', $lead = '', $phone = '', $mobile = '', $email='', $remarks = '')
+    public function update_part($id = 0, $name = '', $address = '', $lead = '', $phone = '', $mobile = '', $email='', $remarks = '')
     {
-        $newData = array(   'pid'     => $pid,
-                            'name'    => $name,
+        $newData = array(   'name'    => $name,
                             'address' => $address,
                             'lead'    => $lead,
                             'phone'   => $phone,

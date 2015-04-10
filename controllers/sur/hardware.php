@@ -2,7 +2,7 @@
 
 /**
 * @author   zhangji
-* @desc     ###########
+* @desc     硬件资源
 */
 
 class Hardware extends CI_Controller

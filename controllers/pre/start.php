@@ -2,7 +2,7 @@
 
 /**
 * @author   zhangji
-* @desc     ###########
+* @desc     项目启动
 */
 
 class Start extends CI_Controller

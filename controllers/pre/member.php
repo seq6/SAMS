@@ -2,7 +2,7 @@
 
 /**
 * @author   zhangji
-* @desc     ###########
+* @desc     项目人员
 */
 
 class Member extends CI_Controller

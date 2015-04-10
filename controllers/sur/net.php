@@ -2,7 +2,7 @@
 
 /**
 * @author   zhangji
-* @desc     ###########
+* @desc     网络环境
 */
 
 class Net extends CI_Controller
