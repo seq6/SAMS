@@ -52,10 +52,8 @@ class Start extends CI_Controller
         if (!empty($_POST)) {
             $this->form();
         }
-        else {
 
-            $this->load->view('pre/start', $this->data);
-        }
+        $this->load->view('pre/start', $this->data);
     }
 
     public function form()
