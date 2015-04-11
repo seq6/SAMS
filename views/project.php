@@ -122,7 +122,9 @@
 <?php include_once 'static/footer.php' ?>
 
 <script type="text/javascript">
-
+function project (argument) {
+  //alert(argument);
+}
 </script>
 </body>
 </html>

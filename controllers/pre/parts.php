@@ -78,20 +78,22 @@ class Parts extends CI_Controller
 
         //处理partA（评估方）信息
         if ($project['partA'] == 0) {
-            $partAid = $this->objPartsModel->add_part($pid, $aName, $aAddress, $aLeader, $aPhone, $aMobile, $aRemarks);
+            $partAid = $this->objPartsModel->add_part($pid, $aName, $aAddress, $aLeader, $aPhone, $aMobile, $aEmail, $aRemarks);
             $this->objProjectModel->update_project($pid, array('partA' => $partAid));
         }
         else {
-            $this = $this->objPartsModel->update_part($project['partA'], $aName, $aAddress, $aLeader, $aPhone, $aMobile, $aRemarks);
+            $this->objPartsModel->update_part($project['partA'], $aName, $aAddress, $aLeader, $aPhone, $aMobile, $aEmail, $aRemarks);
         }
 
         //处理partB（被评估方）信息
         if ($project['partB'] == 0) {
-            $partBid = $this->objPartsModel->add_part($pid, $bName, $bAddress, $bLeader, $bPhone, $bMobile, $bRemarks);
+            $partBid = $this->objPartsModel->add_part($pid, $bName, $bAddress, $bLeader, $bPhone, $bMobile, $bEmail, $bRemarks);
             $this->objProjectModel->update_project($pid, array('partB' => $partBid));
         }
         else {
-            $this = $this->objPartsModel->update_part($project['partB'], $bName, $bAddress, $bLeader, $bPhone, $bMobile, $bRemarks);
+            $this->objPartsModel->update_part($project['partB'], $bName, $bAddress, $bLeader, $bPhone, $bMobile, $bEmail, $bRemarks);
         }
+
+        $this->data['error'] = 1;
     }
 }

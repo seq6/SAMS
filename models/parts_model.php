@@ -25,12 +25,12 @@ class Parts_model extends Base_model
         }
     }
 
-    public function add_part($pid = 0, $name = '', $address = '', $lead = '', $phone = '', $mobile = '', $email='', $remarks = '')
+    public function add_part($pid = 0, $name = '', $address = '', $leader = '', $phone = '', $mobile = '', $email='', $remarks = '')
     {
         $newData = array(   'pid'     => $pid,
                             'name'    => $name,
                             'address' => $address,
-                            'lead'    => $lead,
+                            'leader'  => $leader,
                             'phone'   => $phone,
                             'mobile'  => $mobile,
                             'email'   => $email,
@@ -38,11 +38,11 @@ class Parts_model extends Base_model
         return $this->add_item($newData);
     }
 
-    public function update_part($id = 0, $name = '', $address = '', $lead = '', $phone = '', $mobile = '', $email='', $remarks = '')
+    public function update_part($id = 0, $name = '', $address = '', $leader = '', $phone = '', $mobile = '', $email='', $remarks = '')
     {
         $newData = array(   'name'    => $name,
                             'address' => $address,
-                            'lead'    => $lead,
+                            'leader'  => $leader,
                             'phone'   => $phone,
                             'mobile'  => $mobile,
                             'email'   => $email,
