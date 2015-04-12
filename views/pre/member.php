@@ -34,8 +34,9 @@
         <div class="am-btn-toolbar">
           <div class="am-btn-group am-btn-group-xs">
             <button type="button" class="am-btn am-btn-default" id="add-member"><span class="am-icon-plus"></span> 新增</button>
-            <button type="button" class="am-btn am-btn-default" id="save-member"><span class="am-icon-save"></span> 保存</button>
             <button type="button" class="am-btn am-btn-default" id="del-member"><span class="am-icon-trash-o"></span> 删除</button>
+            <button type="button" class="am-btn am-btn-default" id="save-member"><span class="am-icon-save"></span> 保存</button>
+            <button type="button" class="am-btn am-btn-default" id="repeat-member"><span class="am-icon-repeat"></span> 还原</button>
           </div>
         </div>
       </div>
