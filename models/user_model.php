@@ -42,10 +42,19 @@ class User_model extends Base_model
         }
     }
 
+    public function get_user_name($id = 0)
+    {
+        $res = $this->get_item(array('id' => $id, 'isadmin' => 0));
+        if (is_array($res) && !empty($res)) {
+            return $res[0]['name'];
+        }
+        return false;
+    }
+
     public function get_user($email = '', $pwd = '')
     {
         $res = $this->get_item(array('email' => $email, 'pwd' => md5($pwd), 'isadmin' => 0));
-        if (is_array($theUser) && !empty($theUser)) {
+        if (is_array($res) && !empty($res)) {
             return $res[0];
         }
         return false;

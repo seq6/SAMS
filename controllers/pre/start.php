@@ -53,6 +53,8 @@ class Start extends CI_Controller
             $this->form();
         }
 
+        
+
         $this->load->view('pre/start', $this->data);
     }
 

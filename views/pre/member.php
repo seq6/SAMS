@@ -28,19 +28,48 @@
     <hr/>
     <!--title end-->
 
+    <!--form req-->
+    <div class="am-g">
+      <div class="am-u-lg-8 am-u-sm-centered">
+      <?php
+      if (isset($error)) {
+        switch ($error) {
+            case 1:{
+                $color = ' am-alert-success';
+                $prompt = '数据提交成功';
+                break;
+            }
+            case 2:
+                $color = ' am-alert-danger';
+                $prompt = '数据提交失败';
+                break;
+            default:
+                $prompt = 'error!';
+                break;
+        }
+        echo '<div class="am-alert'.$color.'" data-am-alert>
+                <button type="button" class="am-close">&times;</button>
+                <p>'.$prompt.'</p>
+              </div>';
+      }
+      ?>
+      </div>
+    </div>
+    <!--form req end-->
+
     <!--edit-->
     <div class="am-g">
       <div class="am-u-sm-12 am-u-md-6">
         <div class="am-btn-toolbar">
           <div class="am-btn-group am-btn-group-xs">
             <button type="button" class="am-btn am-btn-default" id="add-member"><span class="am-icon-plus"></span> 新增</button>
-            <button type="button" class="am-btn am-btn-default" id="del-member"><span class="am-icon-trash-o"></span> 删除</button>
             <button type="button" class="am-btn am-btn-default" id="save-member"><span class="am-icon-save"></span> 保存</button>
             <button type="button" class="am-btn am-btn-default" id="repeat-member"><span class="am-icon-repeat"></span> 还原</button>
           </div>
         </div>
       </div>
     </div>
+    <br/>
     <!--edit end-->
 
     <div class="am-g">
@@ -49,44 +78,44 @@
           <table id="member-table" class="am-table am-table-striped am-table-hover table-main">
             <thead>
               <tr>
-                <th class="table-check"><input type="checkbox" /></th>
+                <th></th>
                 <th>ID</th>
                 <th>姓名</th>
-                <th>性别</th>
-                <th>电话</th>
-                <th>手机</th>
-                <th>邮箱</th>
+                <th class="am-hide-sm-only">性别</th>
+                <th class="am-hide-sm-only">电话</th>
+                <th class="am-hide-sm-only">手机</th>
+                <th class="am-hide-sm-only">邮箱</th>
                 <th>岗位</th>
                 <th>操作</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
                 <?php
                     $tool = '<div class="am-btn-toolbar">
                               <div class="am-btn-group am-btn-group-xs">
                                 <button class="am-btn am-btn-default am-btn-xs am-text-secondary">
-                                    <span class="am-icon-pencil-square-o"></span> 编辑
+                                  <span class="am-icon-pencil-square-o"></span> 编辑
                                 </button>
                                 <button class="am-btn am-btn-default am-btn-xs am-hide-sm-only">
-                                    <span class="am-icon-copy"></span> 复制
+                                  <span class="am-icon-copy"></span> 复制
                                 </button>
                                 <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
-                                    <span class="am-icon-trash-o"></span> 删除
+                                  <span class="am-icon-trash-o"></span> 删除
                                 </button>
                               </div>
                             </div>';
                     if (isset($members) && !empty($members)) {
                         $i = ($pageNo - 1) * 10 + 1;
-                        foreach ($members as $key => $m) {
+                        foreach ($members as $m) {
                             $dom  = '<tr>';
-                            $dom .= '<td><input id="'.$m['id'].'" type="checkbox" /></td>';
+                            $dom .= '<td></td>';
                             $dom .= '<td>'.$i.'</td>';
                             $dom .= '<td>'.$m['name'].'</td>';
-                            $sex  = ($m['sex'] == 1) ? '男' : '女';
-                            $dom .= '<td class="am-hide-sm-only>'.$sex.'</td>';
-                            $dom .= '<td class="am-hide-sm-only>'.$m['phone'].'</td>';
-                            $dom .= '<td class="am-hide-sm-only>'.$m['mobile'].'</td>';
+                            $sex  = ($m['sex'] == '1') ? '男' : '女';
+                            $dom .= '<td class="am-hide-sm-only">'.$sex.'</td>';
+                            $dom .= '<td class="am-hide-sm-only">'.$m['phone'].'</td>';
+                            $dom .= '<td class="am-hide-sm-only">'.$m['mobile'].'</td>';
+                            $dom .= '<td class="am-hide-sm-only">'.$m['email'].'</td>';
                             $dom .= '<td>'.$m['position'].'</td>';
                             $dom .= '<td>'.$tool.'</td>';
                             $dom .= '</tr>';
@@ -95,7 +124,6 @@
                         }
                     }
                 ?>
-              </tr>
             </tbody>
           </table>
           <!--table end-->
@@ -152,11 +180,11 @@
 <!--member modal-->
 <div class="am-modal am-modal-prompt" tabindex="-1" id="member-modal">
   <div class="am-modal-dialog">
-    <div class="am-modal-hd">新增人员</div>
+    <div id="modal-title" class="am-modal-hd">新增人员</div>
     <div class="am-modal-bd">
       <div class="am-btn-group doc-js-btn-1" data-am-button>
-        <label class="am-btn am-btn-default">
-          <input type="radio" name="part" value="1" id="partA">&nbsp;&nbsp;评估方&nbsp;&nbsp;
+        <label class="am-btn am-btn-default am-active">
+          <input type="radio" name="part" value="1" id="partA" checked="checked">&nbsp;&nbsp;评估方&nbsp;&nbsp;
         </label>
         <label class="am-btn am-btn-default">
           <input type="radio" name="part" value="2" id="partB">被评估方
@@ -222,13 +250,20 @@
 <?php include_once VIEW_PATH.'static/footer.php'; ?>
 
 <script type="text/javascript">
-var tool = '<div class="am-btn-toolbar"><div class="am-btn-group am-btn-group-xs"><button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button><button class="am-btn am-btn-default am-btn-xs am-hide-sm-only"><span class="am-icon-copy"></span> 复制</button><button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</button></div></div>';
+var tool = $('<div class="am-btn-toolbar"><div class="am-btn-group am-btn-group-xs"><button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button><button class="am-btn am-btn-default am-btn-xs am-hide-sm-only"><span class="am-icon-copy"></span> 复制</button><button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</button></div></div>');
+var addTag = $('<span class="am-badge am-badge-secondary">新增</span>');
+var delTag = $('<span class="am-badge am-badge-danger">删除</span>');
+var modTag = $('<span class="am-badge am-badge-warning">修改</span>');
+var addList = [];
+var delList = [];
+var modList = [];
 
 $(function() {
     $('#add-member').on('click', function() {
         $('#member-modal').modal({
             relatedTarget: this,
             onConfirm: function(e) {
+                //alert(e.data);
                 add_member();
             },
             onCancel: function(e) {
@@ -238,8 +273,16 @@ $(function() {
     });
 });
 
+$('#save-member').on('click', function () {
+  // body...
+});
+
+$('#repeat-member').on('click', function () {
+  // body...
+});
+
 function change_sex (sexid) {
-    var sex = $('#sex').attr('id',sex);
+    var sex = $('#sex');
     if (sexid == 1) {
         sex.text("男");
     }
@@ -249,18 +292,65 @@ function change_sex (sexid) {
 }
 
 function add_member () {
+    var part = $("input[name='part']:checked").val();
     var name = $('#name').val();
-    var sex = $('#sex').val();
+    var sexText = $('#sex').text();
+    var sex;
+    if (sexText == '男') {
+        sex = 1;
+    }
+    else if (sexText == '女') {
+        sex = 0;
+    }
+    else {
+        sex = '';
+    }
     var phone = $('#phone').val();
     var mobile = $('#mobile').val();
     var email = $('#email').val();
     var position = $('#position').val();
+    var positionText = $('#position').text();
 
     var newRow = $('<tr></tr>');
-    var newTd = $('<td></td>');
-    
+    var td = $('<td></td>');
+
+    var tdTag = td.clone();
+    tdTag.append(addTag.clone());
+    newRow.append(tdTag);
+
+    var tdID = td.clone();
+    newRow.append(tdID);
+
+    var tdName = td.clone();
+    tdName.append(name);
+    newRow.append(tdName);
+
+    var tdSex = td.clone();
+    tdSex.append(sexText);
+    newRow.append(tdSex);
+
+    var tdPhone = td.clone();
+    tdPhone.append(phone);
+    newRow.append(tdPhone);
+
+    var tdMobile = td.clone();
+    tdMobile.append(mobile);
+    newRow.append(tdMobile);
+
+    var tdEmail = td.clone();
+    tdEmail.append(email);
+    newRow.append(tdEmail);
+
+    var tdPos = td.clone();
+    tdPos.append(positionText);
+    newRow.append(tdPos);
+
+    var tdTool = td.clone();
+    tdTool.append(tool.clone());
+    newRow.append(tdTool);
 
     var table = $('#member-table');
+    table.append(newRow);
 }
 </script>
 </body>

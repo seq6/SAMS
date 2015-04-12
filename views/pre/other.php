@@ -21,10 +21,12 @@
   <?php include_once VIEW_PATH.'static/sidebar.php'; ?>
 
     <div class="admin-content">
+      <!--title-->
       <div class="am-cf am-padding">
         <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">其他任务</strong> / <small>others</small></div>
       </div>
       <hr/>
+      <!--title end-->
     </div>
 
   </div>

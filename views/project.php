@@ -8,7 +8,6 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
   <link rel="alternate icon" type="image/png" href="/assets/i/favicon.png">
   <link rel="stylesheet" href="/assets/css/amazeui.min.css"/>
   <link rel="stylesheet" href="/assets/css/admin.css">
@@ -18,7 +17,7 @@
 <?php include_once 'static/header.php' ?>
 
 <div class="am-g">
-  <div class="am-u-lg-8 am-u-md-8 am-u-sm-centered">
+  <div class="am-u-lg-10 am-u-md-10 am-u-sm-centered">
   <br />
     <div class="am-fl am-cf">
     <!--said-->
@@ -32,7 +31,7 @@
       ?>
     <br />
     <hr />
-    <!--said-->
+    <!--said end-->
 
     <!--table-->
     <table class="am-table am-table-bordered am-table-striped am-table-hover">
@@ -41,8 +40,8 @@
           <th>ID</th>
           <th>项目</th>
           <th>状态</th>
-          <th>启动时间</th>
-          <th>关闭时间</th>
+          <th class="am-hide-sm-only">启动时间</th>
+          <th class="am-hide-sm-only">关闭时间</th>
           <th>更新时间</th>
           <th>负责人</th>
         </tr>
@@ -68,10 +67,10 @@
                             $dom .= '<td>error</td>';
                             break;
                     }
-                    $dom .= '<td>'.$p['starttime'].'</td>';
-                    $dom .= '<td>'.$p['endtime'].'</td>';
+                    $dom .= '<td class="am-hide-sm-only">'.$p['starttime'].'</td>';
+                    $dom .= '<td class="am-hide-sm-only">'.$p['endtime'].'</td>';
                     $dom .= '<td>'.$p['updatetime'].'</td>';
-                    $dom .= '<td>'.$p['uid'].'</td>';
+                    $dom .= '<td>'.$p['uname'].'</td>';
                     $dom .= '</tr>';
                     echo $dom;
                 }
@@ -122,9 +121,7 @@
 <?php include_once 'static/footer.php' ?>
 
 <script type="text/javascript">
-function project (argument) {
-  //alert(argument);
-}
+
 </script>
 </body>
 </html>

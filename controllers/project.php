@@ -46,6 +46,9 @@ class Project extends CI_Controller
                 case 'admin': {
                     $this->data['count'] = $this->objProjectModel->get_project_count();
                     $this->data['project'] = $this->objProjectModel->get_projects(null, $limit, $offset);
+                    foreach ($this->data['project'] as $key => $p) {
+                        $this->data['project'][$key]['uname'] = $this->id2name($p['uid']);
+                    }
                     break;
                 }
                 case 'user': {
@@ -68,6 +71,11 @@ class Project extends CI_Controller
     private function form()
     {
         # code...
+    }
+
+    private function id2name($uid = 0)
+    {
+        return $this->objUserModel->get_user_name($uid);
     }
 
 }
