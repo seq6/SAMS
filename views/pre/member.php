@@ -258,6 +258,21 @@ var addList = [];
 var delList = [];
 var modList = [];
 
+function myAjax (theUrl, theData, callback) {
+    $.ajax({
+        url:theUrl,
+        type:'post',
+        data:theData,
+        async:true,
+        error: function () {
+            alert('error！');
+        },
+        success:callback,
+        dataType:'json'
+    });
+}
+
+
 $(function() {
     $('#add-member').on('click', function() {
         $('#member-modal').modal({
@@ -281,13 +296,14 @@ $('#repeat-member').on('click', function () {
   // body...
 });
 
+$(document).ready();
+
 function change_sex (sexid) {
-    var sex = $('#sex');
     if (sexid == 1) {
-        sex.text("男");
+        $('#sex').text("男");
     }
     else if (sexid == 0) {
-        sex.text("女");
+        $('#sex').text("女");
     }
 }
 
@@ -301,9 +317,6 @@ function add_member () {
     }
     else if (sexText == '女') {
         sex = 0;
-    }
-    else {
-        sex = '';
     }
     var phone = $('#phone').val();
     var mobile = $('#mobile').val();
