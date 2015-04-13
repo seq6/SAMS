@@ -43,7 +43,11 @@
           <th class="am-hide-sm-only">启动时间</th>
           <th class="am-hide-sm-only">关闭时间</th>
           <th>更新时间</th>
-          <th>负责人</th>
+          <?php
+            if ($_SESSION['login']['said'] == 'admin') {
+                echo '<th>负责人</th>';
+            }
+          ?>
         </tr>
       </thead>
       <tbody>
@@ -70,7 +74,9 @@
                     $dom .= '<td class="am-hide-sm-only">'.$p['starttime'].'</td>';
                     $dom .= '<td class="am-hide-sm-only">'.$p['endtime'].'</td>';
                     $dom .= '<td>'.$p['updatetime'].'</td>';
-                    $dom .= '<td>'.$p['uname'].'</td>';
+                    if ($_SESSION['login']['said'] == 'admin') {
+                        $dom .= '<td>'.$p['uname'].'</td>';
+                    }
                     $dom .= '</tr>';
                     echo $dom;
                 }
