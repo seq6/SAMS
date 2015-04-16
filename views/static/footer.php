@@ -16,7 +16,6 @@
 <![endif]-->
 
 <!--[if (gte IE 9)|!(IE)]><!-->
-<script src="/assets/js/app.js"></script>
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/amazeui.min.js"></script>
 <!--<![endif]-->

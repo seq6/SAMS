@@ -61,11 +61,7 @@
     <div class="am-g">
       <div class="am-u-sm-12 am-u-md-6">
         <div class="am-btn-toolbar">
-          <div class="am-btn-group am-btn-group-xs">
-            <button type="button" class="am-btn am-btn-default" id="add-member"><span class="am-icon-plus"></span> 新增</button>
-            <button type="button" class="am-btn am-btn-default" id="save-member"><span class="am-icon-save"></span> 保存</button>
-            <button type="button" class="am-btn am-btn-default" id="repeat-member"><span class="am-icon-repeat"></span> 还原</button>
-          </div>
+          <button type="button" class="am-btn am-btn-primary" id="add-member" onclick="add()"><span class="am-icon-plus"></span> 新增</button>
         </div>
       </div>
     </div>
@@ -78,7 +74,6 @@
           <table id="member-table" class="am-table am-table-striped am-table-hover table-main">
             <thead>
               <tr>
-                <th></th>
                 <th>ID</th>
                 <th>姓名</th>
                 <th class="am-hide-sm-only">性别</th>
@@ -91,35 +86,24 @@
             </thead>
             <tbody>
                 <?php
-                    $tool = '<div class="am-btn-toolbar">
-                              <div class="am-btn-group am-btn-group-xs">
-                                <button class="am-btn am-btn-default am-btn-xs am-text-secondary">
-                                  <span class="am-icon-pencil-square-o"></span> 编辑
-                                </button>
-                                <button class="am-btn am-btn-default am-btn-xs am-hide-sm-only">
-                                  <span class="am-icon-copy"></span> 复制
-                                </button>
-                                <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
-                                  <span class="am-icon-trash-o"></span> 删除
-                                </button>
-                              </div>
-                            </div>';
                     if (isset($members) && !empty($members)) {
                         $i = ($pageNo - 1) * 10 + 1;
                         foreach ($members as $m) {
-                            $dom  = '<tr>';
-                            $dom .= '<td></td>';
-                            $dom .= '<td>'.$i.'</td>';
-                            $dom .= '<td>'.$m['name'].'</td>';
+                            echo '<tr>';
+                            echo '<td>'.$i.'</td>';
+                            echo '<td>'.$m['name'].'</td>';
                             $sex  = ($m['sex'] == '1') ? '男' : '女';
-                            $dom .= '<td class="am-hide-sm-only">'.$sex.'</td>';
-                            $dom .= '<td class="am-hide-sm-only">'.$m['phone'].'</td>';
-                            $dom .= '<td class="am-hide-sm-only">'.$m['mobile'].'</td>';
-                            $dom .= '<td class="am-hide-sm-only">'.$m['email'].'</td>';
-                            $dom .= '<td>'.$m['position'].'</td>';
-                            $dom .= '<td>'.$tool.'</td>';
-                            $dom .= '</tr>';
-                            echo $dom;
+                            echo '<td class="am-hide-sm-only">'.$sex.'</td>';
+                            echo '<td class="am-hide-sm-only">'.$m['phone'].'</td>';
+                            echo '<td class="am-hide-sm-only">'.$m['mobile'].'</td>';
+                            echo '<td class="am-hide-sm-only">'.$m['email'].'</td>';
+                            $part = ($m['partid'] == '1') ? '评估方' : '被评估方';
+                            echo '<td>'.$m['position'].'('.$part.')</td>';
+                            echo '<td><div class="am-btn-toolbar"><div class="am-btn-group am-btn-group-xs">';
+                            echo '<button class="am-btn am-btn-default am-btn-xs am-text-secondary" onclick="edit('.$m['id'].')"><span class="am-icon-pencil-square-o"></span> 编辑</button>';
+                            echo '<button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" onclick="delete_member('.$m['id'].')"><span class="am-icon-trash-o"></span> 删除</button>';
+                            echo '</div></div></td>';
+                            echo '</tr>';
                             $i++;
                         }
                     }
@@ -142,35 +126,34 @@
                     if (!isset($count)) {
                         $count = 0;
                     }
-                    $allPage = ($count - 1) / 10 + 1;
+                    $allPage = (int)(($count - 1) / 10 + 1);
                     if ($pageNo != 1) {
-                        echo '<li><a href="project?pageNo=1">&laquo;</a></li>';
+                        echo '<li><a href="/pre/member?pageNo=1">&laquo;</a></li>';
                     }
                     else {
-                        echo '<li class="am-disabled"><a href="project?pageNo=1">&laquo;</a></li>';
+                        echo '<li class="am-disabled"><a href="/pre/member?pageNo=1">&laquo;</a></li>';
                     }
                     $startNo = ($pageNo - 2) >= 1 ? ($pageNo - 2) : 1;
                     $endNo = ($pageNo + 2) <= $allPage ? ($pageNo + 2) : $allPage;
                     for ($i = $startNo; $i <= $endNo; $i++) {
                         if ($i == $pageNo) {
-                            echo '<li class="am-active"><a href="project?pageNo='.$i.'">'.$i.'</a></li>';
+                            echo '<li class="am-active"><a href="/pre/member?pageNo='.$i.'">'.$i.'</a></li>';
                         }
                         else {
-                            echo '<li><a href="project?pageNo='.$i.'">'.$i.'</a></li>';
+                            echo '<li><a href="/pre/member?pageNo='.$i.'">'.$i.'</a></li>';
                         }
                     }
-                    if ($endNo != $allPage) {
-                        echo '<li><a href="project?pageNo='.$allPage.'">&raquo;</a></li>';
+                    if ($pageNo != $allPage) {
+                        echo '<li><a href="/pre/member?pageNo='.$allPage.'">&raquo;</a></li>';
                     }
                     else {
-                        echo '<li class="am-disabled"><a href="project?pageNo='.$allPage.'">&raquo;</a></li>';
+                        echo '<li class="am-disabled"><a href="/pre/member?pageNo='.$allPage.'">&raquo;</a></li>';
                     }
                 ?>
               </ul>
             </div>
           </div>
           <!--pagination end-->
-          <hr />
 
       </div>
     </div>
@@ -180,7 +163,7 @@
 <!--member modal-->
 <div class="am-modal am-modal-prompt" tabindex="-1" id="member-modal">
   <div class="am-modal-dialog">
-    <div id="modal-title" class="am-modal-hd">新增人员</div>
+    <div id="modal-title" class="am-modal-hd"></div>
     <div class="am-modal-bd">
       <div class="am-btn-group doc-js-btn-1" data-am-button>
         <label class="am-btn am-btn-default am-active">
@@ -250,53 +233,65 @@
 <?php include_once VIEW_PATH.'static/footer.php'; ?>
 
 <script type="text/javascript">
-var tool = $('<div class="am-btn-toolbar"><div class="am-btn-group am-btn-group-xs"><button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button><button class="am-btn am-btn-default am-btn-xs am-hide-sm-only"><span class="am-icon-copy"></span> 复制</button><button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</button></div></div>');
-var addTag = $('<span class="am-badge am-badge-secondary">新增</span>');
-var delTag = $('<span class="am-badge am-badge-danger">删除</span>');
-var modTag = $('<span class="am-badge am-badge-warning">修改</span>');
-var addList = [];
-var delList = [];
-var modList = [];
 
-function myAjax (theUrl, theData, callback) {
+function my_ajax (theUrl, theMethod, theData, callback) {
     $.ajax({
+        type:theMethod,
         url:theUrl,
-        type:'post',
+        async:false,
         data:theData,
-        async:true,
-        error: function () {
-            alert('error！');
-        },
-        success:callback,
-        dataType:'json'
+        dataType:'json',
+        success:callback
     });
 }
 
+function submit_form (url, method, params) {
+    var myForm = $('<form></form>');
+    myForm.attr('action', url); 
+    myForm.attr('method', method);
+    myForm.attr('target', '_self');
 
-$(function() {
-    $('#add-member').on('click', function() {
-        $('#member-modal').modal({
-            relatedTarget: this,
-            onConfirm: function(e) {
-                //alert(e.data);
-                add_member();
-            },
-            onCancel: function(e) {
-                //alert('!');
-            }
-        });
+    var theInput = $('<input type="text"/>');
+    for (x in params) {
+        var myInput = theInput.clone();
+        myInput.attr('name', x);
+        myInput.attr('value', params[x]);
+        myForm.append(myInput);
+    }
+
+    myForm.submit();
+}
+
+function add () {
+    $('#modal-title').text('新增人员');
+    set_member_data();
+    $('#member-modal').modal({
+        relatedTarget: this,
+        onConfirm: function() {
+            add_member();
+        },
+        onCancel: function() {
+        }
     });
-});
+}
 
-$('#save-member').on('click', function () {
-  // body...
-});
+function edit (id) {
+    $('#modal-title').text('人员信息');
+    var mydata = {};
+    mydata['memberid'] = id;
+    my_ajax('/pre/member/get', 'get', mydata, function (member) {
+        set_member_data(member.partid, member.name, member.sex, member.phone, member.mobile, member.email, member.posid);
+    });
 
-$('#repeat-member').on('click', function () {
-  // body...
-});
-
-$(document).ready();
+    $('#member-modal').modal({
+        relatedTarget: this,
+        onConfirm: function() {
+            edit_member(id);
+        },
+        onCancel: function() {
+        }
+    });
+}
 
 function change_sex (sexid) {
     if (sexid == 1) {
@@ -307,64 +302,81 @@ function change_sex (sexid) {
     }
 }
 
+function edit_member (id) {
+    var params = get_member_data();
+    params['editType'] = 'edit';
+    params['memberid'] = id;
+    return submit_form('/pre/member', 'post', params);
+}
+
+function delete_member (id) {
+    var params = {};
+    params['editType'] = 'del';
+    params['memberid'] = id;
+    return submit_form('/pre/member', 'post', params);
+}
+
 function add_member () {
-    var part = $("input[name='part']:checked").val();
-    var name = $('#name').val();
+    var params = get_member_data();
+    params['editType'] = 'add';
+    return submit_form('/pre/member', 'post', params);
+}
+
+function set_member_data (partid, name, sex, phone, mobile, email, posid) {
+    var partid = partid || 1;
+    /*
+    if (partid == 2) {
+        $('#partB').attr('checked', 'checked');
+        $('#partA').remove('checked');
+    }
+    else {
+        $('#partA').attr('checked', 'checked');
+        $('#partB').remove('checked');
+    }*/
+
+    var name = name || '';
+    $('#name').val(name);
+
+    var sex = sex || 1;
+    if (sex == 0) {
+        $('#sex').text('女');
+    }
+    else {
+        $('#sex').text('男');
+    }
+
+    var phone = phone || '';
+    $('#phone').val(phone);
+
+    var mobile = mobile || '';
+    $('#mobile').val(mobile);
+
+    var email = email || '';
+    $('#email').val(email);
+
+    var posid = posid || '1';
+    $("#position").val(posid);
+    //$("#position").find('option[value="'+posid+'""]').attr("selected",true);
+}
+
+function get_member_data () {
+    var res = {};
+    res['partid'] = $("input[name='part']:checked").val();
+    res['name'] = $('#name').val();
     var sexText = $('#sex').text();
-    var sex;
     if (sexText == '男') {
-        sex = 1;
+        res['sex'] = 1;
     }
     else if (sexText == '女') {
-        sex = 0;
+        res['sex'] = 0;
     }
-    var phone = $('#phone').val();
-    var mobile = $('#mobile').val();
-    var email = $('#email').val();
-    var position = $('#position').val();
-    var positionText = $('#position').text();
-
-    var newRow = $('<tr></tr>');
-    var td = $('<td></td>');
-
-    var tdTag = td.clone();
-    tdTag.append(addTag.clone());
-    newRow.append(tdTag);
-
-    var tdID = td.clone();
-    newRow.append(tdID);
-
-    var tdName = td.clone();
-    tdName.append(name);
-    newRow.append(tdName);
-
-    var tdSex = td.clone();
-    tdSex.append(sexText);
-    newRow.append(tdSex);
-
-    var tdPhone = td.clone();
-    tdPhone.append(phone);
-    newRow.append(tdPhone);
-
-    var tdMobile = td.clone();
-    tdMobile.append(mobile);
-    newRow.append(tdMobile);
-
-    var tdEmail = td.clone();
-    tdEmail.append(email);
-    newRow.append(tdEmail);
-
-    var tdPos = td.clone();
-    tdPos.append(positionText);
-    newRow.append(tdPos);
-
-    var tdTool = td.clone();
-    tdTool.append(tool.clone());
-    newRow.append(tdTool);
-
-    var table = $('#member-table');
-    table.append(newRow);
+    res['phone'] = $('#phone').val();
+    res['mobile'] = $('#mobile').val();
+    res['email'] = $('#email').val();
+    res['posid'] = $('#position').val();
+    return res;
 }
+
 </script>
 </body>
 </html>

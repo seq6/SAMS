@@ -16,7 +16,11 @@ class Staff_model extends Base_model
 
     public function get_staff($id = 0)
     {
-        return $this->get_item(array('id' => $id));
+        $res = $this->get_item(array('id' => $id));
+        if (is_array($res) && !empty($res)) {
+            return $res[0];
+        }
+        return false;
     }
 
     public function get_staffs($pid = 0, $limit = 1, $offset = 0)

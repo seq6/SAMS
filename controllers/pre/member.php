@@ -58,8 +58,53 @@ class Member extends CI_Controller
         $this->load->view('pre/member', $this->data);
     }
 
+    public function get()
+    {
+        $id = isset($_GET['memberid']) ? $_GET['memberid'] : 0;
+        $res = $this->objStaffModel->get_staff($id);
+        echo json_encode($res);
+    }
+
     private function form()
     {
-        # code...
+        $pid = $_SESSION['project']['pid'];
+        $editType = isset($_POST['editType']) ? $_POST['editType'] : '';
+        $id       = isset($_POST['memberid']) ? $_POST['memberid'] : 0;
+        $partid   = isset($_POST['partid'])   ? $_POST['partid']   : '';
+        $name     = isset($_POST['name'])     ? $_POST['name']     : '';
+        $sex      = isset($_POST['sex'])      ? $_POST['sex']      : '';
+        $phone    = isset($_POST['phone'])    ? $_POST['phone']    : '';
+        $mobile   = isset($_POST['mobile'])   ? $_POST['mobile']   : '';
+        $email    = isset($_POST['email'])    ? $_POST['email']    : '';
+        $posid    = isset($_POST['posid'])    ? $_POST['posid']    : 0;
+
+        $errorNo = 0;
+        switch ($editType) {
+            case 'add': {
+                $res = $this->objStaffModel->add_staff($pid, $partid, $name, $sex, $phone, $mobile, $email, $posid);
+                if ($res != false) {
+                    $errorNo = 1;
+                }
+                break;
+            }
+            case 'del': {
+                $res = $this->objStaffModel->del_staff($id);
+                if ($res != false) {
+                    $errorNo = 1;
+                }
+                break;
+            }
+            case 'edit': {
+                $res = $this->objStaffModel->update_staff($id, $pid, $partid, $name, $sex, $phone, $mobile, $email, $posid);
+                if ($res != false) {
+                    $errorNo = 1;
+                }
+                break;
+            }
+            default: 
+                break;
+        }
+
+        $this->data['error'] = $errorNo;
     }
 }
