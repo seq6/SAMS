@@ -18,4 +18,15 @@ class PjType_model extends Base_model
     {
         return $this->get_item(null, 0, 0, true);
     }
+
+    public function get_type_byid($id = '')
+    {
+        $types = $this->get_item(null, 0, 0, true);
+        foreach ($types as $t) {
+            if ($t['id'] == $id) {
+                return $t;
+            }
+        }
+        return false;
+    }
 }

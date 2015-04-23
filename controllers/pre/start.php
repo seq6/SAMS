@@ -53,7 +53,61 @@ class Start extends CI_Controller
             $this->form();
         }
 
-        
+        $pid = $_SESSION['project']['pid'];
+        $this->data['project'] = array();
+
+        $project = $this->objProjectModel->get_project($pid);
+        $this->data['project']['name'] = $project['name'];
+
+        $typeid = $project['theType'];
+        $pjtype = $this->objPjtypeModel->get_type_byid($typeid);
+        $this->data['project']['type'] = $pjtype['name'];
+
+        $pjrange = $this->objPjrangeModel->get_range();
+        $rangeData = array();
+        foreach ($pjrange as $r) {
+            $rangeData[$r['id']] = $r['name'];
+        }
+        $rangids = json_decode($project['theRange']);
+        $this->data['project']['range'] = array();
+        foreach ($rangids as $rid) {
+            if (isset($rangeData[$rid])) {
+                array_push($this->data['project']['range'], $rangeData[$rid]);
+            }
+        }
+
+        $pAid = $project['partA'];
+        $this->data['project']['partA'] = array();
+        $partA = $this->objPartsModel->get_part($pAid);
+        $this->data['project']['partA']['name']   = $partA['name'];
+        $this->data['project']['partA']['leader'] = $partA['leader'];
+        $this->data['project']['partA']['mobile'] = $partA['mobile'];
+        $this->data['project']['partA']['email']  = $partA['email'];
+        $this->data['project']['partA']['desc']   = $partA['remarks'];
+
+        $pBid = $project['partB'];
+        $this->data['project']['partB'] = array();
+        $partB = $this->objPartsModel->get_part($pBid);
+        $this->data['project']['partB']['name']   = $partB['name'];
+        $this->data['project']['partB']['leader'] = $partB['leader'];
+        $this->data['project']['partB']['mobile'] = $partB['mobile'];
+        $this->data['project']['partB']['email']  = $partB['email'];
+        $this->data['project']['partB']['desc']   = $partB['remarks'];
+
+
+        $staffs = $this->objStaffModel->get_all_staffs($pid);
+        $positins = $this->objPositionModel->get_position();
+        $positinsData = array();
+        foreach ($positins as $p) {
+            $positinsData[$p['id']] = $p['name'];
+        }
+        foreach ($staffs as $key => $s) {
+            $staffs[$key]['position'] = $positinsData[$s['posid']];
+        }
+        $this->data['project']['members'] = $staffs;
+
+        $this->data['project']['goal'] = $project['goal'];
+        $this->data['project']['desc'] = $project['theDesc'];
 
         $this->load->view('pre/start', $this->data);
     }

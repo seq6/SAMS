@@ -28,6 +28,11 @@ class Staff_model extends Base_model
         return $this->get_item(array('pid' => $pid), $limit, $offset);
     }
 
+    public function get_all_staffs($pid = 0)
+    {
+        return $this->get_item(array('pid' => $pid), 0, 0, true);
+    }
+
     public function get_staffs_count($pid = 0)
     {
         return $this->get_count(array('pid' => $pid));
