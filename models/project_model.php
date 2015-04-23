@@ -54,6 +54,20 @@ class Project_model extends Base_model
     {
         return $this->get_count($conds);
     }
+
+    public function start_project($pid = 0)
+    {
+        $startTime = date('Y-m-d H:i:s');
+        $newData = array('status' => 1, 'starttime' => $startTime);
+        return $this->update_item(array('id' => $pid), $newData);
+    }
+
+    public function end_project($pid = 0)
+    {
+        $endTime = date('Y-m-d H:i:s');
+        $newData = array('status' => 2, 'endtime' => $endTime);
+        return $this->update_item(array('id' => $pid), $newData);
+    }
 }
 
 ?>

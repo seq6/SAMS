@@ -57,7 +57,7 @@ class Start extends CI_Controller
         $this->data['project'] = array();
 
         $project = $this->objProjectModel->get_project($pid);
-        $this->data['project']['name'] = $project['name'];
+        $this->data['project'] = $project;
 
         $typeid = $project['theType'];
         $pjtype = $this->objPjtypeModel->get_type_byid($typeid);
@@ -94,7 +94,6 @@ class Start extends CI_Controller
         $this->data['project']['partB']['email']  = $partB['email'];
         $this->data['project']['partB']['desc']   = $partB['remarks'];
 
-
         $staffs = $this->objStaffModel->get_all_staffs($pid);
         $positins = $this->objPositionModel->get_position();
         $positinsData = array();
@@ -114,6 +113,13 @@ class Start extends CI_Controller
 
     public function form()
     {
-        # code...
+        $pid = $_SESSION['project']['pid'];
+        $res = $this->objProjectModel->start_project($pid);
+        if ($res != false) {
+            $this->data['error'] = 1;
+        }
+        else {
+            $this->data['error'] = 0;
+        }
     }
 }

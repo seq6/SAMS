@@ -36,14 +36,15 @@
         switch ($error) {
             case 1:{
                 $color = ' am-alert-success';
-                $prompt = '数据提交成功';
+                $prompt = '启动项目成功';
                 break;
             }
             case 2:
                 $color = ' am-alert-danger';
-                $prompt = '数据提交失败';
+                $prompt = '启动项目失败';
                 break;
             default:
+                $color = ' am-alert-danger';
                 $prompt = 'error!';
                 break;
         }
@@ -59,11 +60,11 @@
 
     <!--project type-->
     <div class="am-g am-margin-top">
-      <div class="am-u-sm-4 am-u-md-2 am-text-right">项目类型</div>
+      <div class="am-u-sm-4 am-u-md-2 am-text-right"><label>项目类型</label></div>
       <div class="am-u-sm-8 am-u-md-10">
         <?php
           if (isset($project['type']) && $project['type'] !== null) {
-            echo '<label>'.$project['type'].'</label>';
+            echo $project['type'];
           }
         ?>
       </div>
@@ -72,10 +73,9 @@
 
     <!--project range-->
     <div class="am-g am-margin-top">
-      <div class="am-u-sm-4 am-u-md-2 am-text-right">项目范围</div>
+      <div class="am-u-sm-4 am-u-md-2 am-text-right"><label>项目范围</label></div>
       <div class="am-u-sm-8 am-u-md-10">
         <?php
-            echo '<label>';
             if (isset($project['range']) && !empty($project['range'])) {
                 $rData = '';
                 foreach ($project['range'] as $r) {
@@ -83,7 +83,6 @@
                 }
                 echo $rData;
             }
-            echo '</label>'
         ?>
       </div>
     </div>
@@ -91,7 +90,7 @@
 
     <!--partA-->
     <div class="am-g am-margin-top">
-      <div class="am-u-sm-4 am-u-md-2 am-text-right">评估方</div>
+      <div class="am-u-sm-4 am-u-md-2 am-text-right"><label>评估方</label></div>
       <div class="am-u-sm-8 am-u-md-10">
         <?php
             echo '<label>'.$project['partA']['name'].'</label>';
@@ -106,7 +105,7 @@
 
     <!--partB-->
     <div class="am-g am-margin-top">
-      <div class="am-u-sm-4 am-u-md-2 am-text-right">被评估方</div>
+      <div class="am-u-sm-4 am-u-md-2 am-text-right"><label>被评估方</label></div>
       <div class="am-u-sm-8 am-u-md-10">
         <?php
             echo '<label>'.$project['partB']['name'].'</label>';
@@ -121,18 +120,34 @@
 
     <!--member-->
     <div class="am-g am-margin-top">
-      <div class="am-u-sm-4 am-u-md-2 am-text-right">项目人员</div>
-      <div class="am-u-sm-8 am-u-md-10">
-      <?php
-        
-      ?>
-      </div>
+      <div class="am-u-sm-4 am-u-md-2 am-text-right"><label>项目人员</label></div>
+    <?php
+        if (isset($project['members']) && !empty($project['members'])) {
+            $name = '';
+            $part = '';
+            $posit= '';
+            $link = '';
+            $i = 0;
+            foreach ($project['members'] as $m) {
+                $name .= $m['name'].'<br/>';
+                $part .= ($m['partid'] == 1) ? '评估方<br/>' : '被评估方<br/>';
+                $posit.= $m['position'].'<br/>';
+                $link .= $m['mobile'].'&nbsp;|&nbsp;'.$m['email'].'<br/>';
+                $i++;
+            }
+
+            echo '<div class="am-u-sm-2 am-u-md-2">'.$name.'</div>';
+            echo '<div class="am-u-sm-2 am-u-md-2">'.$part.'</div>';
+            echo '<div class="am-u-sm-2 am-u-md-2">'.$posit.'</div>';
+            echo '<div class="am-u-sm-2 am-u-md-4">'.$link.'</div>';
+        }
+    ?>
     </div>
     <!--member end-->
 
     <!--project information-->
     <div class="am-g am-margin-top">
-      <div class="am-u-sm-4 am-u-md-2 am-text-right">项目信息</div>
+      <div class="am-u-sm-4 am-u-md-2 am-text-right"><label>项目信息</label></div>
       <div class="am-u-sm-8 am-u-md-10">
       <?php
         echo '<small><i>'.$project['goal'].'</i></small>';
@@ -145,8 +160,44 @@
 
     <!--project start-->
     <div class="am-g am-margin-top">
+      <?php
+        if (isset($project['status'])) {
+            switch ($project['status']) {
+                case '0':{
+                    echo '<div class="am-u-sm-4 am-u-md-2 am-text-right">
+                            <form action="/pre/start" method="post">
+                              <input type="hidden" name="start" value="1">
+                              <button id="project-start" type="submit" class="am-btn am-btn-primary">启动</button>
+                            </form>
+                          </div>';
+                    break;
+                }
+                case '1':{
+                    echo  '<div class="am-u-sm-4 am-u-md-2 am-text-right"><label>启动时间</label></div>
+                          <div class="am-u-sm-8 am-u-md-10">'.$project['starttime'].'</div>';
+                    break;
+                }
+                case '2':{
+                    echo  '<div class="am-u-sm-4 am-u-md-2 am-text-right"><label>关闭时间</label></div>
+                          <div class="am-u-sm-8 am-u-md-10">'.$project['endtime'].'</div>';
+                    break;
+                }
+                default:
+                    echo '<label>error!</label>';
+                    break;
+            }
+        }
+      ?>
+    </div>
+    <!--project start end-->
+
+    <!--project start
+    <div class="am-g am-margin-top">
       <div class="am-u-sm-4 am-u-md-2 am-text-right">
-        <button id="project-start" type="button" class="am-btn am-btn-primary">启动</button>
+        <form action="/pre/start" method="post">
+          <input type="hidden" name="start" value="1">
+          <button id="project-start" type="submit" class="am-btn am-btn-primary">启动</button>
+        </form>
       </div>
     </div>
     <!--project start end-->
@@ -155,10 +206,6 @@
   </div>
 
 <?php include_once VIEW_PATH.'static/footer.php'; ?>
-<script type="text/javascript">
-$('#project-start').on('click',function (argument) {
-  alert('asdasda');
-});
 </script>
 </body>
 </html>
