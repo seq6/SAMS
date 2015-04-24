@@ -101,7 +101,7 @@
                             echo '<td>'.$m['position'].'('.$part.')</td>';
                             echo '<td><div class="am-btn-toolbar"><div class="am-btn-group am-btn-group-xs">';
                             echo '<button class="am-btn am-btn-default am-btn-xs am-text-secondary" onclick="edit('.$m['id'].')"><span class="am-icon-pencil-square-o"></span> 编辑</button>';
-                            echo '<button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" onclick="delete_member('.$m['id'].')"><span class="am-icon-trash-o"></span> 删除</button>';
+                            echo '<button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" onclick="del('.$m['id'].')"><span class="am-icon-trash-o"></span> 删除</button>';
                             echo '</div></div></td>';
                             echo '</tr>';
                             $i++;
@@ -115,7 +115,8 @@
           <!--pagination-->
           <div class="am-cf">
             <?php
-              echo '共'.$count.'条记录';
+              $theCount = isset($count) ? $count : 0;
+              echo '共'.$theCount.'条记录';
             ?>
             <div class="am-fr">
               <ul class="am-pagination">
@@ -126,7 +127,7 @@
                     if (!isset($count)) {
                         $count = 0;
                     }
-                    $allPage = (int)(($count - 1) / 10 + 1);
+                    $allPage = ($count != 0) ? (int)(($count - 1) / 10 + 1) : 1;
                     if ($pageNo != 1) {
                         echo '<li><a href="/pre/member?pageNo=1">&laquo;</a></li>';
                     }
@@ -230,6 +231,21 @@
 </div>
 <!--member modal end-->
 
+<!--delete member modal-->
+<div class="am-modal am-modal-prompt" id="del-member-modal">
+  <div class="am-modal-dialog">
+    <div id="modal-title" class="am-modal-hd">删除人员</div>
+      <div class="am-modal-bd">
+        是否确定删除该人员所有信息？
+      </div>
+      <div class="am-modal-footer">
+        <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+        <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+    </div>
+  </div>
+</div>
+<!--delete member modal end-->
+
 <?php include_once VIEW_PATH.'static/footer.php'; ?>
 
 <script type="text/javascript">
@@ -270,8 +286,17 @@ function add () {
         onConfirm: function() {
             add_member();
         },
-        onCancel: function() {
-        }
+        onCancel: function() {}
+    });
+}
+
+function del (id) {
+    $('#del-member-modal').modal({
+        relatedTarget:this,
+        onConfirm: function () {
+            delete_member(id);
+        },
+        onCancel:function () {}
     });
 }
 
@@ -324,15 +349,6 @@ function add_member () {
 
 function set_member_data (partid, name, sex, phone, mobile, email, posid) {
     var partid = partid || 1;
-    /*
-    if (partid == 2) {
-        $('#partB').attr('checked', 'checked');
-        $('#partA').remove('checked');
-    }
-    else {
-        $('#partA').attr('checked', 'checked');
-        $('#partB').remove('checked');
-    }*/
 
     var name = name || '';
     $('#name').val(name);

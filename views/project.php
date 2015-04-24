@@ -95,7 +95,7 @@
         if (!isset($count)) {
             $count = 0;
         }
-        $allPage = (int)(($count - 1) / 10 + 1);
+        $allPage = ($count != 0) ? (int)(($count - 1) / 10 + 1) : 1;
         if ($pageNo != 1) {
             echo '<li><a href="project?pageNo=1">&laquo;</a></li>';
         }

@@ -23,20 +23,17 @@ class Signup extends CI_Controller
         $this->objProjectModel = new project_model;
 
         $this->load->model('user_model');
-        $this->objUserModel = new user_model;
-
-        $this->data['user'] = $this->objUserModel->get_all_user();
+        $this->objUserModel = new user_model;        
     }
 
     public function index()
     {
-        //
         if (!empty($_POST)) {
             $this->form();
         }
-        else {
-            $this->load->view('signup', $this->data);
-        }
+        
+        $this->data['user'] = $this->objUserModel->get_all_user();
+        $this->load->view('signup', $this->data);
     }
 
     private function form()
@@ -49,17 +46,18 @@ class Signup extends CI_Controller
         $email    = isset($_POST['email'])    ? $_POST['email']     : '';
         $password = isset($_POST['password']) ? $_POST['password']  : '';
 
+        $res = false;
         switch ($theUser) {
             case 'oldUser': {
-                $pid = $this->objProjectModel->add_projetc($pName);
+                $pid = $this->objProjectModel->add_project($pName);
                 $this->objUserModel->add_user_pid($uid, $pid);
-                $this->objProjectModel->update_projetc($pid, array('uid' => $uid));
+                $res = $this->objProjectModel->update_project($pid, array('uid' => $uid));
                 break;
             }
             case 'newUser': {
                 $pid = $this->objProjectModel->add_projetc($pName);
                 $uid = $this->objUserModel->add_user($userName, $email, $password, $pid);
-                $this->objProjectModel->update_projetc($pid, array('uid' => $uid));
+                $res = $this->objProjectModel->update_project($pid, array('uid' => $uid));
                 break;
             }
             default: {
@@ -67,7 +65,5 @@ class Signup extends CI_Controller
                 break;
             }
         }
-
-        $this->load->view('signup', $this->data);
     }
 }

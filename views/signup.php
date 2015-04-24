@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
+<head>
   <meta charset="UTF-8">
   <title>安全风险评估管理系统</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -44,11 +44,11 @@
       </div>
 
       <div class="am-form-group">
-        <select id="theUserId" name="theUserId">
+        <select id="theUserId" name="theUserId" data-am-selected="{btnSize: 'md'}">
           <?php
             if (isset($user) && !empty($user)) {
                 foreach ($user as $u) {
-                    echo '<option value="'.$u['id'].'">'.$u['name'].'</option>';
+                    echo '<option value="'.$u['id'].'">'.$u['name'].' ('.$u['email'].')</option>';
                 }
             }
             else {
