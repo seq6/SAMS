@@ -14,11 +14,11 @@
 </head>
 <body>
 
-<?php include_once VIEW_PATH.'static/header.php'; ?>
+<?php include_once 'app/views/static/header.php'; ?>
 
 <div class="am-cf admin-main">
 
-<?php include_once VIEW_PATH.'static/sidebar.php'; ?>
+<?php include_once 'app/views/static/sidebar.php'; ?>
 
   <div class="admin-content">
     <!--title-->
@@ -341,7 +341,7 @@
 </div>
 
 
-<?php include_once VIEW_PATH.'static/footer.php'; ?>
+<?php include_once 'app/views/static/footer.php'; ?>
 
 <script type="text/javascript">
   

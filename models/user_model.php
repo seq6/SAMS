@@ -14,34 +14,6 @@ class User_model extends Base_model
         $this->table = 'user';
     }
 
-    public function check($email = '', $pwd = '', $isAdmin = false)
-    {
-        if ($pwd === '') {
-            return false;
-        }
-        else {
-            if ($isAdmin) {
-                $theAdmin = $this->get_all_admin();
-                $md5Pwd = md5($pwd);
-                foreach ($theAdmin as $key => $value) {
-                    if ($md5Pwd === $value['pwd']) {
-                        return $value;
-                    }
-                }
-            }
-            else {
-                $theUser = $this->get_item(array('`email`' => $email, '`isadmin`' => 0), 0, 0, true);
-                $md5Pwd = md5($pwd);
-                foreach ($theUser as $key => $value) {
-                    if ($md5Pwd === $value['pwd']) {
-                        return $value;
-                    }
-                }
-            }
-            return false;
-        }
-    }
-
     public function get_user_name($id = 0)
     {
         $res = $this->get_item(array('id' => $id, 'isadmin' => 0));

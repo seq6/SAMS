@@ -15,7 +15,7 @@
 </head>
 <body>
 
-  <?php include_once 'static/header.php'; ?>
+  <?php include_once 'app/views/static/header.php'; ?>
 
   <div class="am-cf admin-main">
 
@@ -33,6 +33,6 @@
 
   <a class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
 
-  <?php include_once 'static/footer.php'; ?>
+  <?php include_once 'app/views/static/footer.php'; ?>
 </body>
 </html>

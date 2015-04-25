@@ -251,7 +251,6 @@
     function check_range (argument) {
       // body...
     }
-
 </script>
 </body>
 </html>

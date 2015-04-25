@@ -14,23 +14,25 @@
 </head>
 <body>
 
-  <?php include_once VIEW_PATH.'static/header.php'; ?>
+<?php include_once 'app/views/static/header.php'; ?>
 
-  <div class="am-cf admin-main">
+<div class="am-cf admin-main">
 
-  <?php include_once VIEW_PATH.'static/sidebar.php'; ?>
+  <?php include_once 'app/views/static/sidebar.php'; ?>
 
-    <div class="admin-content">
-      <div class="am-cf am-padding">
-        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">硬件资源</strong> / <small>hardware</small></div>
-      </div>
-      <hr/>
+  <div class="admin-content">
+    <div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">硬件资源</strong> / <small>hardware</small></div>
     </div>
-
+    <hr/>
   </div>
 
-  <a class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
+</div>
 
-  <?php include_once VIEW_PATH.'static/footer.php'; ?>
+<?php include_once 'app/views/static/footer.php'; ?>
+
+<script type="text/javascript">
+
+</script>
 </body>
 </html>

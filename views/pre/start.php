@@ -14,11 +14,11 @@
 </head>
 <body>
 
-<?php include_once VIEW_PATH.'static/header.php'; ?>
+<?php include_once 'app/views/static/header.php'; ?>
 
 <div class="am-cf admin-main">
 
-  <?php include_once VIEW_PATH.'static/sidebar.php'; ?>
+  <?php include_once 'app/views/static/sidebar.php'; ?>
 
     <div class="admin-content">
       <!--title-->
@@ -190,22 +190,10 @@
       ?>
     </div>
     <!--project start end-->
-
-    <!--project start
-    <div class="am-g am-margin-top">
-      <div class="am-u-sm-4 am-u-md-2 am-text-right">
-        <form action="/pre/start" method="post">
-          <input type="hidden" name="start" value="1">
-          <button id="project-start" type="submit" class="am-btn am-btn-primary">启动</button>
-        </form>
-      </div>
-    </div>
-    <!--project start end-->
-
     </div>
   </div>
 
-<?php include_once VIEW_PATH.'static/footer.php'; ?>
+<?php include_once 'app/views/static/footer.php'; ?>
 </script>
 </body>
 </html>

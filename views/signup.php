@@ -18,6 +18,33 @@
 
 <div class="am-g">
   <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
+
+    <!--form req-->
+    <?php
+    if (isset($error)) {
+        switch ($error) {
+            case 1:{
+                $color = ' am-alert-success';
+                $prompt = '注册新项目成功';
+                break;
+            }
+            case 2:
+                $color = ' am-alert-danger';
+                $prompt = '注册新项目失败';
+                break;
+            default:
+                $prompt = 'error!';
+                break;
+        }
+        echo '<div class="am-alert'.$color.'" data-am-alert>
+                <button type="button" class="am-close">&times;</button>
+                <p>'.$prompt.'</p>
+              </div>';
+    }
+    ?>
+    <!--form req end-->
+
+    <!--form-->
     <form method="post" action="signup" onsubmit="return check()" class="am-form">
       <br />
       <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">新项目</strong> / <small>new project</small></div>
@@ -86,6 +113,7 @@
         <button type="reset" class="am-btn am-btn-default am-btn-sm" onclick="reset_form()">重 置</button>
       </div>
     </form>
+    <!--form end-->
   </div>
 </div>
 
