@@ -88,30 +88,37 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>《委托书》</td>
-                <th class="am-hide-sm-only">qwe,qwe,qwe</th>
-                <th class="am-hide-sm-only">dongsanjie</th>
-                <th class="am-hide-sm-only">2013-12-13</th>
-                <th class="am-hide-sm-only">2014-03-14</th>
-                <th class="am-hide-sm-only">2014-03-12</th>
-                <th>
-                  <div class="am-btn-toolbar">
-                    <div class="am-btn-group am-btn-group-xs">
-                      <button class="am-btn am-btn-default am-btn-xs am-text-warning">
-                        <span class="am-icon-download"></span> 下载
-                      </button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary" onclick="edit()">
-                        <span class="am-icon-pencil-square-o"></span> 编辑
-                      </button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-danger" onclick="del(0)">
-                        <span class="am-icon-trash-o"></span> 删除
-                      </button>
-                    </div>
-                  </div>
-                </th>
-              </tr>
+              <?php
+                if (isset($pjfiles) && !empty($pjfiles)) {
+                    $i = ($pageNo - 1) * 10 + 1;
+                    foreach ($pjfiles as $f) {
+                        echo '<tr>
+                                <td>'.$i.'</td>
+                                <td>《'.$f['name'].'》</td>
+                                <td class="am-hide-sm-only">'.$f['members'].'</td>
+                                <td class="am-hide-sm-only">'.$f['place'].'</td>
+                                <td class="am-hide-sm-only">'.$f['starttime'].'</td>
+                                <td class="am-hide-sm-only">'.$f['endtime'].'</td>
+                                <td class="am-hide-sm-only">'.$f['updatetime'].'</td>
+                                <td>
+                                  <div class="am-btn-toolbar">
+                                    <div class="am-btn-group am-btn-group-xs">
+                                      <button class="am-btn am-btn-default am-btn-xs am-text-success">
+                                        <span class="am-icon-download"></span> 下载
+                                      </button>
+                                      <button class="am-btn am-btn-default am-btn-xs am-text-warning" onclick="edit('.$f['id'].')">
+                                        <span class="am-icon-pencil-square-o"></span> 编辑
+                                      </button>
+                                      <button class="am-btn am-btn-default am-btn-xs am-text-danger" onclick="del('.$f['id'].')">
+                                        <span class="am-icon-trash-o"></span> 删除
+                                      </button>
+                                    </div>
+                                  </div>
+                                </td>
+                              </tr>';
+                    }
+                }
+              ?>
             </tbody>
           </table>
           <!--table end-->
@@ -254,11 +261,12 @@ function my_ajax (theUrl, theMethod, theData, callback) {
     });
 }
 
-function form_submit (url, method, params, file) {
+function form_submit (url, method, params) {
     var myForm = $('<form></form>');
     myForm.attr('action', url); 
     myForm.attr('method', method);
     myForm.attr('target', '_self');
+    myForm.attr('enctype', 'multipart/form-data');
 
     var theInput = $('<input type="text"/>');
     for (x in params) {
@@ -268,20 +276,19 @@ function form_submit (url, method, params, file) {
         myForm.append(myInput);
     }
 
-    if (typeof(file) == 'undefined' || file == '') {
+    var file = $('#upload-file');
+    if (typeof(file.val()) == 'undefined' || file.val() == '') {
         return myForm.submit();
     }
     else {
-        var theFile = $('<input type="file"/>');
-        theFile.attr('name','file');
-        theFile.attr('value', file);
-        myForm.append(theFile);
+        myForm.append(file);
         return myForm.submit();
     }
 }
 
 function add () {
     $('#modal-title').text('上传文档');
+    set_file_data();
     $('#file-modal').modal({
         relatedTarget: this,
         onConfirm: function () {
@@ -295,8 +302,8 @@ function edit (id) {
     $('#modal-title').text('编辑文档');
     var mydata = {};
     mydata['fid'] = id;
-    my_ajax('/pre/other/get', 'get', mydata, function (file) {
-        set_file_data();
+    my_ajax('/pre/other/get', 'get', mydata, function (data) {
+        set_file_data(data.name, data.members, data.place, data.starttime, data.endtime);
     });
     $('#file-modal').modal({
         relatedTarget: this,
@@ -320,7 +327,7 @@ function del (id) {
 function add_file () {
     var params = get_file_data();
     params['editType'] = 'add';
-    return form_submit('/pre/other', 'post', params, params['file']);
+    return form_submit('/pre/other', 'post', params);
 }
 
 function edit_file (id) {
@@ -334,7 +341,7 @@ function delete_file (id) {
     var params = {};
     params['editType'] = 'del';
     params['fid'] = id;
-    return submit_form('/pre/other', 'post', params);
+    return form_submit('/pre/other', 'post', params);
 }
 
 function get_file_data () {
@@ -344,12 +351,24 @@ function get_file_data () {
     res['fplace']     = $('#file-place').val();
     res['fstarttime'] = $('#starttime').val();
     res['fendtime']   = $('#endtime').val();
-    res['file']       = $('#upload-file').val();
     return res;
 }
 
-function set_file_data () {
-    // body...
+function set_file_data (fname, fmember, fplace, fstart, fend) {
+    var name = fname || '';
+    $('#file-name').val(name);
+
+    var members = fmember || '';
+    $('#file-members').val(members);
+
+    var place = fplace || '';
+    $('#file-place').val(place);
+
+    var starttime = fstart || '';
+    $('#starttime').val(starttime);
+
+    var endtime = fend || '';
+    $('#endtime').val(endtime);
 }
 </script>
 </body>
