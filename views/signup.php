@@ -33,6 +33,7 @@
                 $prompt = '注册新项目失败';
                 break;
             default:
+                $color = ' am-alert-danger';
                 $prompt = 'error!';
                 break;
         }

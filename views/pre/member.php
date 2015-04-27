@@ -284,7 +284,7 @@ function add () {
     $('#member-modal').modal({
         relatedTarget: this,
         onConfirm: function() {
-            add_member();
+            return add_member();
         },
         onCancel: function() {}
     });
@@ -294,7 +294,7 @@ function del (id) {
     $('#del-member-modal').modal({
         relatedTarget:this,
         onConfirm: function () {
-            delete_member(id);
+            return delete_member(id);
         },
         onCancel:function () {}
     });
@@ -311,7 +311,7 @@ function edit (id) {
     $('#member-modal').modal({
         relatedTarget: this,
         onConfirm: function() {
-            edit_member(id);
+            return edit_member(id);
         },
         onCancel: function() {
         }

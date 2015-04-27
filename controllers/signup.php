@@ -52,12 +52,14 @@ class Signup extends CI_Controller
                 $pid = $this->objProjectModel->add_project($pName);
                 $this->objUserModel->add_user_pid($uid, $pid);
                 $res = $this->objProjectModel->update_project($pid, array('uid' => $uid));
+                $this->data['error'] = ($res != false) ? 1 : 2;
                 break;
             }
             case 'newUser': {
                 $pid = $this->objProjectModel->add_projetc($pName);
                 $uid = $this->objUserModel->add_user($userName, $email, $password, $pid);
                 $res = $this->objProjectModel->update_project($pid, array('uid' => $uid));
+                $this->data['error'] = ($res != false) ? 1 : 2;
                 break;
             }
             default: {

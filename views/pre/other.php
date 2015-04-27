@@ -78,7 +78,7 @@
             <thead>
               <tr>
                 <th>ID</th>
-                <th>电子文档</th>
+                <th>文档</th>
                 <th class="am-hide-sm-only">涉及人员</th>
                 <th class="am-hide-sm-only">地点</th>
                 <th class="am-hide-sm-only">开始时间</th>
@@ -102,10 +102,10 @@
                       <button class="am-btn am-btn-default am-btn-xs am-text-warning">
                         <span class="am-icon-download"></span> 下载
                       </button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary" onclick="edit()">
                         <span class="am-icon-pencil-square-o"></span> 编辑
                       </button>
-                      <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+                      <button class="am-btn am-btn-default am-btn-xs am-text-danger" onclick="del(0)">
                         <span class="am-icon-trash-o"></span> 删除
                       </button>
                     </div>
@@ -165,82 +165,57 @@
 </div>
 
 <!--upload file modal-->
-<div class="am-modal am-modal-prompt" id="del-member-modal">
+<div class="am-modal am-modal-prompt" id="file-modal">
   <div class="am-modal-dialog">
-    <div id="modal-title" class="am-modal-hd">上传文档</div>
+    <div id="modal-title" class="am-modal-hd"></div>
       <div class="am-modal-bd">
-        <!--file name-->
         <div class="am-g am-margin-top">
           <div class="am-u-sm-1 am-u-md-1"></div>
           <div class="am-u-sm-10 am-u-md-10 am-u-sm-centered">
+            <!--file name-->
             <div class="am-input-group">
               <span class="am-input-group-label"><i class="am-icon-file"></i></span>
               <input type="text" id="file-name" name="file-name" class="am-form-field" placeholder="请输入文档名..." maxlength="20">
             </div>
-          </div>
-          <div class="am-u-sm-1 am-u-md-1"></div>
-        </div>
-        <!--file name end-->
-        <!--file members-->
-        <div class="am-g am-margin-top">
-          <div class="am-u-sm-1 am-u-md-1"></div>
-          <div class="am-u-sm-10 am-u-md-10 am-u-sm-centered">
+            <!--file name end-->
+            <br/>
+            <!--file members-->
             <div class="am-input-group">
               <span class="am-input-group-label"><i class="am-icon-group"></i></span>
               <input type="text" id="file-members" name="file-members" class="am-form-field" placeholder="请输入涉及人员姓名..." maxlength="20">
             </div>
-          </div>
-          <div class="am-u-sm-1 am-u-md-1"></div>
-        </div>
-        <!--file members end-->
-        <!--file place-->
-        <div class="am-g am-margin-top">
-          <div class="am-u-sm-1 am-u-md-1"></div>
-          <div class="am-u-sm-10 am-u-md-10 am-u-sm-centered">
+            <!--file members end-->
+            <br/>
+            <!--file place-->
             <div class="am-input-group">
               <span class="am-input-group-label"><i class="am-icon-map-marker"></i></span>
               <input type="text" id="file-place" name="file-place" class="am-form-field" placeholder="请输入任务的工作地点..." maxlength="20">
             </div>
-          </div>
-          <div class="am-u-sm-1 am-u-md-1"></div>
-        </div>
-        <!--file place end-->
-        <!--starttime-->
-        <div class="am-g am-margin-top">
-          <div class="am-u-sm-1 am-u-md-1"></div>
-          <div class="am-u-sm-10 am-u-md-10 am-u-sm-centered">
+            <!--file place end-->
+            <br/>
+            <!--starttime-->
             <div class="am-input-group">
               <span class="am-input-group-label"><i class="am-icon-square-o"></i></span>
               <input type="date" id="starttime" name="starttime" class="am-form-field">
             </div>
-          </div>
-          <div class="am-u-sm-1 am-u-md-1"></div>
-        </div>
-        <!--starttime end-->
-        <!--endtime-->
-        <div class="am-g am-margin-top">
-          <div class="am-u-sm-1 am-u-md-1"></div>
-          <div class="am-u-sm-10 am-u-md-10 am-u-sm-centered">
+            <!--starttime end-->
+            <br/>
+            <!--endtime-->
             <div class="am-input-group">
               <span class="am-input-group-label"><i class="am-icon-square"></i></span>
               <input type="date" id="endtime" name="endtime" class="am-form-field">
             </div>
-          </div>
-          <div class="am-u-sm-1 am-u-md-1"></div>
-        </div>
-        <!--endtime end-->
-        <!--file upload-->
-        <div class="am-g am-margin-top">
-          <div class="am-u-sm-1 am-u-md-1"></div>
-          <div class="am-u-sm-10 am-u-md-10 am-u-sm-centered">
+            <!--endtime end-->
+            <br/>
+            <!--file upload-->
             <div class="am-input-group">
               <span class="am-input-group-label"><i class="am-icon-upload"></i></span>
               <input type="file" id="upload-file" name="upload-file" class="am-form-field">
             </div>
+            <!--file upload end-->
           </div>
           <div class="am-u-sm-1 am-u-md-1"></div>
         </div>
-        <!--file upload end-->
       </div>
       <div class="am-modal-footer">
         <span class="am-modal-btn" data-am-modal-confirm>确定</span>
@@ -249,6 +224,21 @@
   </div>
 </div>
 <!--upload file modal end-->
+
+<!--delete file modal-->
+<div class="am-modal am-modal-prompt" id="del-file-modal">
+  <div class="am-modal-dialog">
+    <div id="modal-title" class="am-modal-hd">删除文档</div>
+    <div class="am-modal-bd">
+      是否确定将文件删除?
+    </div>
+    <div class="am-modal-footer">
+      <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+      <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+    </div>
+  </div>
+</div>
+<!--delete file modal end-->
 
 <?php include_once 'app/views/static/footer.php'; ?>
 
@@ -264,14 +254,102 @@ function my_ajax (theUrl, theMethod, theData, callback) {
     });
 }
 
+function form_submit (url, method, params, file) {
+    var myForm = $('<form></form>');
+    myForm.attr('action', url); 
+    myForm.attr('method', method);
+    myForm.attr('target', '_self');
+
+    var theInput = $('<input type="text"/>');
+    for (x in params) {
+        var myInput = theInput.clone();
+        myInput.attr('name', x);
+        myInput.attr('value', params[x]);
+        myForm.append(myInput);
+    }
+
+    if (typeof(file) == 'undefined' || file == '') {
+        return myForm.submit();
+    }
+    else {
+        var theFile = $('<input type="file"/>');
+        theFile.attr('name','file');
+        theFile.attr('value', file);
+        myForm.append(theFile);
+        return myForm.submit();
+    }
+}
+
 function add () {
-    $('#del-member-modal').modal({
+    $('#modal-title').text('上传文档');
+    $('#file-modal').modal({
         relatedTarget: this,
-        onConfirm: function() {
-          alert('asd');
+        onConfirm: function () {
+            return add_file();
         },
         onCancel: function() {}
     });
+}
+
+function edit (id) {
+    $('#modal-title').text('编辑文档');
+    var mydata = {};
+    mydata['fid'] = id;
+    my_ajax('/pre/other/get', 'get', mydata, function (file) {
+        set_file_data();
+    });
+    $('#file-modal').modal({
+        relatedTarget: this,
+        onConfirm: function () {
+            return edit_file(id);
+        },
+        onCancel: function() {}
+    });
+}
+
+function del (id) {
+    $('#del-file-modal').modal({
+        relatedTarget: this,
+        onConfirm: function () {
+            return delete_file(id);
+        },
+        onCancel: function() {}
+    });
+}
+
+function add_file () {
+    var params = get_file_data();
+    params['editType'] = 'add';
+    return form_submit('/pre/other', 'post', params, params['file']);
+}
+
+function edit_file (id) {
+    var params = get_file_data();
+    params['editType'] = 'edit';
+    params['fid'] = id;
+    return form_submit('/pre/other', 'post', params, params['file']);
+}
+
+function delete_file (id) {
+    var params = {};
+    params['editType'] = 'del';
+    params['fid'] = id;
+    return submit_form('/pre/other', 'post', params);
+}
+
+function get_file_data () {
+    var res = {};
+    res['fname']      = $('#file-name').val();
+    res['fmember']    = $('#file-members').val();
+    res['fplace']     = $('#file-place').val();
+    res['fstarttime'] = $('#starttime').val();
+    res['fendtime']   = $('#endtime').val();
+    res['file']       = $('#upload-file').val();
+    return res;
+}
+
+function set_file_data () {
+    // body...
 }
 </script>
 </body>
