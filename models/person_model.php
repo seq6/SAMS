@@ -16,7 +16,11 @@ class Person_model extends Base_model
 
     public function get_person($id = 0)
     {
-        return $this->get_item(array('id' => $id));
+        $res = $this->get_item(array('id' => $id));
+        if (is_array($res) && !empty($res)) {
+            return $res[0];
+        }
+        return false;
     }
 
     public function get_persons($pid = 0, $limit = 10, $offset = 0)
@@ -24,17 +28,27 @@ class Person_model extends Base_model
         return $this->get_item(array('pid' => $pid), $limit, $offset);
     }
 
-    public function add_person($pid = 0, $name = '', $sex = '', $pos = '', $depart = '', $phone = '', $mobile = '', $email = '', $Igrade = 0)
+    public function get_all_persons($pid = 0)
+    {
+        return $this->get_item(array('pid' => $pid), 0, 0, true);
+    }
+
+    public function get_persons_count($pid = 0)
+    {
+        return $this->get_count(array('pid' => $pid));
+    }
+
+    public function add_person($pid = 0, $assetid = '',$name = '', $sex = '', $post = '', $depart = '', $phone = '', $mobile = '', $email = '')
     {
         $newPerson = array( 'pid'    => $pid,
+                            'assetid'=> $assetid,
                             'name'   => $name,
                             'sex'    => $sex,
-                            'pos'    => $pos,
+                            'post'   => $post,
                             'depart' => $depart,
                             'phone'  => $phone,
                             'mobile' => $mobile,
-                            'email'  => $email,
-                            'Igrade' => $Igrade);
+                            'email'  => $email);
         return $this->add_item($newPerson);
     }
 
@@ -43,18 +57,19 @@ class Person_model extends Base_model
         return $this->delete_item(array('id' => $id));
     }
 
-    public function update_person($id = 0, $pid = 0, $name = '', $sex = '', $pos = '', $depart = '', $phone = '', $mobile = '', $email = '', $Igrade = 0)
+    public function update_person($id = 0, $pid = 0, $assetid = '',$name = '', $sex = '', $post = '', $depart = '', $phone = '', $mobile = '', $email = '', $import = 0)
     {
-        $newData = array( 'pid'    => $pid,
-                          'name'   => $name,
-                          'sex'    => $sex,
-                          'pos'    => $pos,
-                          'depart' => $depart,
-                          'phone'  => $phone,
-                          'mobile' => $mobile,
-                          'email'  => $email,
-                          'Igrade' => $Igrade);
-        return $this->add_item(array('id' => $id), $newData);
+        $newPerson = array( 'pid'    => $pid,
+                            'assetid'=> $assetid,
+                            'name'   => $name,
+                            'sex'    => $sex,
+                            'post'   => $post,
+                            'depart' => $depart,
+                            'phone'  => $phone,
+                            'mobile' => $mobile,
+                            'email'  => $email,
+                            'import' => $import);
+        return $this->add_item(array('id' => $id), $newPerson);
     }
 }
 
