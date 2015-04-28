@@ -15,6 +15,8 @@ class Information extends CI_Controller
 
     private $objPjrangeModel;
 
+    private $objStaffModel;
+
     function __construct()
     {
         parent::__construct();
@@ -27,6 +29,9 @@ class Information extends CI_Controller
 
         $this->load->model('pjrange_model');
         $this->objPjrangeModel = new PjRange_model;
+
+        $this->load->model('staff_model');
+        $this->objStaffModel = new Staff_model;
 
         $this->data = array();
         $this->data['tag'] = array();
@@ -98,15 +103,24 @@ class Information extends CI_Controller
         $_SESSION['project'] = array();
         $_SESSION['project']['pid'] = $project['id'];
         $_SESSION['project']['name'] = $project['name'];
+        
+
+        if ($project['goal'] == null || $project['theDesc'] == null) {
+            $_SESSION['project']['info'] = 0;
+        }
+        else {
+            $_SESSION['project']['info'] = 1;
+        }
+
+        $_SESSION['project']['memberNum'] = $this->objStaffModel->get_staffs_count($pid);
+
+        if ($project['partA'] == null || $project['partB'] == null) {
+            $_SESSION['project']['part'] = 0;
+        }
+        else {
+            $_SESSION['project']['part'] = 1;
+        }
+
         $_SESSION['project']['status'] = $project['status'];
-        /*
-        $_SESSION['project']['type'] = $project['theType'];
-        $_SESSION['project']['range'] = json_decode($project['theRange']);
-        $_SESSION['project']['partA'] = $project['partA'];
-        $_SESSION['project']['partB'] = $project['partB'];
-        $_SESSION['project']['updatetime'] = $project['updatetime'];
-        $_SESSION['project']['goal'] = $project['goal'];
-        $_SESSION['project']['desc'] = $project['theDesc'];
-        */
     }
 }

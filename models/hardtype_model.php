@@ -2,19 +2,19 @@
 
 /**
 * @author   zhangji
-* @desc     hardconfig表
+* @desc     hardtype表
 */
 
-class Hardconfig_model extends Base_model
+class Hardtype_model extends Base_model
 {
     function __construct()
     {
         parent::__construct();
 
-        $this->table = 'hardconfig';
+        $this->table = 'hardtype';
     }
 
-    public function get_hard_config()
+    public function get_hardtype()
     {
     	return $this->get_item(null, 0, 0, true);
     }

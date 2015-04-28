@@ -56,7 +56,7 @@ class Login extends CI_Controller
             }
             //user login
             case 'user': {
-                $userData = $this->objUserModel->check($email, $pwd, false);
+                $userData = $this->objUserModel->get_user($email, $pwd);
                 if ($userData != false) {
                     $_SESSION['login'] = array();
                     $_SESSION['login']['said'] = 'user';
