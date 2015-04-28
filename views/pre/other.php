@@ -90,8 +90,9 @@
             <tbody>
               <?php
                 if (isset($pjfiles) && !empty($pjfiles)) {
-                    $i = ($pageNo - 1) * 10 + 1;
+                    $i = ($pageNo - 1) * 10;
                     foreach ($pjfiles as $f) {
+                        $i++;
                         echo '<tr>
                                 <td>'.$i.'</td>
                                 <td>《'.$f['name'].'》</td>
@@ -103,9 +104,11 @@
                                 <td>
                                   <div class="am-btn-toolbar">
                                     <div class="am-btn-group am-btn-group-xs">
+                                    <a href="'.$f['path'].'" download="'.$f['rename'].'">
                                       <button class="am-btn am-btn-default am-btn-xs am-text-success">
                                         <span class="am-icon-download"></span> 下载
                                       </button>
+                                    </a>
                                       <button class="am-btn am-btn-default am-btn-xs am-text-warning" onclick="edit('.$f['id'].')">
                                         <span class="am-icon-pencil-square-o"></span> 编辑
                                       </button>
@@ -115,8 +118,7 @@
                                     </div>
                                   </div>
                                 </td>
-                              </tr>';
-                    }
+                              </tr>';                    }
                 }
               ?>
             </tbody>
@@ -334,7 +336,7 @@ function edit_file (id) {
     var params = get_file_data();
     params['editType'] = 'edit';
     params['fid'] = id;
-    return form_submit('/pre/other', 'post', params, params['file']);
+    return form_submit('/pre/other', 'post', params);
 }
 
 function delete_file (id) {

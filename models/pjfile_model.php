@@ -44,11 +44,12 @@ class pjFile_model extends Base_model
 
     public function add_pjfile($pid = 0, $name = '', $members = '', $place = '', $starttime = '', $endtime = '', $file = '')
     {
-        if (!$this->store_file($file, $name)) {
+        if ($file == '' || $file['error'] != UPLOAD_ERR_OK) {
             return false;
         }
 
-        $fileType = $file['type'];
+        $tmp = explode('.', $file['name']);
+        $fileType = array_pop($tmp);
         $fileMD5 = md5_file($file['tmp_name']);
         $newData = array(   'pid'      => $pid,
                             'name'     => $name,
@@ -58,28 +59,40 @@ class pjFile_model extends Base_model
                             'endtime'  => $endtime,
                             'fileType' => $fileType,
                             'fileMD5'  => $fileMD5);
-        return $this->add_item($newData);
+        $fid = $this->add_item($newData);
+
+        if ($fid == false) {
+            return false;
+        }
+
+        return $this->store_file($file, $name, $fid, $fileType);
     }
 
     public function update_pjfile($id = 0, $name = '', $members = '', $place = '', $starttime = '', $endtime = '', $file = '')
     {
-        if ($file != '' && $file['error'] == UPLOAD_ERR_OK) {
-            $this->delete_file($id);
-            if (!$this->store_file($file, $name)) {
-                return false;
-            }
-        }
-
-        $fileType = $file['type'];
-        $fileMD5 = md5_file($file['tmp_name']);
+        $pid = $_SESSION['project']['pid'];
         $newData = array(   'pid'      => $pid,
                             'name'     => $name,
                             'members'  => $members,
                             'place'    => $place,
                             'starttime'=> $starttime,
-                            'endtime'  => $endtime,
-                            'fileType' => $fileType,
-                            'fileMD5'  => $fileMD5);
+                            'endtime'  => $endtime);
+
+        if ($file != '' && $file['error'] == UPLOAD_ERR_OK) {
+            $this->delete_file($id);
+            $tmp = explode('.', $file['name']);
+            $fileType = array_pop($tmp);
+            $fileMD5 = md5_file($file['tmp_name']);
+            if (!$this->store_file($file, $name, $fid, $fileType)) {
+                return false;
+            }
+
+            $newData['fileType'] = $fileType;
+            $newData['fileMD5'] = $fileDM5;
+        }
+        else {
+            $this->rename_file($id, $name);
+        }
 
         return $this->update_item(array('id' => $id), $newData);
     }
@@ -92,38 +105,44 @@ class pjFile_model extends Base_model
 
     private function delete_file($id = 0)
     {
-        $file = $this->get_pjfile($id);
-        $filePath = $this->dataPath.'data/'.$file['pid'].'/'.$file['name'].'_'.$file['fileMD5'].'.'.$file['fileType'];
-        if (file_exists($filePath)) {
-            unlink($filePath);
+        try {
+            $file = $this->get_pjfile($id);
+            $filePath = $this->dataPath.'data/'.$file['pid'].'/'.$file['id'].'_'.$file['name'].'.'.$file['fileType'];
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
+            return true;
+        } catch (Exception $e) {
+            return false;
         }
     }
 
-    private function store_file($file = '', $name = '')
+    private function rename_file($fid = 0, $newName = '')
     {
-        var_dump($file);
-        
-        if ($file == '' || $file['error'] != UPLOAD_ERR_OK) {
-            return false;
+        $file = $this->get_pjfile($fid);
+        $oldPath = $this->dataPath.'data/'.$file['pid'].'/'.$file['id'].'_'.$file['name'].'.'.$file['fileType'];
+        $newPath = $this->dataPath.'data/'.$file['pid'].'/'.$file['id'].'_'.$newName.'.'.$file['fileType'];
+        if ($oldPath != $newPath) {
+            rename($oldPath, $newPath);
         }
-        else {
-            try {
-                    $pid = $_SESSION['project']['pid'];
-                    $fileType = $file['type'];
-                    $fileMD5 = md5_file($file['tmp_name']);
-                    $filePath = $this->dataPath.'data/'.$pid.'/'.$name.'_'.$fileMD5.'.'.$fileType;
-                    if (!is_dir('data/'.$pid)) {
-                        mkdir('data/'.$pid);
-                    }
-                    if (file_exists($filePath)) {
-                        return false;
-                    }
-                    rename($file['tmp_name'], $filePath);
-                    return true;
+    }
 
-            } catch (Exception $e) {
-                return false;
-            }
+    private function store_file($file = '', $name = '', $fid = 0, $ftype = '')
+    {
+        try {
+                $pid = $_SESSION['project']['pid'];
+                $filePath = $this->dataPath.'data/'.$pid.'/'.$fid.'_'.$name.'.'.$ftype;
+                if (!is_dir('data/'.$pid)) {
+                    mkdir('data/'.$pid);
+                }
+                if (file_exists($filePath)) {
+                    return false;
+                }
+                rename($file['tmp_name'], $filePath);
+                return true;
+
+        } catch (Exception $e) {
+            return false;
         }
     }
 }

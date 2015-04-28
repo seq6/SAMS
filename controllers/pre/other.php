@@ -36,7 +36,12 @@ class Other extends CI_Controller
         $offset = ($pageNo - 1) * $limit;
 
         $this->data['pjfiles'] = $this->objPjfileModel->get_pjfiles($pid, $limit, $offset);
+        foreach ($this->data['pjfiles'] as $key => $val) {
+            $this->data['pjfiles'][$key]['path'] = '/data/'.$pid.'/'.$val['id'].'_'.$val['name'].'.'.$val['fileType'];
+            $this->data['pjfiles'][$key]['rename'] = $val['name'].'.'.$val['fileType'];
+        }
 
+        $this->data['pid'] = $pid;
         $this->data['count'] = $this->objPjfileModel->get_pjfile_count($pid);
         $this->data['pageNo'] = $pageNo;
 
@@ -62,11 +67,12 @@ class Other extends CI_Controller
         $endtime  = isset($_POST['fendtime'])   ? $_POST['fendtime']  : '';
         $file     = isset($_FILES['upload-file']) ? $_FILES['upload-file'] : '';
 
+        //var_dump($_POST);
+
         $errorNo = 0;
         switch ($editType) {
             case 'add': {
                 $res = $this->objPjfileModel->add_pjfile($pid, $name, $members, $place, $starttime, $endtime, $file);
-                var_dump($res);
                 if ($res != false) {
                     $errorNo = 1;
                 }
