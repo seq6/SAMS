@@ -21,10 +21,14 @@
   <?php include_once 'app/views/static/sidebar.php'; ?>
 
   <div class="admin-content">
+    <!--titile-->
     <div class="am-cf am-padding">
       <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">硬件资源</strong> / <small>hardware</small></div>
     </div>
     <hr/>
+    <!--titile end-->
+
+    
   </div>
 
 </div>

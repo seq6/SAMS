@@ -18,13 +18,15 @@
 
 <div class="am-cf admin-main">
 
-<?php include_once 'app/views/static/sidebar.php'; ?>
+  <?php include_once 'app/views/static/sidebar.php'; ?>
 
   <div class="admin-content">
+    <!--title-->
     <div class="am-cf am-padding">
-      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">业务环境</strong> / <small>business</small></div>
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">其他资产</strong> / <small>others</small></div>
     </div>
     <hr/>
+    <!--title end-->
   </div>
 
 </div>
@@ -35,4 +37,3 @@
 
 </script>
 </body>
-</html>

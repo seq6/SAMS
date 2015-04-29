@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<?php include_once 'static/header.php' ?>
+<?php include_once 'app/views/static/header.php' ?>
 
 <div class="am-g">
   <div class="am-u-lg-10 am-u-md-10 am-u-sm-centered">
@@ -23,12 +23,13 @@
     <!--said-->
       <?php
         if ($_SESSION['login']['said'] == 'admin') {
-            echo '<strong class="am-text-primary am-text-lg">项目列表</strong> / <small>list of all projects</small></div>';
+            echo '<strong class="am-text-primary am-text-lg">项目列表</strong> / <small>list of all projects</small>';
         }
         else {
-            echo '<strong class="am-text-primary am-text-lg">我的项目</strong> / <small>my projects</small></div>';
+            echo '<strong class="am-text-primary am-text-lg">我的项目</strong> / <small>my projects</small>';
         }
       ?>
+    </div>
     <br />
     <hr />
     <!--said end-->
@@ -124,7 +125,7 @@
   </div>
 </div>
 
-<?php include_once 'static/footer.php' ?>
+<?php include_once 'app/views/static/footer.php' ?>
 
 <script type="text/javascript">
 

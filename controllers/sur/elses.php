@@ -2,10 +2,10 @@
 
 /**
 * @author   zhangji
-* @desc     物理环境
+* @desc     其他资产
 */
 
-class Environment extends CI_Controller
+class Elses extends CI_Controller
 {
     private $data;
 
@@ -15,13 +15,13 @@ class Environment extends CI_Controller
 
         $this->data = array();
         $this->data['tag'] = array();
-        $this->data['tag']['title'] = '物理环境';
-        $this->data['tag']['content'] = '硬件、软件等信息资产所存放的物理区域';
+        $this->data['tag']['title'] = '其他资产';
+        $this->data['tag']['content'] = '企业形象、客户关系等';
     }
 
     public function index()
     {
-        $this->load->view('sur/environment', $this->data);
+        $this->load->view('sur/elses', $this->data);
     }
 
 }

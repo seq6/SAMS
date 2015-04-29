@@ -21,7 +21,7 @@ class Help extends CI_Controller
 
     public function index()
     {
-        $this->load->view('help' ,$this->data);
+        $this->load->view('/help/index' ,$this->data);
     }
 
 }

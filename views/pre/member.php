@@ -57,7 +57,7 @@
     </div>
     <!--form req end-->
 
-    <!--edit-->
+    <!--add member-->
     <div class="am-g">
       <div class="am-u-sm-12 am-u-md-6">
         <div class="am-btn-toolbar">
@@ -66,7 +66,7 @@
       </div>
     </div>
     <br/>
-    <!--edit end-->
+    <!--add member end-->
 
     <div class="am-g">
       <div class="am-u-sm-12">
@@ -155,7 +155,6 @@
             </div>
           </div>
           <!--pagination end-->
-
       </div>
     </div>
   </div>

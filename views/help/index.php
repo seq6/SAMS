@@ -8,6 +8,7 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
   <link rel="alternate icon" type="image/png" href="/assets/i/favicon.png">
   <link rel="stylesheet" href="/assets/css/amazeui.min.css"/>
   <link rel="stylesheet" href="/assets/css/admin.css">
@@ -16,25 +17,31 @@
 
 <?php include_once 'app/views/static/header.php'; ?>
 
-<div class="am-cf admin-main">
-
-  <?php include_once 'app/views/static/sidebar.php'; ?>
-
-  <div class="admin-content">
-    <!--title-->
-    <div class="am-cf am-padding">
-      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">物理环境</strong> / <small>environment</small></div>
-    </div>
-    <hr/>
-    <!--title end-->
+<div class="am-g">
+  <div class="am-u-lg-10 am-u-md-10 am-u-sm-centered">
+  <!--title-->
+  <div class="am-cf am-padding">
+    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">帮助页面</strong> / <small>Help Page</small></div>
   </div>
+  <hr/>
+  <!--title end-->
 
+  <br/>
+  <?php include 'app/views/help/asset_level.php';?>
+
+  <br/>
+  <?php include 'app/views/help/asset_cfd.php';?>
+
+  <br/>
+  <?php include 'app/views/help/asset_avl.php';?>
+
+  <br/>
+  <?php include 'app/views/help/asset_itg.php';?>
+
+  </div>
 </div>
 
 <?php include_once 'app/views/static/footer.php'; ?>
 
-<script type="text/javascript">
-
-</script>
 </body>
 </html>

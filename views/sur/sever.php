@@ -21,10 +21,12 @@
   <?php include_once 'app/views/static/sidebar.php'; ?>
 
   <div class="admin-content">
+    <!--title-->
     <div class="am-cf am-padding">
-      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">网络系统</strong> / <small>net</small></div>
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">服务资产</strong> / <small>sever</small></div>
     </div>
     <hr/>
+    <!--title end-->
   </div>
 
 </div>
@@ -35,3 +37,4 @@
 
 </script>
 </body>
+</html>

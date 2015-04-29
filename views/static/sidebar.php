@@ -78,18 +78,18 @@
             </a>
           </li>
           <li>
-            <a href="/sur/environment">
-              <span class="am-icon-check-circle"></span> 物理环境
+            <a href="/sur/document">
+              <span class="am-icon-check-circle"></span> 数据文档
             </a>
           </li>
           <li>
-            <a href="/sur/business">
-              <span class="am-icon-check-circle"></span> 业务系统
+            <a href="/sur/sever">
+              <span class="am-icon-check-circle"></span> 服务资产
             </a>
           </li>
           <li>
-            <a href="/sur/net">
-              <span class="am-icon-check-circle"></span> 网络系统
+            <a href="/sur/elses">
+              <span class="am-icon-check-circle"></span> 其他资产
             </a>
           </li>
         </ul>
