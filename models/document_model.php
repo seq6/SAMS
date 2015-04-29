@@ -38,13 +38,14 @@ class Document_model extends Base_model
         return $this->get_count(array('pid' => $pid));
     }
 
-    public function add_dom($pid = 0, $assetid = '', $dType = '', $name = '', $theDesc = '')
+    public function add_dom($pid = 0, $assetid = '', $dType = '', $name = '', $theDesc = '',$import = 1)
     {
         $newDom = array(    'pid'    => $pid,
                             'assetid'=> $assetid,
                             'dType'  => $dType,
                             'name'   => $name,
-                            'theDesc'=> $theDesc);
+                            'theDesc'=> $theDesc,
+                            'import' => $import);
         return $this->add_item($newDom);
     }
 
@@ -61,6 +62,6 @@ class Document_model extends Base_model
                             'name'   => $name,
                             'theDesc'=> $theDesc,
                             'import' => $import);
-        return $this->add_item(array('id' => $id), $newDom);
+        return $this->update_item(array('id' => $id), $newDom);
     }
 }

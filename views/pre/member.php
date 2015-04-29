@@ -74,7 +74,7 @@
           <table id="member-table" class="am-table am-table-striped am-table-hover table-main">
             <thead>
               <tr>
-                <th>ID</th>
+                <th></th>
                 <th>姓名</th>
                 <th class="am-hide-sm-only">性别</th>
                 <th class="am-hide-sm-only">电话</th>

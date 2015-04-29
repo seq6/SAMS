@@ -77,7 +77,7 @@
           <table id="member-table" class="am-table am-table-striped am-table-hover table-main">
             <thead>
               <tr>
-                <th>ID</th>
+                <th></th>
                 <th>文档</th>
                 <th class="am-hide-sm-only">涉及人员</th>
                 <th class="am-hide-sm-only">地点</th>

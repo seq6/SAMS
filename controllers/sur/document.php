@@ -42,6 +42,13 @@ class Document extends CI_Controller
         $this->load->view('sur/document', $this->data);
     }
 
+    public function get()
+    {
+        $id = isset($_GET['domid']) ? $_GET['domid'] : 0;
+        $res = $this->objDomModel->get_dom($id);
+        echo json_encode($res);
+    }
+
     public function form()
     {
         $pid = $_SESSION['project']['pid'];
@@ -51,12 +58,12 @@ class Document extends CI_Controller
         $dType    = isset($_POST['dType'])    ? $_POST['dType']    : '';
         $name     = isset($_POST['name'])     ? $_POST['name']     : '';
         $theDesc  = isset($_POST['theDesc'])  ? $_POST['theDesc']  : '';
-        $import   = isset($_POST['import'])   ? $_POST['import']   : 0;
+        $import   = isset($_POST['import'])   ? $_POST['import']   : 1;
 
         $errorNo = 0;
         switch ($editType) {
             case 'add': {
-                $res = $this->objDomModel->add_dom($pid, $assetid, $dType, $name, $theDesc);
+                $res = $this->objDomModel->add_dom($pid, $assetid, $dType, $name, $theDesc, $import);
                 if ($res != false) {
                     $errorNo = 1;
                 }

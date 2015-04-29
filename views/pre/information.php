@@ -177,7 +177,7 @@
           <div class="am-u-sm-4 am-u-md-2 am-text-right">项目目标</div>
           <div class="am-u-sm-8 am-u-md-10">
             <?php
-                echo '<textarea name="pjGoal" rows="6" maxlength="255" placeholder="必填...">'.$project['goal'].'</textarea>'
+                echo '<textarea name="pjGoal" rows="6" maxlength="255" placeholder="必填...">'.$project['goal'].'</textarea>';
             ?>
           </div>
         </div>
@@ -187,9 +187,11 @@
           <div class="am-u-sm-4 am-u-md-2 am-text-right">项目描述</div>
           <div class="am-u-sm-8 am-u-md-10">
             <?php
-                echo '<textarea name="pjDesc" rows="6" maxlength="255" placeholder="必填...">'.$project['theDesc'].'</textarea>'
+              echo '<textarea name="pjDesc" rows="6" maxlength="255" placeholder="必填...">'.$project['theDesc'].'</textarea>';
             ?>
-            <small><i>用户可在此处添加项目目标、项目描述信息或自定义的项目信息，这些项目信息将在风险报告中展现</i></small>
+            <small>
+              <i>用户可在此处添加项目目标、项目描述信息或自定义的项目信息，这些项目信息将在风险报告中展现</i>
+            </small>
           </div>
         </div>
         <!--pj desc end-->

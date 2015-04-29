@@ -38,13 +38,14 @@ class Elses_model extends Base_model
         return $this->get_count(array('pid' => $pid));
     }
 
-    public function add_else($pid = 0, $assetid = '', $name = '', $theDesc = '', $lib = '')
+    public function add_else($pid = 0, $assetid = '', $name = '', $theDesc = '', $lib = '', $import = 1)
     {
         $newElse = array(  	'pid'    => $pid,
                             'assetid'=> $assetid,
                             'name'   => $name,
                             'theDesc'=> $theDesc,
-                            'lib'	 => $lib);
+                            'lib'	 => $lib,
+                            'import' => $import);
         return $this->add_item($newElse);
     }
 
@@ -53,14 +54,14 @@ class Elses_model extends Base_model
         return $this->delete_item(array('id' => $id));
     }
 
-    public function update_else($id = 0, $pid = 0, $assetid = '', $name = '', $theDesc = '', $lib = '', $import = 0)
+    public function update_else($id = 0, $pid = 0, $assetid = '', $name = '', $theDesc = '', $lib = '', $import = 1)
     {
         $newElse = array(  	'pid'    => $pid,
                             'assetid'=> $assetid,
                             'name'   => $name,
                             'theDesc'=> $theDesc,
                             'lib'	 => $lib,
-                            'import' =. $import);
-        return $this->add_item(array('id' => $id), $newDom);
+                            'import' => $import);
+        return $this->update_item(array('id' => $id), $newElse);
     }
 }

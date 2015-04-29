@@ -38,7 +38,7 @@
     <table class="am-table am-table-bordered am-table-striped am-table-hover">
       <thead>
         <tr>
-          <th>ID</th>
+          <th>PID</th>
           <th>项目</th>
           <th>状态</th>
           <th class="am-hide-sm-only">启动时间</th>
