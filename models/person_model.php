@@ -73,5 +73,3 @@ class Person_model extends Base_model
         return $this->update_item(array('id' => $id), $newPerson);
     }
 }
-
-?>

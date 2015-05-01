@@ -48,7 +48,7 @@ class Software_model extends Base_model
         }
     }
 
-    public function add_software($pid = 0, $assetid = '', $kid = 1, $version = '', $developer = '', $hard = '', $soft = '', $app = '', $model = 1, $datas = '', $userNum = '', $userRole = '', $Cgrade = 1, $Igrade = 1, $Agrade = 1)
+    public function add_software($pid = 0, $assetid = '', $kid = 1, $name = '', $version = '', $developer = '', $hard = '', $soft = '', $app = '', $model = 1, $datas = '', $userNum = '', $userRole = '', $Cgrade = 1, $Igrade = 1, $Agrade = 1)
     {
         $newSoft = array(   'pid'      => $pid,
                             'assetid'  => $assetid,
@@ -73,7 +73,7 @@ class Software_model extends Base_model
         return $this->delete_item(array('id' => $id));
     }
 
-    public function update_software($id = 0, $pid = 0, $assetid = '', $kid = 1, $version = '', $developer = '', $hard = '', $soft = '', $app = '', $model = 1, $datas = '', $userNum = '', $userRole = '', $Cgrade = 1, $Igrade = 1, $Agrade = 1)
+    public function update_software($id = 0, $pid = 0, $assetid = '', $kid = 1, $name = '', $version = '', $developer = '', $hard = '', $soft = '', $app = '', $model = 1, $datas = '', $userNum = '', $userRole = '', $Cgrade = 1, $Igrade = 1, $Agrade = 1)
     {
         $newSoft = array(   'pid'      => $pid,
                             'assetid'  => $assetid,

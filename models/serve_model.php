@@ -48,11 +48,11 @@ class Serve_model extends Base_model
         }
     }
 
-    public function add_sever($pid = 0, $assetid = '', $severtype = 1, $name = '', $unit = '', $content = '', $way = 1, $device = '', $remarks = '', $import = '')
+    public function add_sever($pid = 0, $assetid = '', $kid = 1, $name = '', $unit = '', $content = '', $way = 1, $device = '', $remarks = '', $import = '')
     {
         $newsever = array(  'pid'    => $pid,
                             'assetid'=> $assetid,
-                            'kid'    => $severtype,
+                            'kid'    => $kid,
                             'name'   => $name,
                             'unit'   => $unit,
                             'content'=> $content,
@@ -68,11 +68,11 @@ class Serve_model extends Base_model
         return $this->delete_item(array('id' => $id));
     }
 
-    public function update_sever($id = 0, $pid = 0, $assetid = '', $severtype = 1, $name = '', $unit = '', $content = '', $way = 1, $device = '', $remarks = '', $import = '')
+    public function update_sever($id = 0, $pid = 0, $assetid = '', $kid = 1, $name = '', $unit = '', $content = '', $way = 1, $device = '', $remarks = '', $import = '')
     {
         $newsever = array(  'pid'    => $pid,
                             'assetid'=> $assetid,
-                            'kid'    => $severtype,
+                            'kid'    => $kid,
                             'name'   => $name,
                             'unit'   => $unit,
                             'content'=> $content,

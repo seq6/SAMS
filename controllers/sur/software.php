@@ -43,20 +43,68 @@ class Software extends CI_Controller
         $this->data['software'] = $this->objSoftwareModel->get_softwares($pid, $limit, $offset, $softtype);
 
         $this->data['softtype'] = $this->objSofttypeModel->get_softtype();
+        $this->data['st'] = $softtype;
         $this->data['count'] = $this->objSoftwareModel->get_softwares_count($pid, $softtype);
         $this->data['pageNo'] = $pageNo;
-
 
         $this->load->view('sur/software', $this->data);
     }
 
     public function get()
     {
-
+        $id = isset($_GET['personid']) ? $_GET['personid'] : 0;
+        $res = $this->objPersonModel->get_person($id);
+        echo json_encode($res);
     }
 
     private function form()
     {
-        
+        $pid = $_SESSION['project']['pid'];
+        $editType = isset($_POST['editType']) ? $_POST['editType'] : '';
+        $id       = isset($_POST['softid'])   ? $_POST['softid']   : 0;
+        $assetid  = isset($_POST['assetid'])  ? $_POST['assetid']  : '';
+        $kid      = isset($_POST['softtype']) ? $_POST['softtype'] : 1;
+        $name     = isset($_POST['name'])     ? $_POST['name']     : '';
+        $version  = isset($_POST['version'])  ? $_POST['version']  : '';
+        $developer= isset($_POST['developer'])? $_POST['developer']: '';
+        $hard     = isset($_POST['hard'])     ? $_POST['hard']     : '';
+        $soft     = isset($_POST['soft'])     ? $_POST['soft']     : '';
+        $app      = isset($_POST['app'])      ? $_POST['app']      : '';
+        $model    = isset($_POST['model'])    ? $_POST['model']    : 1;
+        $datas    = isset($_POST['datas'])    ? $_POST['datas']    : '';
+        $userNum  = isset($_POST['userNum'])  ? $_POST['userNum']  : '';
+        $userRole = isset($_POST['userRole']) ? $_POST['userRole'] : '';
+        $Cgrade   = isset($_POST['Cgrade'])   ? $_POST['Cgrade']   : 1;
+        $Igrade   = isset($_POST['Igrade'])   ? $_POST['Igrade']   : 1;
+        $Agrade   = isset($_POST['Agrade'])   ? $_POST['Agrade']   : 1;
+
+        $errorNo = 0;
+        switch ($editType) {
+            case 'add': {
+                $res = $this->objSoftwareModel->add_software($pid, $assetid, $kid, $name, $version, $developer, $hard, $soft, $app, $model, $datas, $userNum, $userRole, $Cgrade, $Igrade, $Agrade)
+                if ($res != false) {
+                    $errorNo = 1;
+                }
+                break;
+            }
+            case 'del': {
+                $res = $this->objSoftwareModel->del_software($id);
+                if ($res != false) {
+                    $errorNo = 1;
+                }
+                break;
+            }
+            case 'edit': {
+                $res = $this->objSoftwareModel->update_software($id, $pid, $assetid, $kid, $name, $version, $developer, $hard, $soft, $app, $model, $datas, $userNum, $userRole, $Cgrade, $Igrade, $Agrade);
+                if ($res != false) {
+                    $errorNo = 1;
+                }
+                break;
+            }
+            default: 
+                break;
+        }
+
+        $this->data['error'] = $errorNo;
     }
 }
