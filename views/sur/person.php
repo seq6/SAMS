@@ -270,6 +270,52 @@
 </div>
 <!--delete person modal end-->
 
+<!--detail modal-->
+<div class="am-modal am-modal-prompt" id="detail-modal">
+  <div class="am-modal-dialog">
+    <div id="del-modal-title" class="am-modal-hd">人员详细信息</div>
+    <div class="am-modal-bd">
+      <div class="am-g am-margin-top">
+        <div class="am-u-sm-4 am-u-md-6"><label>资产编号</label></div>
+        <div id="detail-assetid" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
+      </div>
+      <div class="am-g am-margin-top">
+        <div class="am-u-sm-4 am-u-md-6"><label>人员姓名</label></div>
+        <div id="detail-name" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
+      </div>
+      <div class="am-g am-margin-top">
+        <div class="am-u-sm-4 am-u-md-6"><label>性别</label></div>
+        <div id="detail-sex" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
+      </div>
+      <div class="am-g am-margin-top">
+        <div class="am-u-sm-4 am-u-md-6"><label>职务</label></div>
+        <div id="detail-post" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
+      </div>
+      <div class="am-g am-margin-top">
+        <div class="am-u-sm-4 am-u-md-6"><label>部门</label></div>
+        <div id="detail-depart" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
+      </div>
+      <div class="am-g am-margin-top">
+        <div class="am-u-sm-4 am-u-md-6"><label>电话</label></div>
+        <div id="detail-phone" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
+      </div>
+      <div class="am-g am-margin-top">
+        <div class="am-u-sm-4 am-u-md-6"><label>手机</label></div>
+        <div id="detail-mobile" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
+      </div>
+      <div class="am-g am-margin-top">
+        <div class="am-u-sm-4 am-u-md-6"><label>电子邮箱</label></div>
+        <div id="detail-email" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
+      </div>
+      <div class="am-g am-margin-top">
+        <div class="am-u-sm-4 am-u-md-6"><label>重要程度</label></div>
+        <div id="detail-import" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--detail modal end-->
+
 <?php include_once 'app/views/static/footer.php'; ?>
 
 <script type="text/javascript">
@@ -342,6 +388,31 @@ function edit (id) {
     });
 }
 
+function detail (id) {
+    var mydata = {};
+    mydata['personid'] = id;
+    my_ajax('/sur/person/get', 'get', mydata, function (person) {
+        $('#detail-assetid').text(person.assetid);
+        $('#detail-name').text(person.name);
+        if (person.sex == 1) {
+            $('#detail-sex').text('男');
+        }
+        else {
+            $('#detail-sex').text('女');
+        }
+        $('#detail-post').text(person.post);
+        $('#detail-depart').text(person.depart);
+        $('#detail-phone').text(person.phone);
+        $('#detail-mobile').text(person.mobile);
+        $('#detail-email').text(person.email);
+        $('#detail-import').text(person.import);
+    });
+
+    $('#detail-modal').modal({
+        relatedTarget: this,
+    });
+}
+
 function add_person () {
     var params = get_person_data();
     params['editType'] = 'add';
@@ -402,9 +473,6 @@ function change_sex (sexid) {
     }
 }
 
-function detail (id) {
-  // body...
-}
 </script>
 </body>
 </html>
