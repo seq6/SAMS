@@ -61,7 +61,7 @@
     <div class="am-g">
       <div class="am-u-sm-6 am-u-md-6">
         <div class="am-btn-toolbar">
-          <button type="button" class="am-btn am-btn-primary" id="add-person" onclick="add()">
+          <button type="button" class="am-btn am-btn-primary" id="add-sever" onclick="add()">
             <span class="am-icon-plus"></span> 新增
           </button>
         </div>
@@ -206,10 +206,13 @@
       <!--severtype-->
       <div class="am-btn-group doc-js-btn-1" data-am-button>
         <label class="am-btn am-btn-default am-active">
-          <input type="radio" name="softtype" value="1" id="severtype1" checked="checked">网络服务
+          <input type="radio" name="severtype" value="1" id="severtype1" checked="checked" onclick="change_type(1)">信息服务
         </label>
         <label class="am-btn am-btn-default">
-          <input type="radio" name="softtype" value="2" id="severtype2">办公服务
+          <input type="radio" name="severtype" value="2" id="severtype2" onclick="change_type(2)">网络服务
+        </label>
+        <label class="am-btn am-btn-default">
+          <input type="radio" name="severtype" value="3" id="severtype3" onclick="change_type(3)">办公服务
         </label>
       </div>
       <!--severtype end-->
@@ -221,14 +224,14 @@
         </div>
       </div>
       <!--assetid end-->
-      <!--severtype-->
+      <!--model-->
       <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-3 am-text-right">服务种类</div>
+        <div class="am-u-sm-4 am-u-md-3 am-text-right">服务类型</div>
         <div class="am-u-sm-8 am-u-md-9">
-          <input id="severtype" name="severtype" type="text" maxlength="20" class="am-form-field am-modal-prompt-input">
+          <input id="model" name="model" type="text" maxlength="20" class="am-form-field am-modal-prompt-input">
         </div>
       </div>
-      <!--severtype end-->
+      <!--model end-->
       <!--name-->
       <div class="am-g am-margin-top">
         <div class="am-u-sm-4 am-u-md-3 am-text-right">服务名称</div>
@@ -257,7 +260,7 @@
       <div class="am-g am-margin-top">
         <div class="am-u-sm-4 am-u-md-3 am-text-right">服务方式</div>
         <div class="am-u-sm-2 am-u-md-3">
-            <label>现场</label>
+            <label id="way">现场</label>
         </div>
         <div class="am-u-sm-6 am-u-md-6">
           <div class="am-btn-group am-btn-group-xs">
@@ -279,7 +282,7 @@
       <div class="am-g am-margin-top">
         <div class="am-u-sm-4 am-u-md-3 am-text-right">备注</div>
         <div class="am-u-sm-8 am-u-md-9">
-          <input id="remarks" name="remarks" type="text" maxlength="20" class="am-form-field am-modal-prompt-input">
+          <textarea id="remarks" name="remarks" rows="4" maxlength="255" class="am-form-field am-modal-prompt-input"></textarea>
         </div>
       </div>
       <!--remarks end-->
@@ -304,7 +307,7 @@
     </div>
   </div>
 </div>
-<!--soft modal end-->
+<!--sever modal end-->
 
 <!--delete sever modal-->
 <div class="am-modal am-modal-prompt" id="del-sever-modal">
@@ -326,43 +329,43 @@
   <div class="am-modal-dialog">
     <div id="del-modal-title" class="am-modal-hd">服务详细信息</div>
     <div class="am-modal-bd">
-      <div class="am-g am-margin-top">
+      <div id="detail-1" class="am-g am-margin-top">
         <div class="am-u-sm-4 am-u-md-6"><label>资产编号</label></div>
         <div id="detail-assetid" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
       </div>
-      <div class="am-g am-margin-top">
+      <div id="detail-2" class="am-g am-margin-top">
         <div class="am-u-sm-4 am-u-md-6"><label>服务种类</label></div>
         <div id="detail-type" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
       </div>
-      <div class="am-g am-margin-top">
+      <div id="detail-3" class="am-g am-margin-top">
         <div class="am-u-sm-4 am-u-md-6"><label>服务名称</label></div>
         <div id="detail-name" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
       </div>
-      <div class="am-g am-margin-top">
+      <div id="detail-4" class="am-g am-margin-top">
         <div class="am-u-sm-4 am-u-md-6"><label>服务单位</label></div>
         <div id="detail-unit" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
       </div>
-      <div class="am-g am-margin-top">
+      <div id="detail-5" class="am-g am-margin-top">
         <div class="am-u-sm-4 am-u-md-6"><label>服务内容</label></div>
         <div id="detail-content" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
       </div>
-      <div class="am-g am-margin-top">
+      <div id="detail-6" class="am-g am-margin-top">
         <div class="am-u-sm-4 am-u-md-6"><label>服务方式</label></div>
         <div id="detail-way" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
       </div>
-      <div class="am-g am-margin-top">
+      <div id="detail-7" class="am-g am-margin-top">
         <div class="am-u-sm-4 am-u-md-6"><label>涉及设备</label></div>
         <div id="detail-device" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
       </div>
-      <div class="am-g am-margin-top">
+      <div id="detail-8" class="am-g am-margin-top">
         <div class="am-u-sm-4 am-u-md-6"><label>备注</label></div>
         <div id="detail-remarks" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
       </div>
-      <div class="am-g am-margin-top">
+      <div id="detail-9" class="am-g am-margin-top">
         <div class="am-u-sm-4 am-u-md-6"><label>重要程度</label></div>
         <div id="detail-import" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
       </div>
-      <div class="am-g am-margin-top">
+      <div id="detail-10" class="am-g am-margin-top">
         <div class="am-u-sm-4 am-u-md-6"><label>更新时间</label></div>
         <div id="detail-updatetime" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
       </div>
@@ -407,21 +410,21 @@ function submit_form (url, method, params) {
 
 function add () {
     $('#modal-title').text('新增资产');
-    set_elses_data();
-    $('#elses-modal').modal({
+    set_sever_data();
+    $('#sever-modal').modal({
         relatedTarget: this,
         onConfirm: function() {
-            return add_elses();
+            return add_sever();
         },
         onCancel: function() {}
     });
 }
 
 function del (id) {
-    $('#del-soft-modal').modal({
+    $('#del-sever-modal').modal({
         relatedTarget: this,
         onConfirm: function() {
-            return del_soft(id);
+            return del_sever(id);
         },
         onCancel: function() {}
     });
@@ -430,52 +433,102 @@ function del (id) {
 function edit (id) {
     $('#modal-title').text('编辑资产');
     var mydata = {};
-    mydata['elseid'] = id;
-    my_ajax('/sur/elses/get', 'get', mydata, function (elses) {
-        return set_elses_data(elses.assetid, elses.name, elses.theDesc, elses.lib, elses.import);
+    mydata['severid'] = id;
+    my_ajax('/sur/sever/get', 'get', mydata, function (sever) {
+        return set_sever_data();
     });
 
-    $('#elses-modal').modal({
+    $('#sever-modal').modal({
         relatedTarget: this,
         onConfirm: function() {
-            return edit_elses(id);
+            return edit_sever(id);
         },
         onCancel: function() {
         }
     });
 }
 
-function add_soft () {
+function detail (id) {
+    var mydata = {};
+    mydata['severid'] = id;
+    my_ajax('/sur/sever/get', 'get', mydata, function (sever) {
+        $('#detail-assetid').text(sever.assetid);
+        $('#detail-type').text(sever.kid);
+        $('#detail-name').text(sever.name);
+        $('#detail-unit').text(sever.unit);
+        $('#detail-content').text(sever.content);
+        $('#detail-way').text(sever.way);
+        $('#detail-device').text(sever.device);
+        $('#detail-remarks').text(sever.remarks);
+        $('#detail-import').text(sever.import);
+        $('#detail-updatetime').text(sever.updatetime);
+
+        switch (sever.kid) {
+            case 1: {
+                $('#detail-6').show();
+                $('#detail-7').hide();
+                break;
+            }
+            case 2: {
+                $('#detail-6').show();
+                $('#detail-7').show();
+                break;
+            }
+            case 3: {
+                $('#detail-6').hide();
+                $('#detail-7').hide();
+                break;
+            }
+            default: {}
+        }
+    });
+
+    $('#detail-modal').modal({
+        relatedTarget: this,
+    });
+}
+
+function add_sever () {
     var params = get_elses_data();
     params['editType'] = 'add';
-    return submit_form('/sur/elses', 'post', params);
+    return submit_form('/sur/sever', 'post', params);
 }
 
-function edit_soft (id) {
-    var params = get_elses_data();
+function edit_sever (id) {
+    var params = get_sever_data();
     params['editType'] = 'edit';
-    params['elseid'] = id;
-    return submit_form('/sur/elses', 'post', params);
+    params['severid'] = id;
+    return submit_form('/sur/sever', 'post', params);
 }
 
-function del_soft (id) {
+function del_sever (id) {
     var params = {};
     params['editType'] = 'del';
-    params['elseid'] = id;
-    return submit_form('/sur/elses', 'post', params);
+    params['severid'] = id;
+    return submit_form('/sur/sever', 'post', params);
 }
 
-function get_elses_data () {
+function get_sever_data () {
     var res = {};
+    res['severtype'] = $("input[name='severtype']:checked").val();
     res['assetid'] = $('#assetid').val();
     res['name'] = $('#name').val();
-    res['theDesc'] = $('#theDesc').val();
-    res['lib'] = $('#lib').val();
+    res['model'] = $('#model').val();
+    res['unit'] = $('#unit').val();
+    res['content'] = $('#content').val();
+    if ($('#way').text() == '现场') {
+        res['way'] == 1;
+    }
+    else {
+        res['way'] == 2;
+    }
+    res['device'] = $('#device').val();
+    res['remarks'] = $('#remarks').val();
     res['import'] = $('#import').val();
     return res;
 }
 
-function set_elses_data (assetid, name, desc, lib, dimport) {
+function set_sever_data (assetid, name) {
     var assetid = assetid || '';
     $('#assetid').val(assetid);
 
@@ -492,6 +545,18 @@ function set_elses_data (assetid, name, desc, lib, dimport) {
     $('#import').val(theImport);
 }
 
+function change_type (id) {
+    // body...
+}
+
+function change_way (wayid) {
+    if (wayid == 1) {
+        $('#way').text('现场');
+    }
+    else if (wayid == 2) {
+        $('#way').text('非现场');
+    }
+}
 </script>
 </body>
 </html>

@@ -81,7 +81,7 @@ class Software extends CI_Controller
         $errorNo = 0;
         switch ($editType) {
             case 'add': {
-                $res = $this->objSoftwareModel->add_software($pid, $assetid, $kid, $name, $version, $developer, $hard, $soft, $app, $model, $datas, $userNum, $userRole, $Cgrade, $Igrade, $Agrade)
+                $res = $this->objSoftwareModel->add_software($pid, $assetid, $kid, $name, $version, $developer, $hard, $soft, $app, $model, $datas, $userNum, $userRole, $Cgrade, $Igrade, $Agrade);
                 if ($res != false) {
                     $errorNo = 1;
                 }

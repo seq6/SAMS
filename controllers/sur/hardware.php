@@ -85,7 +85,7 @@ class Hardware extends CI_Controller
         $errorNo = 0;
         switch ($editType) {
             case 'add': {
-                $res = $this->objHardwareModel->add_hardware($pid, $assetid, $kid, $name, $model, $place, $net, $ip, $mask, $geteway, $os, $osSoft, $portType, $portNum, $main, $datas, $ha, $Cgrade, $Igrade, $Agrade)
+                $res = $this->objHardwareModel->add_hardware($pid, $assetid, $kid, $name, $model, $place, $net, $ip, $mask, $geteway, $os, $osSoft, $portType, $portNum, $main, $datas, $ha, $Cgrade, $Igrade, $Agrade);
                 if ($res != false) {
                     $errorNo = 1;
                 }

@@ -44,7 +44,7 @@ class Sever extends CI_Controller
 
         $this->data['severtype'] = $this->objSeverTypeModel->get_servetype();
         $this->data['st'] = $severtype;
-        $this->data['count'] = $this->objSeverModel->get_persons_count($pid);
+        $this->data['count'] = $this->objSeverModel->get_sever_count($pid);
         $this->data['pageNo'] = $pageNo;
 
         $this->load->view('sur/sever', $this->data);
@@ -53,7 +53,8 @@ class Sever extends CI_Controller
     public function get()
     {
         $id = isset($_GET['severid']) ? $_GET['severid'] : 0;
-        $res = $this->objSeverModel->get_person($id);
+        $res = $this->objSeverModel->get_sever($id);
+        $res['way'] = ($res['way'] == 1) ? '现场' : '非现场';
         echo json_encode($res);
     }
 
@@ -61,10 +62,11 @@ class Sever extends CI_Controller
     {
         $pid = $_SESSION['project']['pid'];
         $editType = isset($_POST['editType']) ? $_POST['editType'] : '';
-        $id       = isset($_POST['personid']) ? $_POST['personid'] : 0;
+        $id       = isset($_POST['severid'])  ? $_POST['severid']  : 0;
         $assetid  = isset($_POST['assetid'])  ? $_POST['assetid']  : '';
         $severtype= isset($_POST['severtype'])? $_POST['severtype']: '';
         $name     = isset($_POST['name'])     ? $_POST['name']     : '';
+        $model    = isset($_POST['model'])    ? $_POST['model']    : '';
         $unit     = isset($_POST['unit'])     ? $_POST['unit']     : '';
         $content  = isset($_POST['content'])  ? $_POST['content']  : '';
         $way      = isset($_POST['way'])      ? $_POST['way']      : 1;
