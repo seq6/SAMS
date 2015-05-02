@@ -130,17 +130,16 @@ class pjFile_model extends Base_model
     private function store_file($file = '', $name = '', $fid = 0, $ftype = '')
     {
         try {
-                $pid = $_SESSION['project']['pid'];
-                $filePath = $this->dataPath.'data/'.$pid.'/'.$fid.'_'.$name.'.'.$ftype;
-                if (!is_dir('data/'.$pid)) {
-                    mkdir('data/'.$pid);
-                }
-                if (file_exists($filePath)) {
-                    return false;
-                }
-                rename($file['tmp_name'], $filePath);
-                return true;
-
+            $pid = $_SESSION['project']['pid'];
+            $filePath = $this->dataPath.'data/'.$pid.'/'.$fid.'_'.$name.'.'.$ftype;
+            if (!is_dir('data/'.$pid)) {
+                mkdir('data/'.$pid);
+            }
+            if (file_exists($filePath)) {
+                return false;
+            }
+            rename($file['tmp_name'], $filePath);
+            return true;
         } catch (Exception $e) {
             return false;
         }

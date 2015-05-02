@@ -92,8 +92,6 @@
     <br/>
     <!--add and chioce end-->
 
-
-
     <div class="am-g">
       <div class="am-u-sm-12">
           <!--table-->
@@ -205,64 +203,107 @@
   <div class="am-modal-dialog">
     <div id="modal-title" class="am-modal-hd"></div>
     <div class="am-modal-bd">
+      <!--softtype-->
+      <div class="am-btn-group doc-js-btn-1" data-am-button>
+        <label class="am-btn am-btn-default am-active">
+          <input type="radio" name="softtype" value="1" id="softtype1" checked="checked">系统软件
+        </label>
+        <label class="am-btn am-btn-default">
+          <input type="radio" name="softtype" value="2" id="softtype2">应用软件
+        </label>
+      </div>
+      <!--softtype end-->
+      <!--assetid-->
       <div class="am-g am-margin-top">
         <div class="am-u-sm-4 am-u-md-3 am-text-right">资产编号</div>
         <div class="am-u-sm-8 am-u-md-9">
           <input id="assetid" name="assetid" type="text" maxlength="20" class="am-form-field am-modal-prompt-input">
         </div>
       </div>
+      <!--assetid end-->
+      <!--name-->
       <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-3 am-text-right">人员姓名</div>
+        <div class="am-u-sm-4 am-u-md-3 am-text-right">软件名称</div>
         <div class="am-u-sm-8 am-u-md-9">
           <input id="name" name="name" type="text" maxlength="20" class="am-form-field am-modal-prompt-input">
         </div>
       </div>
+      <!--name end-->
+      <!--version-->
       <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-3 am-text-right">性别</div>
+        <div class="am-u-sm-4 am-u-md-3 am-text-right">版本</div>
+        <div class="am-u-sm-8 am-u-md-9">
+          <input id="version" name="version" type="text" maxlength="20" class="am-form-field am-modal-prompt-input">
+        </div>
+      </div>
+      <!--version end-->
+      <!--developer-->
+      <div class="am-g am-margin-top">
+        <div class="am-u-sm-4 am-u-md-3 am-text-right">开发商</div>
+        <div class="am-u-sm-8 am-u-md-9">
+          <input id="developer" name="developer" type="text" maxlength="20" class="am-form-field am-modal-prompt-input">
+        </div>
+      </div>
+      <!--developer end-->
+      <!--app-->
+      <div class="am-g am-margin-top">
+        <div class="am-u-sm-4 am-u-md-3 am-text-right">涉及应用系统</div>
+        <div class="am-u-sm-8 am-u-md-9">
+          <input id="app" name="app" type="text" maxlength="20" class="am-form-field am-modal-prompt-input">
+        </div>
+      </div>
+      <!--app end-->
+      <!--soft-->
+      <div class="am-g am-margin-top">
+        <div class="am-u-sm-4 am-u-md-3 am-text-right">软件平台</div>
+        <div class="am-u-sm-8 am-u-md-9">
+          <input id="soft" name="soft" type="text" maxlength="20" class="am-form-field am-modal-prompt-input">
+        </div>
+      </div>
+      <!--soft end-->
+      <!--model-->
+      <div class="am-g am-margin-top">
+        <div class="am-u-sm-4 am-u-md-3 am-text-right">模式</div>
         <div class="am-u-sm-2 am-u-md-3">
-            <label id="sex" value="1">男</label>
+            <label id="model" value="1">B/S</label>
         </div>
         <div class="am-u-sm-6 am-u-md-6">
           <div class="am-btn-group am-btn-group-xs">
-            <button type="button" onclick="change_sex(1)" class="am-btn am-btn-primary am-round">&nbsp;&nbsp;<i class="am-icon-mars"></i>&nbsp;&nbsp;</button>
-            <button type="button" onclick="change_sex(0)" class="am-btn am-btn-danger am-round">&nbsp;&nbsp;<i class="am-icon-venus"></i>&nbsp;&nbsp;</button>
+            <button type="button" onclick="change_model(1)" class="am-btn am-btn-primary am-round">B/S模式</button>
+            <button type="button" onclick="change_model(2)" class="am-btn am-btn-danger am-round">C/S模式</button>
           </div>
         </div>
       </div>
+      <!--model end-->
+      <!--datas-->
       <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-3 am-text-right">职务</div>
+        <div class="am-u-sm-4 am-u-md-3 am-text-right">涉及数据</div>
         <div class="am-u-sm-8 am-u-md-9">
-          <input id="post" name="post" type="text" maxlength="20" class="am-form-field am-modal-prompt-input">
+          <input id="datas" name="datas" type="text" maxlength="20" class="am-form-field am-modal-prompt-input">
         </div>
       </div>
+      <!--datas end-->
+      <!--userNum-->
       <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-3 am-text-right">部门</div>
+        <div class="am-u-sm-4 am-u-md-3 am-text-right">现用用户数量</div>
         <div class="am-u-sm-8 am-u-md-9">
-          <input id="depart" name="depart" type="text" maxlength="20" class="am-form-field am-modal-prompt-input">
+          <input id="userNum" name="userNum" type="text" maxlength="20" class="am-form-field am-modal-prompt-input">
         </div>
       </div>
+      <!--userNum end-->
+      <!--userRole-->
       <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-3 am-text-right">电话</div>
+        <div class="am-u-sm-4 am-u-md-3 am-text-right">主要用户角色</div>
         <div class="am-u-sm-8 am-u-md-9">
-          <input id="phone" name="phone" type="text" maxlength="20" class="am-form-field am-modal-prompt-input">
+          <input id="userRole" name="userRole" type="text" maxlength="20" class="am-form-field am-modal-prompt-input">
         </div>
       </div>
+      <!--userRole end-->
+      <!--Cgrade-->
       <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-3 am-text-right">手机</div>
+        <div class="am-u-sm-4 am-u-md-3 am-text-right">机密性</div>
         <div class="am-u-sm-8 am-u-md-9">
-          <input id="mobile" name="mobile" type="text" maxlength="20" class="am-form-field am-modal-prompt-input">
-        </div>
-      </div>
-      <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-3 am-text-right">电子邮箱</div>
-        <div class="am-u-sm-8 am-u-md-9">
-          <input id="email" name="email" type="email" maxlength="20" class="am-form-field am-modal-prompt-input">
-        </div>
-      </div>
-      <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-3 am-text-right">重要程度</div>
-        <div class="am-u-sm-8 am-u-md-9">
-          <select id="import" name="import" data-am-selected="{btnSize: 'sm', dropUp: 1}">
+          <select id="Cgrade" name="Cgrade" data-am-selected="{btnSize: 'sm', dropUp: 1}">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -271,6 +312,35 @@
           </select>
         </div>
       </div>
+      <!--Cgrade end-->
+      <!--Igrade-->
+      <div class="am-g am-margin-top">
+        <div class="am-u-sm-4 am-u-md-3 am-text-right">完整性</div>
+        <div class="am-u-sm-8 am-u-md-9">
+          <select id="Igrade" name="Igrade" data-am-selected="{btnSize: 'sm', dropUp: 1}">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+      </div>
+      <!--Igrade end-->
+      <!--Agrade-->
+      <div class="am-g am-margin-top">
+        <div class="am-u-sm-4 am-u-md-3 am-text-right">可用性</div>
+        <div class="am-u-sm-8 am-u-md-9">
+          <select id="Agrade" name="Agrade" data-am-selected="{btnSize: 'sm', dropUp: 1}">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+      </div>
+      <!--Agrade end-->
     </div>
     <div class="am-modal-footer">
       <span class="am-modal-btn" data-am-modal-confirm>提交</span>
@@ -305,36 +375,60 @@
         <div id="detail-assetid" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
       </div>
       <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-6"><label>人员姓名</label></div>
+        <div class="am-u-sm-4 am-u-md-6"><label>软件种类</label></div>
         <div id="detail-name" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
       </div>
       <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-6"><label>性别</label></div>
+        <div class="am-u-sm-4 am-u-md-6"><label>软件名称</label></div>
         <div id="detail-sex" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
       </div>
       <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-6"><label>职务</label></div>
-        <div id="detail-post" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
+        <div class="am-u-sm-4 am-u-md-6"><label>版本</label></div>
+        <div id="detail-version" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
       </div>
       <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-6"><label>部门</label></div>
-        <div id="detail-depart" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
+        <div class="am-u-sm-4 am-u-md-6"><label>开发商</label></div>
+        <div id="detail-developer" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
       </div>
       <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-6"><label>电话</label></div>
-        <div id="detail-phone" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
+        <div class="am-u-sm-4 am-u-md-6"><label>硬件平台</label></div>
+        <div id="detail-hard" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
       </div>
       <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-6"><label>手机</label></div>
-        <div id="detail-mobile" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
+        <div class="am-u-sm-4 am-u-md-6"><label>软件平台</label></div>
+        <div id="detail-soft" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
       </div>
       <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-6"><label>电子邮箱</label></div>
-        <div id="detail-email" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
+        <div class="am-u-sm-4 am-u-md-6"><label>涉及应用系统</label></div>
+        <div id="detail-app" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
       </div>
       <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-6"><label>重要程度</label></div>
-        <div id="detail-import" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
+        <div class="am-u-sm-4 am-u-md-6"><label>模式</label></div>
+        <div id="detail-model" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
+      </div>
+      <div class="am-g am-margin-top">
+        <div class="am-u-sm-4 am-u-md-6"><label>涉及数据</label></div>
+        <div id="detail-datas" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
+      </div>
+      <div class="am-g am-margin-top">
+        <div class="am-u-sm-4 am-u-md-6"><label>现用用户数量</label></div>
+        <div id="detail-userNum" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
+      </div>
+      <div class="am-g am-margin-top">
+        <div class="am-u-sm-4 am-u-md-6"><label>主要用户角色</label></div>
+        <div id="detail-userRole" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
+      </div>
+      <div class="am-g am-margin-top">
+        <div class="am-u-sm-4 am-u-md-6"><label>机密性</label></div>
+        <div id="detail-Cgrade" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
+      </div>
+      <div class="am-g am-margin-top">
+        <div class="am-u-sm-4 am-u-md-6"><label>完整性</label></div>
+        <div id="detail-Igrade" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
+      </div>
+      <div class="am-g am-margin-top">
+        <div class="am-u-sm-4 am-u-md-6"><label>可用性</label></div>
+        <div id="detail-Agrade" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
       </div>
     </div>
   </div>
