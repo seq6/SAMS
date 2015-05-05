@@ -66,7 +66,7 @@
           </button>
         </div>
       </div>
-      <div class="am-u-sm-6 am-u-md-6">
+      <div class="am-u-sm-6 am-u-md-6 am-text-right">
         <?php
         if ($st == 0) {
             echo '<label>全部</label>';
@@ -77,7 +77,7 @@
 
         if (isset($severtype) && !empty($severtype)) {
             foreach ($severtype as $s) {
-                echo '<small> | <small>';
+                echo ' | ';
                 if ($s['id'] == $st) {
                     echo '<label>'.$s['name'].'</label>';
                 }
@@ -103,9 +103,9 @@
                 <th>服务种类</th>
                 <th>服务名称</th>
                 <th class="am-hide-sm-only">服务单位</th>
-                <th class="am-hide-sm-only">机密性</th>
-                <th class="am-hide-sm-only">完整性</th>
-                <th class="am-hide-sm-only">可用性</th>
+                <th class="am-hide-sm-only">服务内容</th>
+                <th class="am-hide-sm-only">服务方式</th>
+                <th class="am-hide-sm-only">重要程度</th>
                 <th>操作</th>
               </tr>
             </thead>
@@ -118,12 +118,12 @@
                             echo '<tr>
                                     <td>'.$i.'</td>
                                     <td>'.$s['assetid'].'</td>
-                                    <td>'.$severtype[$s['kid']].'</td>
+                                    <td>'.$s['severtype'].'</td>
                                     <td>'.$s['name'].'</td>
                                     <td class="am-hide-sm-only">'.$s['unit'].'</td>
-                                    <td class="am-hide-sm-only">'.$s['Cgrade'].'</td>
-                                    <td class="am-hide-sm-only">'.$s['Igrade'].'</td>
-                                    <td class="am-hide-sm-only">'.$s['Agrade'].'</td>
+                                    <td class="am-hide-sm-only">'.$s['way'].'</td>
+                                    <td class="am-hide-sm-only">'.$s['content'].'</td>
+                                    <td class="am-hide-sm-only">'.$s['import'].'</td>
                                     <td>
                                       <div class="am-btn-toolbar">
                                         <div class="am-btn-group am-btn-group-xs">
@@ -206,13 +206,13 @@
       <!--severtype-->
       <div class="am-btn-group doc-js-btn-1" data-am-button>
         <label class="am-btn am-btn-default am-active">
-          <input type="radio" name="severtype" value="1" id="severtype1" checked="checked" onclick="change_type(1)">信息服务
+          <input type="radio" name="severtype" value="1" id="severtype1" checked="checked">信息服务
         </label>
         <label class="am-btn am-btn-default">
-          <input type="radio" name="severtype" value="2" id="severtype2" onclick="change_type(2)">网络服务
+          <input type="radio" name="severtype" value="2" id="severtype2">网络服务
         </label>
         <label class="am-btn am-btn-default">
-          <input type="radio" name="severtype" value="3" id="severtype3" onclick="change_type(3)">办公服务
+          <input type="radio" name="severtype" value="3" id="severtype3">办公服务
         </label>
       </div>
       <!--severtype end-->
@@ -224,14 +224,6 @@
         </div>
       </div>
       <!--assetid end-->
-      <!--model-->
-      <div id="modal-2" class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-3 am-text-right">服务类型</div>
-        <div class="am-u-sm-8 am-u-md-9">
-          <input id="model" name="model" type="text" maxlength="20" class="am-form-field am-modal-prompt-input">
-        </div>
-      </div>
-      <!--model end-->
       <!--name-->
       <div id="modal-3" class="am-g am-margin-top">
         <div class="am-u-sm-4 am-u-md-3 am-text-right">服务名称</div>
@@ -259,12 +251,12 @@
       <!--way-->
       <div id="modal-6" class="am-g am-margin-top">
         <div class="am-u-sm-4 am-u-md-3 am-text-right">服务方式</div>
-        <div class="am-u-sm-2 am-u-md-3">
+        <div class="am-u-sm-2 am-u-md-3 am-text-right">
             <label id="way">现场</label>
         </div>
         <div class="am-u-sm-6 am-u-md-6">
           <div class="am-btn-group am-btn-group-xs">
-            <button type="button" onclick="change_way(1)" class="am-btn am-btn-primary am-round">现场</button>
+            <button type="button" onclick="change_way(1)" class="am-btn am-btn-primary am-round">&nbsp;&nbsp;现场&nbsp;</button>
             <button type="button" onclick="change_way(2)" class="am-btn am-btn-danger am-round">非现场</button>
           </div>
         </div>
@@ -282,7 +274,7 @@
       <div id="modal-8" class="am-g am-margin-top">
         <div class="am-u-sm-4 am-u-md-3 am-text-right">备注</div>
         <div class="am-u-sm-8 am-u-md-9">
-          <textarea id="remarks" name="remarks" rows="4" maxlength="255" class="am-form-field am-modal-prompt-input"></textarea>
+          <textarea id="remarks" name="remarks" rows="2" maxlength="255" class="am-form-field am-modal-prompt-input"></textarea>
         </div>
       </div>
       <!--remarks end-->
@@ -327,45 +319,45 @@
 <!--detail modal-->
 <div class="am-modal am-modal-prompt" id="detail-modal">
   <div class="am-modal-dialog">
-    <div id="del-modal-title" class="am-modal-hd">服务详细信息</div>
+    <div id="detail-modal-title" class="am-modal-hd">资产详细信息</div>
     <div class="am-modal-bd">
-      <div id="detail-1" class="am-g am-margin-top">
+      <div class="am-g am-margin-top">
         <div class="am-u-sm-4 am-u-md-6"><label>资产编号</label></div>
         <div id="detail-assetid" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
       </div>
-      <div id="detail-2" class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-6"><label>服务种类</label></div>
-        <div id="detail-type" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
-      </div>
-      <div id="detail-3" class="am-g am-margin-top">
+      <div class="am-g am-margin-top">
         <div class="am-u-sm-4 am-u-md-6"><label>服务名称</label></div>
         <div id="detail-name" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
       </div>
-      <div id="detail-4" class="am-g am-margin-top">
+      <div class="am-g am-margin-top">
+        <div class="am-u-sm-4 am-u-md-6"><label>资产类型</label></div>
+        <div id="detail-severtype" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
+      </div>
+      <div class="am-g am-margin-top">
         <div class="am-u-sm-4 am-u-md-6"><label>服务单位</label></div>
         <div id="detail-unit" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
       </div>
-      <div id="detail-5" class="am-g am-margin-top">
+      <div class="am-g am-margin-top">
         <div class="am-u-sm-4 am-u-md-6"><label>服务内容</label></div>
         <div id="detail-content" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
       </div>
-      <div id="detail-6" class="am-g am-margin-top">
+      <div class="am-g am-margin-top">
         <div class="am-u-sm-4 am-u-md-6"><label>服务方式</label></div>
         <div id="detail-way" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
       </div>
-      <div id="detail-7" class="am-g am-margin-top">
+      <div class="am-g am-margin-top">
         <div class="am-u-sm-4 am-u-md-6"><label>涉及设备</label></div>
         <div id="detail-device" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
       </div>
-      <div id="detail-8" class="am-g am-margin-top">
+      <div class="am-g am-margin-top">
         <div class="am-u-sm-4 am-u-md-6"><label>备注</label></div>
         <div id="detail-remarks" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
       </div>
-      <div id="detail-9" class="am-g am-margin-top">
+      <div class="am-g am-margin-top">
         <div class="am-u-sm-4 am-u-md-6"><label>重要程度</label></div>
         <div id="detail-import" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
       </div>
-      <div id="detail-10" class="am-g am-margin-top">
+      <div class="am-g am-margin-top">
         <div class="am-u-sm-4 am-u-md-6"><label>更新时间</label></div>
         <div id="detail-updatetime" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
       </div>
@@ -453,7 +445,7 @@ function detail (id) {
     mydata['severid'] = id;
     my_ajax('/sur/sever/get', 'get', mydata, function (sever) {
         $('#detail-assetid').text(sever.assetid);
-        $('#detail-type').text(sever.kid);
+        $('#detail-severtype').text(sever.severtype);
         $('#detail-name').text(sever.name);
         $('#detail-unit').text(sever.unit);
         $('#detail-content').text(sever.content);
@@ -462,25 +454,6 @@ function detail (id) {
         $('#detail-remarks').text(sever.remarks);
         $('#detail-import').text(sever.import);
         $('#detail-updatetime').text(sever.updatetime);
-
-        switch (sever.kid) {
-            case 1: {
-                $('#detail-6').show();
-                $('#detail-7').hide();
-                break;
-            }
-            case 2: {
-                $('#detail-6').show();
-                $('#detail-7').show();
-                break;
-            }
-            case 3: {
-                $('#detail-6').hide();
-                $('#detail-7').hide();
-                break;
-            }
-            default: {}
-        }
     });
 
     $('#detail-modal').modal({
@@ -489,7 +462,7 @@ function detail (id) {
 }
 
 function add_sever () {
-    var params = get_elses_data();
+    var params = get_sever_data();
     params['editType'] = 'add';
     return submit_form('/sur/sever', 'post', params);
 }
@@ -517,10 +490,10 @@ function get_sever_data () {
     res['unit'] = $('#unit').val();
     res['content'] = $('#content').val();
     if ($('#way').text() == '现场') {
-        res['way'] == 1;
+        res['way'] = 1;
     }
     else {
-        res['way'] == 2;
+        res['way'] = 2;
     }
     res['device'] = $('#device').val();
     res['remarks'] = $('#remarks').val();
@@ -528,7 +501,9 @@ function get_sever_data () {
     return res;
 }
 
-function set_sever_data (severtype, assetid, name, model, unit, content, way, device, remarks, import) {
+function set_sever_data (severtype, assetid, name, model, unit, content, way, device, remarks, simport) {
+    var severtype = severtype || '';
+
     var assetid = assetid || '';
     $('#assetid').val(assetid);
 
@@ -557,26 +532,6 @@ function set_sever_data (severtype, assetid, name, model, unit, content, way, de
 
     var remarks = remarks || '';
     $('#remarks').val(remarks);
-}
-
-function change_type (id) {
-    switch (id) {
-        case 1: {
-            $('#modal-6').show();
-            $('#modal-7').hide();
-            break;
-        }
-        case 2: {
-            $('#modal-6').show();
-            $('#modal-7').show();
-            break;
-        }
-        case 3: {
-            $('#modal-6').hide();
-            $('#modal-7').hide();
-            break;
-        }
-    }
 }
 
 function change_way (wayid) {

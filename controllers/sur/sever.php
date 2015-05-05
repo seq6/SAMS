@@ -44,8 +44,27 @@ class Sever extends CI_Controller
 
         $this->data['severtype'] = $this->objSeverTypeModel->get_servetype();
         $this->data['st'] = $severtype;
-        $this->data['count'] = $this->objSeverModel->get_sever_count($pid);
+        $this->data['count'] = $this->objSeverModel->get_severs_count($pid, $severtype);
         $this->data['pageNo'] = $pageNo;
+
+        $tmp = array();
+        foreach ($this->data['severtype'] as $s) {
+            $tmp[$s['id']] = $s['name'];
+        }
+        foreach ($this->data['sever'] as $key => $s) {
+            $this->data['sever'][$key]['severtype'] = $tmp[$s['kid']];
+            switch ($s['way']) {
+                case '1':
+                    $this->data['sever'][$key]['way'] = '现场';
+                    break;
+                case '2':
+                    $this->data['sever'][$key]['way'] = '非现场';
+                    break;
+                default:
+                    $this->data['sever'][$key]['way'] = 'error';
+                    break;
+            }
+        }
 
         $this->load->view('sur/sever', $this->data);
     }
@@ -54,19 +73,25 @@ class Sever extends CI_Controller
     {
         $id = isset($_GET['severid']) ? $_GET['severid'] : 0;
         $res = $this->objSeverModel->get_sever($id);
+        $stype = $this->objSeverTypeModel->get_servetype();
+        foreach ($stype as $s) {
+            if ($s['id'] == $res['kid']) {
+                $res['severtype'] = $s['name'];
+            }
+        }
         $res['way'] = ($res['way'] == 1) ? '现场' : '非现场';
         echo json_encode($res);
     }
 
     private function form()
     {
+
         $pid = $_SESSION['project']['pid'];
         $editType = isset($_POST['editType']) ? $_POST['editType'] : '';
         $id       = isset($_POST['severid'])  ? $_POST['severid']  : 0;
         $assetid  = isset($_POST['assetid'])  ? $_POST['assetid']  : '';
         $severtype= isset($_POST['severtype'])? $_POST['severtype']: '';
         $name     = isset($_POST['name'])     ? $_POST['name']     : '';
-        $model    = isset($_POST['model'])    ? $_POST['model']    : '';
         $unit     = isset($_POST['unit'])     ? $_POST['unit']     : '';
         $content  = isset($_POST['content'])  ? $_POST['content']  : '';
         $way      = isset($_POST['way'])      ? $_POST['way']      : 1;

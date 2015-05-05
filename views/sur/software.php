@@ -66,7 +66,7 @@
           </button>
         </div>
       </div>
-      <div class="am-u-sm-6 am-u-md-6">
+      <div class="am-u-sm-6 am-u-md-6 am-text-right">
         <?php
         if ($st == 0) {
             echo '<label>全部</label>';
@@ -77,7 +77,7 @@
 
         if (isset($softtype) && !empty($softtype)) {
             foreach ($softtype as $s) {
-                echo '<small> | <small>';
+                echo '<small> | </small>';
                 if ($s['id'] == $st) {
                     echo '<label>'.$s['name'].'</label>';
                 }
@@ -471,11 +471,11 @@ function submit_form (url, method, params) {
 
 function add () {
     $('#modal-title').text('新增资产');
-    set_elses_data();
-    $('#elses-modal').modal({
+    //set_soft_data();
+    $('#soft-modal').modal({
         relatedTarget: this,
         onConfirm: function() {
-            return add_elses();
+            return add_soft();
         },
         onCancel: function() {}
     });

@@ -44,7 +44,7 @@ class Hardware extends CI_Controller
 
         $this->data['hardtype'] = $this->objHardtypeModel->get_hardtype();
         $this->data['ht'] = $hardtype;
-        $this->data['count'] = $this->objSoftwareModel->get_hardwares_count($pid, $hardtype);
+        $this->data['count'] = $this->objHardwareModel->get_hardwares_count($pid, $hardtype);
         $this->data['pageNo'] = $pageNo;
 
         $this->load->view('sur/hardware', $this->data);
