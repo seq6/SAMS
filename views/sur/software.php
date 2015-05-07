@@ -100,6 +100,7 @@
               <tr>
                 <th></th>
                 <th>资产编号</th>
+                <th>软件种类</th>
                 <th>软件名称</th>
                 <th class="am-hide-sm-only">开发商</th>
                 <th class="am-hide-sm-only">硬件平台</th>
@@ -118,10 +119,10 @@
                             echo '<tr>
                                     <td>'.$i.'</td>
                                     <td>'.$s['assetid'].'</td>
+                                    <td>'.$s['softtype'].'</td>
                                     <td>'.$s['name'].'</td>
                                     <td class="am-hide-sm-only">'.$s['developer'].'</td>
                                     <td class="am-hide-sm-only">'.$s['hard'].'</td>
-                                    <td class="am-hide-sm-only">'.$s['depart'].'</td>
                                     <td class="am-hide-sm-only">'.$s['Cgrade'].'</td>
                                     <td class="am-hide-sm-only">'.$s['Igrade'].'</td>
                                     <td class="am-hide-sm-only">'.$s['Agrade'].'</td>
@@ -215,132 +216,55 @@
       <!--softtype end-->
       <!--assetid-->
       <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-3 am-text-right">资产编号</div>
-        <div class="am-u-sm-8 am-u-md-9">
-          <input id="assetid" name="assetid" type="text" maxlength="20" class="am-form-field am-modal-prompt-input">
+        <div class="am-u-sm-12 am-u-md-12 am-u-sm-centered">
+          <input id="assetid" name="assetid" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入编号...">
+          <input id="name" name="name" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入名称...">
+          <input id="version" name="version" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入版本...">
+          <input id="developer" name="developer" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入开发商...">
+          <input id="app" name="app" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入涉及应用系统...">
+          <input id="hard" name="hard" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入涉及硬件平台...">
+          <input id="soft" name="soft" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入涉及软件平台...">
+          <input id="datas" name="datas" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入涉及数据...">
+          <input id="userNum" name="userNum" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入现用用户数量...">
+          <input id="userRole" name="userRole" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入主要用户角色...">
         </div>
       </div>
-      <!--assetid end-->
-      <!--name-->
       <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-3 am-text-right">软件名称</div>
-        <div class="am-u-sm-8 am-u-md-9">
-          <input id="name" name="name" type="text" maxlength="20" class="am-form-field am-modal-prompt-input">
+        <div class="am-u-sm-4 am-u-md-4 am-text-centered">模式：</div>
+        <div class="am-u-sm-2 am-u-md-2 am-text-left">
+          <label id="model">B/S</label>
         </div>
-      </div>
-      <!--name end-->
-      <!--version-->
-      <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-3 am-text-right">版本</div>
-        <div class="am-u-sm-8 am-u-md-9">
-          <input id="version" name="version" type="text" maxlength="20" class="am-form-field am-modal-prompt-input">
-        </div>
-      </div>
-      <!--version end-->
-      <!--developer-->
-      <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-3 am-text-right">开发商</div>
-        <div class="am-u-sm-8 am-u-md-9">
-          <input id="developer" name="developer" type="text" maxlength="20" class="am-form-field am-modal-prompt-input">
-        </div>
-      </div>
-      <!--developer end-->
-      <!--app-->
-      <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-3 am-text-right">涉及应用系统</div>
-        <div class="am-u-sm-8 am-u-md-9">
-          <input id="app" name="app" type="text" maxlength="20" class="am-form-field am-modal-prompt-input">
-        </div>
-      </div>
-      <!--app end-->
-      <!--soft-->
-      <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-3 am-text-right">软件平台</div>
-        <div class="am-u-sm-8 am-u-md-9">
-          <input id="soft" name="soft" type="text" maxlength="20" class="am-form-field am-modal-prompt-input">
-        </div>
-      </div>
-      <!--soft end-->
-      <!--model-->
-      <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-3 am-text-right">模式</div>
-        <div class="am-u-sm-2 am-u-md-3">
-            <label id="model" value="1">B/S</label>
-        </div>
-        <div class="am-u-sm-6 am-u-md-6">
+        <div class="am-u-sm-6 am-u-md-6 am-text-left">
           <div class="am-btn-group am-btn-group-xs">
-            <button type="button" onclick="change_model(1)" class="am-btn am-btn-primary am-round">B/S模式</button>
-            <button type="button" onclick="change_model(2)" class="am-btn am-btn-danger am-round">C/S模式</button>
+            <button type="button" onclick="change_model(1)" class="am-btn am-btn-primary am-round">&nbsp;&nbsp;B/S模式&nbsp;&nbsp;</button>
+            <button type="button" onclick="change_model(2)" class="am-btn am-btn-danger am-round">&nbsp;&nbsp;C/S模式&nbsp;&nbsp;</button>
           </div>
         </div>
       </div>
-      <!--model end-->
-      <!--datas-->
-      <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-3 am-text-right">涉及数据</div>
-        <div class="am-u-sm-8 am-u-md-9">
-          <input id="datas" name="datas" type="text" maxlength="20" class="am-form-field am-modal-prompt-input">
-        </div>
-      </div>
-      <!--datas end-->
-      <!--userNum-->
-      <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-3 am-text-right">现用用户数量</div>
-        <div class="am-u-sm-8 am-u-md-9">
-          <input id="userNum" name="userNum" type="text" maxlength="20" class="am-form-field am-modal-prompt-input">
-        </div>
-      </div>
-      <!--userNum end-->
-      <!--userRole-->
-      <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-3 am-text-right">主要用户角色</div>
-        <div class="am-u-sm-8 am-u-md-9">
-          <input id="userRole" name="userRole" type="text" maxlength="20" class="am-form-field am-modal-prompt-input">
-        </div>
-      </div>
-      <!--userRole end-->
-      <!--Cgrade-->
-      <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-3 am-text-right">机密性</div>
-        <div class="am-u-sm-8 am-u-md-9">
-          <select id="Cgrade" name="Cgrade" data-am-selected="{btnSize: 'sm', dropUp: 1}">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+      <!--assetid end default-->
+      <div class="am-btn-group doc-js-btn-1" data-am-button>
+        <select id="Cgrade" name="Cgrade" data-am-selected="{btnWidth: 150, btnSize: 'sm', dropUp: 1}">
+            <option value="1">机密性:1</option>
+            <option value="2">机密性:2</option>
+            <option value="3">机密性:3</option>
+            <option value="4">机密性:4</option>
+            <option value="5">机密性:5</option>
           </select>
-        </div>
-      </div>
-      <!--Cgrade end-->
-      <!--Igrade-->
-      <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-3 am-text-right">完整性</div>
-        <div class="am-u-sm-8 am-u-md-9">
-          <select id="Igrade" name="Igrade" data-am-selected="{btnSize: 'sm', dropUp: 1}">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+          <select id="Igrade" name="Igrade" data-am-selected="{btnWidth: 150, btnSize: 'sm', dropUp: 1}">
+            <option value="1">完整性:1</option>
+            <option value="2">完整性:2</option>
+            <option value="3">完整性:3</option>
+            <option value="4">完整性:4</option>
+            <option value="5">完整性:5</option>
           </select>
-        </div>
-      </div>
-      <!--Igrade end-->
-      <!--Agrade-->
-      <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-3 am-text-right">可用性</div>
-        <div class="am-u-sm-8 am-u-md-9">
-          <select id="Agrade" name="Agrade" data-am-selected="{btnSize: 'sm', dropUp: 1}">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+          <select id="Agrade" name="Agrade" data-am-selected="{btnWidth: 150, btnSize: 'sm', dropUp: 1}">
+            <option value="1">可用性:1</option>
+            <option value="2">可用性:2</option>
+            <option value="3">可用性:3</option>
+            <option value="4">可用性:4</option>
+            <option value="5">可用性:5</option>
           </select>
-        </div>
       </div>
-      <!--Agrade end-->
     </div>
     <div class="am-modal-footer">
       <span class="am-modal-btn" data-am-modal-confirm>提交</span>
@@ -368,67 +292,58 @@
 <!--detail modal-->
 <div class="am-modal am-modal-prompt" id="detail-modal">
   <div class="am-modal-dialog">
-    <div id="del-modal-title" class="am-modal-hd">人员详细信息</div>
+    <div id="del-modal-title" class="am-modal-hd">软件详细信息</div>
     <div class="am-modal-bd">
       <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-6"><label>资产编号</label></div>
-        <div id="detail-assetid" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
-      </div>
-      <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-6"><label>软件种类</label></div>
-        <div id="detail-name" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
-      </div>
-      <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-6"><label>软件名称</label></div>
-        <div id="detail-sex" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
-      </div>
-      <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-6"><label>版本</label></div>
-        <div id="detail-version" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
-      </div>
-      <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-6"><label>开发商</label></div>
-        <div id="detail-developer" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
-      </div>
-      <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-6"><label>硬件平台</label></div>
-        <div id="detail-hard" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
-      </div>
-      <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-6"><label>软件平台</label></div>
-        <div id="detail-soft" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
-      </div>
-      <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-6"><label>涉及应用系统</label></div>
-        <div id="detail-app" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
-      </div>
-      <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-6"><label>模式</label></div>
-        <div id="detail-model" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
-      </div>
-      <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-6"><label>涉及数据</label></div>
-        <div id="detail-datas" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
-      </div>
-      <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-6"><label>现用用户数量</label></div>
-        <div id="detail-userNum" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
-      </div>
-      <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-6"><label>主要用户角色</label></div>
-        <div id="detail-userRole" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
-      </div>
-      <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-6"><label>机密性</label></div>
-        <div id="detail-Cgrade" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
-      </div>
-      <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-6"><label>完整性</label></div>
-        <div id="detail-Igrade" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
-      </div>
-      <div class="am-g am-margin-top">
-        <div class="am-u-sm-4 am-u-md-6"><label>可用性</label></div>
-        <div id="detail-Agrade" class="am-u-sm-8 am-u-md-6 am-text-left"></div>
+        <div class="am-u-sm-5 am-u-md-5 am-text-right">
+          <strong>资产编号</strong>
+          <br/>
+          <strong>软件种类</strong>
+          <br/>
+          <strong>软件名称</strong>
+          <br/>
+          <strong>版本</strong>
+          <br/>
+          <strong>开发商</strong>
+          <br/>
+          <strong>硬件平台</strong>
+          <br/>
+          <strong>软件平台</strong>
+          <br/>
+          <strong>涉及应用系统</strong>
+          <br/>
+          <strong>模式</strong>
+          <br/>
+          <strong>涉及数据</strong>
+          <br/>
+          <strong>现用用户数量</strong>
+          <br/>
+          <strong>主要用户角色</strong>
+          <br/>
+          <strong>机密性</strong>
+          <br/>
+          <strong>完整性</strong>
+          <br/>
+          <strong>可用性</strong>
+          <br/>
+        </div>
+        <div class="am-u-sm-5 am-u-md-5 am-text-left">
+          <div id="detail-assetid">资产编号</div>
+          <div id="detail-softtype">软件种类</div>
+          <div id="detail-name">软件名称</div>
+          <div id="detail-version">版本</div>
+          <div id="detail-developer">开发商</div>
+          <div id="detail-hard">硬件平台</div>
+          <div id="detail-soft">软件平台</div>
+          <div id="detail-app">涉及应用系统</div>
+          <div id="detail-model">模式</div>
+          <div id="detail-datas">涉及数据</div>
+          <div id="detail-userNum">现用用户数量</div>
+          <div id="detail-userRole">主要用户角色</div>
+          <div id="detail-Cgrade">机密性</div>
+          <div id="detail-Igrade">完整性</div>
+          <div id="detail-Agrade">可用性</div>
+        </div>
       </div>
     </div>
   </div>
@@ -438,8 +353,6 @@
 <?php include_once 'app/views/static/footer.php'; ?>
 
 <script type="text/javascript">
-
-var st = <?php echo $st;?>;
 
 function my_ajax (theUrl, theMethod, theData, callback) {
     $.ajax({
@@ -471,7 +384,7 @@ function submit_form (url, method, params) {
 
 function add () {
     $('#modal-title').text('新增资产');
-    //set_soft_data();
+    set_soft_data();
     $('#soft-modal').modal({
         relatedTarget: this,
         onConfirm: function() {
@@ -494,68 +407,181 @@ function del (id) {
 function edit (id) {
     $('#modal-title').text('编辑资产');
     var mydata = {};
-    mydata['elseid'] = id;
-    my_ajax('/sur/elses/get', 'get', mydata, function (elses) {
-        return set_elses_data(elses.assetid, elses.name, elses.theDesc, elses.lib, elses.import);
+    mydata['softid'] = id;
+    my_ajax('/sur/software/get', 'get', mydata, function (soft) {
+        return set_soft_data(soft.assetid, soft.name, soft.version, soft.developer, soft.hard, soft.soft, soft.app, soft.datas, soft.userNum, soft.userRole, soft.model, soft.Cgrade, soft.Igrade, soft.Agrade);
     });
 
-    $('#elses-modal').modal({
+    $('#soft-modal').modal({
         relatedTarget: this,
-        onConfirm: function() {
-            return edit_elses(id);
+        onConfirm: function () {
+            return edit_soft(id);
         },
-        onCancel: function() {
+        onCancel: function () {
         }
     });
 }
 
+function detail (id) {
+    var mydata = {};
+    mydata['softid'] = id;
+    my_ajax('/sur/software/get', 'get', mydata, function (soft) {
+        return set_detail_data(soft.assetid, soft.softtype, soft.name, soft.version, soft.developer, soft.hard, soft.soft, soft.app, soft.datas, soft.userNum, soft.userRole, soft.model, soft.Cgrade, soft.Igrade, soft.Agrade);
+    });
+    $('#detail-modal').modal({
+        relatedTarget: this
+    })
+}
+
 function add_soft () {
-    var params = get_elses_data();
+    var params = get_soft_data();
     params['editType'] = 'add';
-    return submit_form('/sur/elses', 'post', params);
+    return submit_form('/sur/software', 'post', params);
 }
 
 function edit_soft (id) {
-    var params = get_elses_data();
+    var params = get_soft_data();
     params['editType'] = 'edit';
-    params['elseid'] = id;
-    return submit_form('/sur/elses', 'post', params);
+    params['softid'] = id;
+    return submit_form('/sur/software', 'post', params);
 }
 
 function del_soft (id) {
     var params = {};
     params['editType'] = 'del';
-    params['elseid'] = id;
-    return submit_form('/sur/elses', 'post', params);
+    params['softid'] = id;
+    return submit_form('/sur/software', 'post', params);
 }
 
-function get_elses_data () {
+function get_soft_data () {
     var res = {};
+    res['softtype'] = $("input[name='softtype']:checked").val();
     res['assetid'] = $('#assetid').val();
     res['name'] = $('#name').val();
-    res['theDesc'] = $('#theDesc').val();
-    res['lib'] = $('#lib').val();
-    res['import'] = $('#import').val();
+    res['version'] = $('#version').val();
+    res['developer'] = $('#developer').val();
+    res['hard'] = $('#hard').val();
+    res['soft'] = $('#soft').val();
+    res['app'] = $('#app').val();
+    res['datas'] = $('#datas').val();
+    res['userNum'] = $('#userNum').val();
+    res['userRole'] = $('#userRole').val();
+    if ($('#model').text() == 'B/S') {
+        res['model'] = 1;
+    }
+    else {
+        res['model'] = 2;
+    }
+    res['Cgrade'] = $('#Cgrade').val();
+    res['Igrade'] = $('#Igrade').val();
+    res['Agrade'] = $('#Agrade').val();
     return res;
 }
 
-function set_elses_data (assetid, name, desc, lib, dimport) {
+function set_soft_data (assetid, name, version, developer, hard, soft, app, datas, userNum, userRole, model, Cgrade, Igrade, Agrade) {
     var assetid = assetid || '';
     $('#assetid').val(assetid);
 
     var name = name || '';
     $('#name').val(name);
 
-    var theDesc = desc || '';
-    $('#theDesc').val(theDesc);
+    var version = version || '';
+    $('#version').val(version);
 
-    var lib = lib || '';
-    $('#lib').val(lib);
+    var developer = developer || '';
+    $('#developer').val(developer);
 
-    var theImport = dimport || 1;
-    $('#import').val(theImport);
+    var hard = hard || '';
+    $('#hard').val(hard);
+
+    var soft = soft || '';
+    $('#soft').val(soft);
+
+    var app = app || '';
+    $('#app').val(app);
+
+    var datas = datas || '';
+    $('#datas').val(datas);
+
+    var userNum = userNum || '';
+    $('#userNum').val(userNum);
+
+    var userRole = userRole || '';
+    $('#userRole').val(userRole);
+
+    var model = model || 1;
+    change_model(model);
 }
 
+function set_detail_data (assetid, softtype, name, version, developer, hard, soft, app, datas, userNum, userRole, modelid, Cgrade, Igrade, Agrade) {
+    var assetid = assetid || '';
+    $('#detail-assetid').text(assetid);
+
+    var softtype = softtype || 'error!';
+    $('#detail-softtype').text(softtype);
+
+    var name = name || '';
+    $('#detail-name').text(name);
+
+    var version = version || '';
+    $('#detail-version').text(version);
+
+    var developer = developer || '';
+    $('#detail-developer').text(developer);
+
+    var hard = hard || '';
+    $('#detail-hard').text(hard);
+
+    var soft = soft || '';
+    $('#detail-soft').text(soft);
+
+    var app = app || '';
+    $('#detail-app').text(app);
+
+    var datas = datas || '';
+    $('#detail-datas').text(datas);
+
+    var userNum = userNum || '';
+    $('#detail-userNum').text(userNum);
+
+    var userRole = userRole || '';
+    $('#detail-userRole').text(userRole);
+
+    var model = 'error!';
+    if (modelid == '1') {
+        model = 'B/S';
+    }
+    else {
+        model = 'C/S';
+    }
+    $('#detail-model').text(model);
+
+    var Cgrade = Cgrade || '';
+    $('#detail-Cgrade').text(Cgrade);
+
+    var Igrade = Igrade || '';
+    $('#detail-Igrade').text(Igrade);
+
+    var Agrade = Agrade || '';
+    $('#detail-Agrade').text(Agrade);
+}
+
+function change_model (modelid) {
+    modelid = parseInt(modelid);
+    switch (modelid) {
+        case 1: {
+            $('#model').text('B/S');
+            break;
+        }
+        case 2: {
+            $('#model').text('C/S');
+            break;
+        }
+        default: {
+            alert(typeof(modelid));
+        }
+    }
+}
 </script>
 </body>
 </html>

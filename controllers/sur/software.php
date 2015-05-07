@@ -47,13 +47,27 @@ class Software extends CI_Controller
         $this->data['count'] = $this->objSoftwareModel->get_softwares_count($pid, $softtype);
         $this->data['pageNo'] = $pageNo;
 
+        $tmp = array();
+        foreach ($this->data['softtype'] as $s) {
+            $tmp[$s['id']] = $s['name'];
+        }
+        foreach ($this->data['software'] as $key => $s) {
+            $this->data['software'][$key]['softtype'] = $tmp[$s['kid']];
+        }
+
         $this->load->view('sur/software', $this->data);
     }
 
     public function get()
     {
-        $id = isset($_GET['personid']) ? $_GET['personid'] : 0;
-        $res = $this->objPersonModel->get_person($id);
+        $id = isset($_GET['softid']) ? $_GET['softid'] : 0;
+        $res = $this->objSoftwareModel->get_software($id);
+        $tmp = $this->objSofttypeModel->get_softtype();
+        foreach ($tmp as $t) {
+            if ($t['id'] == $res['kid']) {
+                $res['softtype'] = $t['name'];
+            }
+        }
         echo json_encode($res);
     }
 

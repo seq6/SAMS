@@ -24,7 +24,7 @@
             <a href="/pre/information">
               <?php
                 $light = (isset($_SESSION['project']['info']) && $_SESSION['project']['info'] == 1) ? ' admin-icon-yellow' : '';
-                echo '<span class="am-icon-check-circle'.$light.'"></span> 项目信息';
+                echo '<span class="am-icon-check-circle'.$light.'"></span>&nbsp;&nbsp;项目信息';
               ?>
             </a>
           </li>
@@ -32,7 +32,7 @@
             <a href="/pre/member">
               <?php
                 $light = (isset($_SESSION['project']['memberNum']) && $_SESSION['project']['memberNum'] != 0) ? ' admin-icon-yellow' : '';
-                echo '<span class="am-icon-check-circle'.$light.'"></span> 项目人员';
+                echo '<span class="am-icon-check-circle'.$light.'"></span>&nbsp;&nbsp;项目人员';
               ?>
             </a>
           </li>
@@ -40,20 +40,20 @@
             <a href="/pre/parts">
               <?php
                 $light = (isset($_SESSION['project']['part']) && $_SESSION['project']['part'] == 1) ? ' admin-icon-yellow' : '';
-                echo '<span class="am-icon-check-circle'.$light.'"></span> 评估双方';
+                echo '<span class="am-icon-check-circle'.$light.'"></span>&nbsp;&nbsp;评估双方';
               ?>
             </a>
           </li>
           <li>
             <a href="/pre/other">
-              <span class="am-icon-check-circle admin-icon-yellow"></span> 其他任务
+              <span class="am-icon-check-circle admin-icon-yellow"></span>&nbsp;&nbsp;其他任务
             </a>
           </li>
           <li>
             <a href="/pre/start">
               <?php
                 $light = (isset($_SESSION['project']['status']) && $_SESSION['project']['status'] != 0) ? ' admin-icon-yellow' : '';
-                echo '<span class="am-icon-check-circle'.$light.'"></span> 项目启动';
+                echo '<span class="am-icon-check-circle'.$light.'"></span>&nbsp;&nbsp;项目启动';
               ?>
             </a>
           </li>
@@ -64,32 +64,32 @@
         <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-sur-nav">
           <li>
             <a href="/sur/hardware">
-              <span class="am-icon-check-circle"></span> 硬件资源
+              <span class="am-icon-desktop"></span>&nbsp;&nbsp;硬件资源
             </a>
           </li>
           <li>
             <a href="/sur/software">
-              <span class="am-icon-check-circle"></span> 软件资源
+              <span class="am-icon-beer"></span>&nbsp;&nbsp;软件资源
             </a>
           </li>
           <li>
             <a href="/sur/person">
-              <span class="am-icon-check-circle"></span> 人员资源
+              <span class="am-icon-users"></span>&nbsp;&nbsp;人员资源
             </a>
           </li>
           <li>
             <a href="/sur/document">
-              <span class="am-icon-check-circle"></span> 数据文档
+              <span class="am-icon-file-text"></span>&nbsp;&nbsp;数据文档
             </a>
           </li>
           <li>
             <a href="/sur/sever">
-              <span class="am-icon-check-circle"></span> 服务资产
+              <span class="am-icon-coffee"></span>&nbsp;&nbsp;服务资产
             </a>
           </li>
           <li>
             <a href="/sur/elses">
-              <span class="am-icon-check-circle"></span> 其他资产
+              <span class="am-icon-ellipsis-h"></span>&nbsp;&nbsp;其他资产
             </a>
           </li>
         </ul>
