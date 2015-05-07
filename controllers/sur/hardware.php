@@ -40,7 +40,7 @@ class Hardware extends CI_Controller
         $pageNo = isset($_GET['pageNo']) ? $_GET['pageNo'] : 1;
         $limit = 10;
         $offset = ($pageNo - 1) * $limit;
-        $this->data['software'] = $this->objHardwareModel->get_hardwares($pid, $limit, $offset, $hardtype);
+        $this->data['hardware'] = $this->objHardwareModel->get_hardwares($pid, $limit, $offset, $hardtype);
 
         $this->data['hardtype'] = $this->objHardtypeModel->get_hardtype();
         $this->data['ht'] = $hardtype;
