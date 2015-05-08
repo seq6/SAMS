@@ -48,7 +48,7 @@ class Hardware_model extends Base_model
         }
     }
 
-    public function add_hardware($pid = 0, $assetid = '', $kid = 1, $name = '', $model = '', $place = '', $net = '', $ip = '', $mask = '', $geteway = '', $os = '', $osSoft = '', $portType = '', $portNum = '', $main = '', $datas = '', $ha = 0, $Cgrade = 1, $Igrade = 1, $Agrade = 1)
+    public function add_hardware($pid = 0, $assetid = '', $kid = 1, $name = '', $model = '', $place = '', $net = '', $ip = '', $mask = '', $gateway = '', $os = '', $osSoft = '', $portType = '', $portNum = '', $main = '', $datas = '', $ha = 0, $Cgrade = 1, $Igrade = 1, $Agrade = 1)
     {
         $newHard = array(   'pid'     => $pid,
                             'assetid' => $assetid,
@@ -59,7 +59,7 @@ class Hardware_model extends Base_model
                             'net'     => $net,
                             'ip'      => $ip,
                             'mask'    => $mask,
-                            'geteway' => $geteway,
+                            'gateway' => $gateway,
                             'os'      => $os,
                             'osSoft'  => $osSoft,
                             'portType'=> $portType,
@@ -78,7 +78,7 @@ class Hardware_model extends Base_model
         return $this->delete_item(array('id' => $id));
     }
 
-    public function update_hardware($id = 0, $pid = 0, $assetid = '', $kid = 1, $name = '', $model = '', $place = '', $net = '', $ip = '', $mask = '', $geteway = '', $os = '', $osSoft = '', $portType = '', $portNum = '', $main = '', $datas = '', $ha = 0, $Cgrade = 1, $Igrade = 1, $Agrade = 1)
+    public function update_hardware($id = 0, $pid = 0, $assetid = '', $kid = 1, $name = '', $model = '', $place = '', $net = '', $ip = '', $mask = '', $gateway = '', $os = '', $osSoft = '', $portType = '', $portNum = '', $main = '', $datas = '', $ha = 0, $Cgrade = 1, $Igrade = 1, $Agrade = 1)
     {
         $newHard = array(   'pid'     => $pid,
                             'assetid' => $assetid,
@@ -89,7 +89,7 @@ class Hardware_model extends Base_model
                             'net'     => $net,
                             'ip'      => $ip,
                             'mask'    => $mask,
-                            'geteway' => $geteway,
+                            'gateway' => $gateway,
                             'os'      => $os,
                             'osSoft'  => $osSoft,
                             'portType'=> $portType,

@@ -166,26 +166,26 @@
                     }
                     $allPage = ($count != 0) ? (int)(($count - 1) / 10 + 1) : 1;
                     if ($pageNo != 1) {
-                        echo '<li><a href="/sur/hardware?pageNo=1&st='.$st.'">&laquo;</a></li>';
+                        echo '<li><a href="/sur/hardware?pageNo=1&ht='.$ht.'">&laquo;</a></li>';
                     }
                     else {
-                        echo '<li class="am-disabled"><a href="/sur/hardware?pageNo=1&st='.$st.'">&laquo;</a></li>';
+                        echo '<li class="am-disabled"><a href="/sur/hardware?pageNo=1&ht='.$ht.'">&laquo;</a></li>';
                     }
                     $startNo = ($pageNo - 2) >= 1 ? ($pageNo - 2) : 1;
                     $endNo = ($pageNo + 2) <= $allPage ? ($pageNo + 2) : $allPage;
                     for ($i = $startNo; $i <= $endNo; $i++) {
                         if ($i == $pageNo) {
-                            echo '<li class="am-active"><a href="/sur/hardware?pageNo='.$i.'&st='.$st.'">'.$i.'</a></li>';
+                            echo '<li class="am-active"><a href="/sur/hardware?pageNo='.$i.'&ht='.$ht.'">'.$i.'</a></li>';
                         }
                         else {
-                            echo '<li><a href="/sur/hardware?pageNo='.$i.'&st='.$st.'">'.$i.'</a></li>';
+                            echo '<li><a href="/sur/hardware?pageNo='.$i.'&ht='.$ht.'">'.$i.'</a></li>';
                         }
                     }
                     if ($pageNo != $allPage) {
-                        echo '<li><a href="/sur/hardware?pageNo='.$allPage.'&st='.$st.'">&raquo;</a></li>';
+                        echo '<li><a href="/sur/hardware?pageNo='.$allPage.'&ht='.$ht.'">&raquo;</a></li>';
                     }
                     else {
-                        echo '<li class="am-disabled"><a href="/sur/hardware?pageNo='.$allPage.'&st='.$st.'">&raquo;</a></li>';
+                        echo '<li class="am-disabled"><a href="/sur/hardware?pageNo='.$allPage.'&ht='.$ht.'">&raquo;</a></li>';
                     }
                 ?>
               </ul>
@@ -234,13 +234,17 @@
           <input id="model" name="model" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入设备型号...">
           <input id="place" name="place" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入物理位置...">
           <input id="net" name="net" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入网络区域...">
-          <input id="ip" name="ip" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入ip地址...">
-          <input id="mask" name="mask" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入掩码...">
-          <input id="gateway" name="gateway" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入网关...">
+          <ul class="am-avg-lg-3">
+            <li><input id="ip" name="ip" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入ip地址..."></li>
+            <li><input id="mask" name="mask" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入掩码..."></li>
+            <li><input id="gateway" name="gateway" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入网关..."></li>
+          </ul>
           <input id="os" name="os" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入操作系统/运行平台+版本...">
           <input id="osSoft" name="osSoft" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入系统软件+版本...">
-          <input id="portType" name="portType" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入端口类型...">
-          <input id="portNum" name="portNum" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入端口数量...">
+          <ul class="am-avg-lg-2">
+            <li><input id="portType" name="portType" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入端口类型..."></li>
+            <li><input id="portNum" name="portNum" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入端口数量..."></li>
+          </ul>
           <input id="main" name="main" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入主要用途(主要业务)...">
           <input id="datas" name="datas" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入涉及数据...">
         </div>
@@ -412,7 +416,7 @@ function edit (id) {
     var mydata = {};
     mydata['hardid'] = id;
     my_ajax('/sur/hardware/get', 'get', mydata, function (hard) {
-        return set_hard_data(hard.assetid, hard.hardtype, hard.name, hard.model, hard.place, hard.net, hard.ip, hard.mask, hard.geteway, hard.os, hard.osSoft, hard.portType, hard.portNum, hard.main, hard.datas, hard.ha, hard.Cgrade, hard.Igrade, hard.Agrade);
+        return set_hard_data(hard.assetid, hard.hardtype, hard.name, hard.model, hard.place, hard.net, hard.ip, hard.mask, hard.gateway, hard.os, hard.osSoft, hard.portType, hard.portNum, hard.main, hard.datas, hard.ha, hard.Cgrade, hard.Igrade, hard.Agrade);
     });
 
     $('#hard-modal').modal({
@@ -429,7 +433,7 @@ function detail (id) {
     var mydata = {};
     mydata['hardid'] = id;
     my_ajax('/sur/hardware/get', 'get', mydata, function (hard) {
-        return set_detail_data(hard.assetid, hard.hardtype, hard.name, hard.model, hard.place, hard.net, hard.ip, hard.mask, hard.geteway, hard.os, hard.osSoft, hard.portType, hard.portNum, hard.main, hard.datas, hard.ha, hard.Cgrade, hard.Igrade, hard.Agrade);
+        return set_detail_data(hard.assetid, hard.hardtype, hard.name, hard.model, hard.place, hard.net, hard.ip, hard.mask, hard.gateway, hard.os, hard.osSoft, hard.portType, hard.portNum, hard.main, hard.datas, hard.ha, hard.Cgrade, hard.Igrade, hard.Agrade);
     });
     $('#detail-modal').modal({
         relatedTarget: this
@@ -456,7 +460,7 @@ function del_hard (id) {
     return submit_form('/sur/hardware', 'post', params);
 }
 
-function get_soft_data () {
+function get_hard_data () {
     var res = {};
     res['hardtype'] = $("input[name='hardtype']:checked").val();
     res['assetid'] = $('#assetid').val();
@@ -466,7 +470,7 @@ function get_soft_data () {
     res['net'] = $('#net').val();
     res['ip'] = $('#ip').val();
     res['mask'] = $('#mask').val();
-    res['geteway'] = $('#geteway').val();
+    res['gateway'] = $('#gateway').val();
     res['os'] = $('#os').val();
     res['osSoft'] = $('#osSoft').val();
     res['portType'] = $('#portType').val();
@@ -485,7 +489,7 @@ function get_soft_data () {
     return res;
 }
 
-function set_hard_data (assetid, hardtype, name, model, place, net, ip, mask, geteway, os, osSoft, portType, portNum, main, datas, ha, Cgrade, Igrade, Agrade) {
+function set_hard_data (assetid, hardtype, name, model, place, net, ip, mask, gateway, os, osSoft, portType, portNum, main, datas, ha, Cgrade, Igrade, Agrade) {
     var assetid = assetid || '';
     $('#assetid').val(assetid);
 
@@ -507,8 +511,8 @@ function set_hard_data (assetid, hardtype, name, model, place, net, ip, mask, ge
     var mask = mask || '';
     $('#mask').val(mask);
 
-    var geteway = geteway || '';
-    $('#geteway').val(geteway);
+    var gateway = gateway || '';
+    $('#gateway').val(gateway);
 
     var os = os || '';
     $('#os').val(os);
@@ -528,10 +532,11 @@ function set_hard_data (assetid, hardtype, name, model, place, net, ip, mask, ge
     var datas = datas || '';
     $('#datas').val(datas);
 
-    change_ha(ha);
+    var ha = ha || 'error!';
+    $('#ha').text(ha);
 }
 
-function set_detail_data (assetid, hardtype, name, model, place, net, ip, mask, geteway, os, osSoft, portType, portNum, main, datas, ha, Cgrade, Igrade, Agrade) {
+function set_detail_data (assetid, hardtype, name, model, place, net, ip, mask, gateway, os, osSoft, portType, portNum, main, datas, ha, Cgrade, Igrade, Agrade) {
     var assetid = assetid || '-';
     $('#detail-assetid').text(assetid);
 
@@ -552,8 +557,8 @@ function set_detail_data (assetid, hardtype, name, model, place, net, ip, mask, 
 
     var ip = ip || '-';
     var mask = mask || '-';
-    var geteway = geteway || '-';
-    $('#detail-ipmagw').text(ip + '|' + mask + '|' + geteway);
+    var gateway = gateway || '-';
+    $('#detail-ipmagw').text(ip + '|' + mask + '|' + gateway);
 
     var os = os || '';
     $('#detail-os').text(os);
@@ -586,6 +591,7 @@ function set_detail_data (assetid, hardtype, name, model, place, net, ip, mask, 
 
 function change_ha (ha) {
     var haid = parseInt(ha);
+    alert(ha);
     switch (haid) {
         case 0: {
             $('#ha').text('否');

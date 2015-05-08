@@ -61,14 +61,18 @@ class Hardware extends CI_Controller
 
     public function get()
     {
-        $id = isset($_GET['personid']) ? $_GET['personid'] : 0;
+        $id = isset($_GET['hardid']) ? $_GET['hardid'] : 0;
         $res = $this->objHardwareModel->get_hardware($id);
+        
         $tmp = $this->objHardtypeModel->get_hardtype();
         foreach ($tmp as $t) {
             if ($t['id'] == $res['kid']) {
                 $res['hardtype'] = $t['name'];
             }
         }
+
+        $res['ha'] = ($res['ha'] == 1) ? '是' : '否';
+
         echo json_encode($res);
     }
 
@@ -79,12 +83,13 @@ class Hardware extends CI_Controller
         $id       = isset($_POST['hardid'])   ? $_POST['hardid']   : 0;
         $assetid  = isset($_POST['assetid'])  ? $_POST['assetid']  : '';
         $kid      = isset($_POST['hardtype']) ? $_POST['hardtype'] : 1;
+        $name     = isset($_POST['name'])     ? $_POST['name']     : 1;
         $model    = isset($_POST['model'])    ? $_POST['model']    : '';
         $place    = isset($_POST['place'])    ? $_POST['place']    : '';
         $net      = isset($_POST['net'])      ? $_POST['net']      : '';
         $ip       = isset($_POST['ip'])       ? $_POST['ip']       : '';
         $mask     = isset($_POST['mask'])     ? $_POST['mask']     : '';
-        $geteway  = isset($_POST['geteway'])  ? $_POST['geteway']  : '';
+        $gateway  = isset($_POST['gateway'])  ? $_POST['gateway']  : '';
         $os       = isset($_POST['os'])       ? $_POST['os']       : '';
         $osSoft   = isset($_POST['osSoft'])   ? $_POST['osSoft']   : '';
         $portType = isset($_POST['portType']) ? $_POST['portType'] : '';
@@ -99,7 +104,7 @@ class Hardware extends CI_Controller
         $errorNo = 0;
         switch ($editType) {
             case 'add': {
-                $res = $this->objHardwareModel->add_hardware($pid, $assetid, $kid, $name, $model, $place, $net, $ip, $mask, $geteway, $os, $osSoft, $portType, $portNum, $main, $datas, $ha, $Cgrade, $Igrade, $Agrade);
+                $res = $this->objHardwareModel->add_hardware($pid, $assetid, $kid, $name, $model, $place, $net, $ip, $mask, $gateway, $os, $osSoft, $portType, $portNum, $main, $datas, $ha, $Cgrade, $Igrade, $Agrade);
                 if ($res != false) {
                     $errorNo = 1;
                 }
@@ -113,7 +118,7 @@ class Hardware extends CI_Controller
                 break;
             }
             case 'edit': {
-                $res = $this->objHardwareModel->update_hardware($id, $pid, $assetid, $kid, $name, $model, $place, $net, $ip, $mask, $geteway, $os, $osSoft, $portType, $portNum, $main, $datas, $ha, $Cgrade, $Igrade, $Agrade);
+                $res = $this->objHardwareModel->update_hardware($id, $pid, $assetid, $kid, $name, $model, $place, $net, $ip, $mask, $gateway, $os, $osSoft, $portType, $portNum, $main, $datas, $ha, $Cgrade, $Igrade, $Agrade);
                 if ($res != false) {
                     $errorNo = 1;
                 }
