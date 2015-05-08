@@ -231,39 +231,55 @@
         <div class="am-u-sm-12 am-u-md-12 am-u-sm-centered">
           <input id="assetid" name="assetid" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入编号...">
           <input id="name" name="name" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入名称...">
-          <input id="version" name="version" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入版本...">
-          <input id="developer" name="developer" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入开发商...">
-          <input id="app" name="app" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入涉及应用系统...">
-          <input id="hard" name="hard" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入涉及硬件平台...">
-          <input id="soft" name="soft" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入涉及软件平台...">
+          <input id="model" name="model" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入设备型号...">
+          <input id="place" name="place" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入物理位置...">
+          <input id="net" name="net" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入网络区域...">
+          <input id="ip" name="ip" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入ip地址...">
+          <input id="mask" name="mask" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入掩码...">
+          <input id="gateway" name="gateway" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入网关...">
+          <input id="os" name="os" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入操作系统/运行平台+版本...">
+          <input id="osSoft" name="osSoft" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入系统软件+版本...">
+          <input id="portType" name="portType" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入端口类型...">
+          <input id="portNum" name="portNum" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入端口数量...">
+          <input id="main" name="main" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入主要用途(主要业务)...">
           <input id="datas" name="datas" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入涉及数据...">
-          <input id="userNum" name="userNum" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入现用用户数量...">
-          <input id="userRole" name="userRole" type="text" maxlength="20" class="am-form-field am-modal-prompt-input" placeholder="请输入主要用户角色...">
+        </div>
+      </div>
+      <div class="am-g am-margin-top">
+        <div class="am-u-sm-4 am-u-md-4 am-text-centered">是否热备：</div>
+        <div class="am-u-sm-2 am-u-md-2 am-text-left">
+          <label id="ha">否</label>
+        </div>
+        <div class="am-u-sm-6 am-u-md-6 am-text-left">
+          <div class="am-btn-group am-btn-group-xs">
+            <button type="button" onclick="change_ha(1)" class="am-btn am-btn-primary am-round">&nbsp;&nbsp;是&nbsp;&nbsp;</button>
+            <button type="button" onclick="change_ha(0)" class="am-btn am-btn-danger am-round">&nbsp;&nbsp;否&nbsp;&nbsp;</button>
+          </div>
         </div>
       </div>
       <!--assetid end default-->
       <div class="am-btn-group doc-js-btn-1" data-am-button>
         <select id="Cgrade" name="Cgrade" data-am-selected="{btnWidth: 150, btnSize: 'sm', dropUp: 1}">
-            <option value="1">机密性:1</option>
-            <option value="2">机密性:2</option>
-            <option value="3">机密性:3</option>
-            <option value="4">机密性:4</option>
-            <option value="5">机密性:5</option>
-          </select>
-          <select id="Igrade" name="Igrade" data-am-selected="{btnWidth: 150, btnSize: 'sm', dropUp: 1}">
-            <option value="1">完整性:1</option>
-            <option value="2">完整性:2</option>
-            <option value="3">完整性:3</option>
-            <option value="4">完整性:4</option>
-            <option value="5">完整性:5</option>
-          </select>
-          <select id="Agrade" name="Agrade" data-am-selected="{btnWidth: 150, btnSize: 'sm', dropUp: 1}">
-            <option value="1">可用性:1</option>
-            <option value="2">可用性:2</option>
-            <option value="3">可用性:3</option>
-            <option value="4">可用性:4</option>
-            <option value="5">可用性:5</option>
-          </select>
+          <option value="1">机密性:1</option>
+          <option value="2">机密性:2</option>
+          <option value="3">机密性:3</option>
+          <option value="4">机密性:4</option>
+          <option value="5">机密性:5</option>
+        </select>
+        <select id="Igrade" name="Igrade" data-am-selected="{btnWidth: 150, btnSize: 'sm', dropUp: 1}">
+          <option value="1">完整性:1</option>
+          <option value="2">完整性:2</option>
+          <option value="3">完整性:3</option>
+          <option value="4">完整性:4</option>
+          <option value="5">完整性:5</option>
+        </select>
+        <select id="Agrade" name="Agrade" data-am-selected="{btnWidth: 150, btnSize: 'sm', dropUp: 1}">
+          <option value="1">可用性:1</option>
+          <option value="2">可用性:2</option>
+          <option value="3">可用性:3</option>
+          <option value="4">可用性:4</option>
+          <option value="5">可用性:5</option>
+        </select>
       </div>
     </div>
     <div class="am-modal-footer">
@@ -272,10 +288,10 @@
     </div>
   </div>
 </div>
-<!--soft modal end-->
+<!--hard modal end-->
 
-<!--delete soft modal-->
-<div class="am-modal am-modal-prompt" id="del-soft-modal">
+<!--delete hard modal-->
+<div class="am-modal am-modal-prompt" id="del-hard-modal">
   <div class="am-modal-dialog">
     <div id="del-modal-title" class="am-modal-hd">删除资产</div>
       <div class="am-modal-bd">
@@ -287,7 +303,7 @@
     </div>
   </div>
 </div>
-<!--delete soft modal end-->
+<!--delete hard modal end-->
 
 <!--detail modal-->
 <div class="am-modal am-modal-prompt" id="detail-modal">
@@ -296,38 +312,22 @@
     <div class="am-modal-bd">
       <div class="am-g am-margin-top">
         <div class="am-u-sm-5 am-u-md-5 am-text-right">
-          <strong>资产编号</strong>
-          <br/>
-          <strong>硬件种类</strong>
-          <br/>
-          <strong>硬件名称</strong>
-          <br/>
-          <strong>型号</strong>
-          <br/>
-          <strong>物理位置</strong>
-          <br/>
-          <strong>所属网络</strong>
-          <br/>
-          <strong>IP地址/掩码/网关</strong>
-          <br/>
-          <strong>系统</strong>
-          <br/>
-          <strong>系统软件</strong>
-          <br/>
-          <strong>端口类型/数量</strong>
-          <br/>
-          <strong>主要用途</strong>
-          <br/>
-          <strong>涉及数据</strong>
-          <br/>
-          <strong>是否热备</strong>
-          <br/>
-          <strong>机密性</strong>
-          <br/>
-          <strong>完整性</strong>
-          <br/>
-          <strong>可用性</strong>
-          <br/>
+          <div><strong>资产编号</strong></div>
+          <div><strong>硬件种类</strong></div>
+          <div><strong>硬件名称</strong></div>
+          <div><strong>型号</strong></div>
+          <div><strong>物理位置</strong></div>
+          <div><strong>所属网络</strong></div>
+          <div><strong>IP地址/掩码/网关</strong></div>
+          <div><strong>系统</strong></div>
+          <div><strong>系统软件</strong></div>
+          <div><strong>端口类型/数量</strong></div>
+          <div><strong>主要用途</strong></div>
+          <div><strong>涉及数据</strong></div>
+          <div><strong>是否热备</strong></div>
+          <div><strong>机密性</strong></div>
+          <div><strong>完整性</strong></div>
+          <div><strong>可用性</strong></div>
         </div>
         <div class="am-u-sm-5 am-u-md-5 am-text-left">
           <div id="detail-assetid">资产编号</div>
@@ -412,7 +412,7 @@ function edit (id) {
     var mydata = {};
     mydata['hardid'] = id;
     my_ajax('/sur/hardware/get', 'get', mydata, function (hard) {
-        return set_hard_data();
+        return set_hard_data(hard.assetid, hard.hardtype, hard.name, hard.model, hard.place, hard.net, hard.ip, hard.mask, hard.geteway, hard.os, hard.osSoft, hard.portType, hard.portNum, hard.main, hard.datas, hard.ha, hard.Cgrade, hard.Igrade, hard.Agrade);
     });
 
     $('#hard-modal').modal({
@@ -429,7 +429,7 @@ function detail (id) {
     var mydata = {};
     mydata['hardid'] = id;
     my_ajax('/sur/hardware/get', 'get', mydata, function (hard) {
-        return set_detail_data();
+        return set_detail_data(hard.assetid, hard.hardtype, hard.name, hard.model, hard.place, hard.net, hard.ip, hard.mask, hard.geteway, hard.os, hard.osSoft, hard.portType, hard.portNum, hard.main, hard.datas, hard.ha, hard.Cgrade, hard.Igrade, hard.Agrade);
     });
     $('#detail-modal').modal({
         relatedTarget: this
@@ -461,26 +461,118 @@ function get_soft_data () {
     res['hardtype'] = $("input[name='hardtype']:checked").val();
     res['assetid'] = $('#assetid').val();
     res['name'] = $('#name').val();
+    res['model'] = $('#model').val();
+    res['place'] = $('#place').val();
+    res['net'] = $('#net').val();
+    res['ip'] = $('#ip').val();
+    res['mask'] = $('#mask').val();
+    res['geteway'] = $('#geteway').val();
+    res['os'] = $('#os').val();
+    res['osSoft'] = $('#osSoft').val();
+    res['portType'] = $('#portType').val();
+    res['portNum'] = $('#portNum').val();
+    res['main'] = $('#main').val();
+    res['datas'] = $('#datas').val();
+    if ($('#ha').text() == '是') {
+        res['ha'] = 1;
+    }
+    else {
+        res['ha'] = 0;
+    }
+    res['Cgrade'] = $('#Cgrade').val();
+    res['Igrade'] = $('#Igrade').val();
+    res['Agrade'] = $('#Agrade').val();
     return res;
 }
 
-function set_hard_data (assetid, name, Cgrade, Igrade, Agrade) {
+function set_hard_data (assetid, hardtype, name, model, place, net, ip, mask, geteway, os, osSoft, portType, portNum, main, datas, ha, Cgrade, Igrade, Agrade) {
     var assetid = assetid || '';
     $('#assetid').val(assetid);
 
     var name = name || '';
     $('#name').val(name);
+
+    var model = model || '';
+    $('#model').val(model);
+
+    var place = place || '';
+    $('#place').val(place);
+
+    var net = net || '';
+    $('#net').val(net);
+
+    var ip = ip || '';
+    $('#ip').val(ip);
+
+    var mask = mask || '';
+    $('#mask').val(mask);
+
+    var geteway = geteway || '';
+    $('#geteway').val(geteway);
+
+    var os = os || '';
+    $('#os').val(os);
+
+    var osSoft = osSoft || '';
+    $('#osSoft').val(osSoft);
+
+    var portType = portType || '';
+    $('#portType').val(portType);
+
+    var portNum = portNum || '';
+    $('#portNum').val(portNum);
+
+    var main = main || '';
+    $('#main').val(main);
+
+    var datas = datas || '';
+    $('#datas').val(datas);
+
+    change_ha(ha);
 }
 
-function set_detail_data (assetid, hardtype, name, Cgrade, Igrade, Agrade) {
-    var assetid = assetid || '';
+function set_detail_data (assetid, hardtype, name, model, place, net, ip, mask, geteway, os, osSoft, portType, portNum, main, datas, ha, Cgrade, Igrade, Agrade) {
+    var assetid = assetid || '-';
     $('#detail-assetid').text(assetid);
 
     var hardtype = hardtype || 'error!';
     $('#detail-hardtype').text(hardtype);
 
-    var name = name || '';
+    var name = name || '-';
     $('#detail-name').text(name);
+
+    var model = model || '-';
+    $('#detail-model').text(model);
+
+    var place = place || '-';
+    $('#detail-place').text(place);
+
+    var net = net || '-';
+    $('#detail-net').text(net);
+
+    var ip = ip || '-';
+    var mask = mask || '-';
+    var geteway = geteway || '-';
+    $('#detail-ipmagw').text(ip + '|' + mask + '|' + geteway);
+
+    var os = os || '';
+    $('#detail-os').text(os);
+
+    var osSoft = osSoft || '';
+    $('#detail-osSoft').text(osSoft);
+
+    var portType = portType || '';
+    var portNum = portNum || '';
+    $('#detail-port').text(portType + '|' + portNum);
+
+    var main = main || '';
+    $('#detail-main').text(main);
+
+    var datas = datas || '';
+    $('#detail-datas').text(datas);
+
+    var ha = ha || '';
+    $('#detail-ha').text(ha);
 
     var Cgrade = Cgrade || '';
     $('#detail-Cgrade').text(Cgrade);
@@ -490,6 +582,24 @@ function set_detail_data (assetid, hardtype, name, Cgrade, Igrade, Agrade) {
 
     var Agrade = Agrade || '';
     $('#detail-Agrade').text(Agrade);
+}
+
+function change_ha (ha) {
+    var haid = parseInt(ha);
+    switch (haid) {
+        case 0: {
+            $('#ha').text('否');
+            break;
+        }
+        case 1: {
+            $('#ha').text('是');
+            break;
+        }
+        default: {
+            $('#ha').text('error!');
+            break;
+        }
+    }
 }
 
 </script>

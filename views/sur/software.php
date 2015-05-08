@@ -206,12 +206,24 @@
     <div class="am-modal-bd">
       <!--softtype-->
       <div class="am-btn-group doc-js-btn-1" data-am-button>
-        <label class="am-btn am-btn-default am-active">
-          <input type="radio" name="softtype" value="1" id="softtype1" checked="checked">系统软件
-        </label>
-        <label class="am-btn am-btn-default">
-          <input type="radio" name="softtype" value="2" id="softtype2">应用软件
-        </label>
+      <?php
+        if (isset($softtype) && !empty($softtype)) {
+            $i = 1;
+            foreach ($softtype as $s) {
+                if ($i == 1) {
+                    echo '<label class="am-btn am-btn-default am-active">
+                            <input type="radio" name="softtype" value="'.$s['id'].'" checked="checked">'.$s['name'].'
+                          </label>';
+                }
+                else {
+                    echo '<label class="am-btn am-btn-default">
+                            <input type="radio" name="softtype" value="'.$s['id'].'">'.$s['name'].'
+                          </label>';
+                }
+                $i++;
+            }
+        }
+      ?>
       </div>
       <!--softtype end-->
       <!--assetid-->
@@ -296,36 +308,21 @@
     <div class="am-modal-bd">
       <div class="am-g am-margin-top">
         <div class="am-u-sm-5 am-u-md-5 am-text-right">
-          <strong>资产编号</strong>
-          <br/>
-          <strong>软件种类</strong>
-          <br/>
-          <strong>软件名称</strong>
-          <br/>
-          <strong>版本</strong>
-          <br/>
-          <strong>开发商</strong>
-          <br/>
-          <strong>硬件平台</strong>
-          <br/>
-          <strong>软件平台</strong>
-          <br/>
-          <strong>涉及应用系统</strong>
-          <br/>
-          <strong>模式</strong>
-          <br/>
-          <strong>涉及数据</strong>
-          <br/>
-          <strong>现用用户数量</strong>
-          <br/>
-          <strong>主要用户角色</strong>
-          <br/>
-          <strong>机密性</strong>
-          <br/>
-          <strong>完整性</strong>
-          <br/>
-          <strong>可用性</strong>
-          <br/>
+          <div><strong>资产编号</strong></div>
+          <div><strong>软件种类</strong></div>
+          <div><strong>软件名称</strong></div>
+          <div><strong>版本</strong></div>
+          <div><strong>开发商</strong></div>
+          <div><strong>硬件平台</strong></div>
+          <div><strong>软件平台</strong></div>
+          <div><strong>涉及应用系统</strong></div>
+          <div><strong>模式</strong></div>
+          <div><strong>涉及数据</strong></div>
+          <div><strong>现用用户数量</strong></div>
+          <div><strong>主要用户角色</strong></div>
+          <div><strong>机密性</strong></div>
+          <div><strong>完整性</strong></div>
+          <div><strong>可用性</strong></div>
         </div>
         <div class="am-u-sm-5 am-u-md-5 am-text-left">
           <div id="detail-assetid">资产编号</div>

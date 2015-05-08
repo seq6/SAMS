@@ -47,6 +47,14 @@ class Hardware extends CI_Controller
         $this->data['count'] = $this->objHardwareModel->get_hardwares_count($pid, $hardtype);
         $this->data['pageNo'] = $pageNo;
 
+        $tmp = array();
+        foreach ($this->data['hardtype'] as $h) {
+            $tmp[$h['id']] = $h['name'];
+        }
+        foreach ($this->data['hardware'] as $key => $h) {
+            $this->data['hardware'][$key]['hardtype'] = $tmp[$h['kid']];
+        }
+
         $this->load->view('sur/hardware', $this->data);
     }
 
@@ -55,6 +63,12 @@ class Hardware extends CI_Controller
     {
         $id = isset($_GET['personid']) ? $_GET['personid'] : 0;
         $res = $this->objHardwareModel->get_hardware($id);
+        $tmp = $this->objHardtypeModel->get_hardtype();
+        foreach ($tmp as $t) {
+            if ($t['id'] == $res['kid']) {
+                $res['hardtype'] = $t['name'];
+            }
+        }
         echo json_encode($res);
     }
 
@@ -71,7 +85,7 @@ class Hardware extends CI_Controller
         $ip       = isset($_POST['ip'])       ? $_POST['ip']       : '';
         $mask     = isset($_POST['mask'])     ? $_POST['mask']     : '';
         $geteway  = isset($_POST['geteway'])  ? $_POST['geteway']  : '';
-        $os       = isset($_POST['os'])       ? $_POST['os']       : 1;
+        $os       = isset($_POST['os'])       ? $_POST['os']       : '';
         $osSoft   = isset($_POST['osSoft'])   ? $_POST['osSoft']   : '';
         $portType = isset($_POST['portType']) ? $_POST['portType'] : '';
         $portNum  = isset($_POST['portNum'])  ? $_POST['portNum']  : '';
