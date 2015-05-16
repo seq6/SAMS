@@ -80,6 +80,7 @@ class Member extends CI_Controller
 
         $errorNo = 0;
         switch ($editType) {
+            //添加新人员
             case 'add': {
                 $res = $this->objStaffModel->add_staff($pid, $partid, $name, $sex, $phone, $mobile, $email, $posid);
                 if ($res != false) {
@@ -87,6 +88,7 @@ class Member extends CI_Controller
                 }
                 break;
             }
+            //删除人员
             case 'del': {
                 $res = $this->objStaffModel->del_staff($id);
                 if ($res != false) {
@@ -94,6 +96,7 @@ class Member extends CI_Controller
                 }
                 break;
             }
+            //更新人员信息
             case 'edit': {
                 $res = $this->objStaffModel->update_staff($id, $pid, $partid, $name, $sex, $phone, $mobile, $email, $posid);
                 if ($res != false) {

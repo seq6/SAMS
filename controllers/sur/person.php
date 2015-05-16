@@ -30,12 +30,14 @@ class Person extends CI_Controller
             $this->form();
         }
 
+        //分页
         $pid = $_SESSION['project']['pid'];
         $pageNo = isset($_GET['pageNo']) ? $_GET['pageNo'] : 1;
         $limit = 10;
         $offset = ($pageNo - 1) * $limit;
         $this->data['person'] = $this->objPersonModel->get_persons($pid, $limit, $offset);
 
+        //性别信息
         foreach ($this->data['person'] as $key => $value) {
             if ($value['sex'] == '1') {
                 $this->data['person'][$key]['sex'] = '男';
@@ -53,6 +55,7 @@ class Person extends CI_Controller
 
     public function get()
     {
+        //获取单个人员的详细信息
         $id = isset($_GET['personid']) ? $_GET['personid'] : 0;
         $res = $this->objPersonModel->get_person($id);
         echo json_encode($res);
@@ -75,6 +78,7 @@ class Person extends CI_Controller
 
         $errorNo = 0;
         switch ($editType) {
+            //添加新人员信息
             case 'add': {
                 $res = $this->objPersonModel->add_person($pid, $assetid,$name, $sex, $post, $depart, $phone, $mobile, $email, $import);
                 if ($res != false) {
@@ -82,6 +86,7 @@ class Person extends CI_Controller
                 }
                 break;
             }
+            //删除人员信息
             case 'del': {
                 $res = $this->objPersonModel->del_person($id);
                 if ($res != false) {
@@ -89,6 +94,7 @@ class Person extends CI_Controller
                 }
                 break;
             }
+            //编辑人员信息
             case 'edit': {
                 $res = $this->objPersonModel->update_person($id, $pid, $assetid, $name, $sex, $post, $depart, $phone, $mobile, $email, $import);
                 if ($res != false) {

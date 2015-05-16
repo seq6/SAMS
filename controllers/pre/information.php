@@ -2,7 +2,7 @@
 
 /**
 * @author   zhangji
-* @desc     项目信息
+* @desc     项目基本信息
 */
 
 class Information extends CI_Controller
@@ -46,7 +46,7 @@ class Information extends CI_Controller
             $this->form();
         }
 
-        //设置session
+        //设置会话信息
         if (!isset($_SESSION['project'])) {
             $this->init_project();
         }
@@ -70,20 +70,21 @@ class Information extends CI_Controller
         $goal = isset($_POST['pjGoal']) ? $_POST['pjGoal'] : '';
         $desc = isset($_POST['pjDesc']) ? $_POST['pjDesc'] : '';
 
-        //
+        //判断必选
         if (!is_array($range) || !in_array('1', $range) || !in_array('4', $range) || !in_array('6', $range)) {
             $this->data['error'] = 2;
             return;
         }
 
-        //
-        $newData = array(   'name' => $name,
+        //更新数据
+        $newData = array(   'name'    => $name,
                             'theType' => $type,
-                            'theRange' => json_encode($range),
-                            'goal' => $goal,
+                            'theRange'=> json_encode($range),
+                            'goal'    => $goal,
                             'theDesc' => $desc);
         $res = $this->objProjectModel->update_project($pid, $newData);
 
+        //返回提示信息
         if ($res == false) {
             $this->data['error'] = 2;
         }

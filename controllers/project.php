@@ -2,7 +2,7 @@
 
 /**
 * @author   zhangji
-* @desc     项目列表
+* @desc     显示项目列表
 */
 
 class Project extends CI_Controller
@@ -34,15 +34,18 @@ class Project extends CI_Controller
             $this->load->view('project', $this->data);
         }
         else {
+            //更新会话中project信息
             if (isset($_SESSION['project'])) {
                 unset($_SESSION['project']);
             }
 
+            //分页
             $pageNo = isset($_GET['pageNo']) ? $_GET['pageNo'] : 1;
             $limit = 10;
             $offset = ($pageNo - 1) * 10;
 
             switch ($_SESSION['login']['said']) {
+                //管理员可查看所有项目
                 case 'admin': {
                     $this->data['count'] = $this->objProjectModel->get_project_count();
                     $this->data['project'] = $this->objProjectModel->get_projects(null, $limit, $offset);
@@ -51,6 +54,7 @@ class Project extends CI_Controller
                     }
                     break;
                 }
+                //用户可查看自己管辖项目
                 case 'user': {
                     $uid = $_SESSION['login']['uid'];
                     $this->data['count'] = $this->objProjectModel->get_project_count(array('uid'=>$uid));

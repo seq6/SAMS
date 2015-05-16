@@ -30,11 +30,13 @@ class Other extends CI_Controller
             $this->form();
         }
 
+        //分页
         $pid = $_SESSION['project']['pid'];
         $pageNo = isset($_GET['pageNo']) ? $_GET['pageNo'] : 1;
         $limit = 10;
         $offset = ($pageNo - 1) * $limit;
 
+        //设置下载路径信息
         $this->data['pjfiles'] = $this->objPjfileModel->get_pjfiles($pid, $limit, $offset);
         foreach ($this->data['pjfiles'] as $key => $val) {
             $this->data['pjfiles'][$key]['path'] = '/data/'.$pid.'/'.$val['id'].'_'.$val['name'].'.'.$val['fileType'];
@@ -50,6 +52,7 @@ class Other extends CI_Controller
 
     public function get()
     {
+        //获取单个文档详细信息
         $id = isset($_GET['fid']) ? $_GET['fid'] : 0;
         $res = $this->objPjfileModel->get_pjfile($id);
         echo json_encode($res);
@@ -67,10 +70,9 @@ class Other extends CI_Controller
         $endtime  = isset($_POST['fendtime'])   ? $_POST['fendtime']  : '';
         $file     = isset($_FILES['upload-file']) ? $_FILES['upload-file'] : '';
 
-        //var_dump($_POST);
-
         $errorNo = 0;
         switch ($editType) {
+            //添加新文档
             case 'add': {
                 $res = $this->objPjfileModel->add_pjfile($pid, $name, $members, $place, $starttime, $endtime, $file);
                 if ($res != false) {
@@ -78,6 +80,7 @@ class Other extends CI_Controller
                 }
                 break;
             }
+            //删除文档
             case 'del': {
                 $res = $this->objPjfileModel->del_pjfile($id);
                 if ($res != false) {
@@ -85,6 +88,7 @@ class Other extends CI_Controller
                 }
                 break;
             }
+            //编辑文档
             case 'edit': {
                 $res = $this->objPjfileModel->update_pjfile($id, $name, $members, $place, $starttime, $endtime, $file);
                 if ($res != false) {

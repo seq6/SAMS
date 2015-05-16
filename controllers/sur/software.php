@@ -35,6 +35,7 @@ class Software extends CI_Controller
             $this->form();
         }
 
+        //分页
         $pid = $_SESSION['project']['pid'];
         $softtype = isset($_GET['st']) ? $_GET['st'] : 0;
         $pageNo = isset($_GET['pageNo']) ? $_GET['pageNo'] : 1;
@@ -47,6 +48,7 @@ class Software extends CI_Controller
         $this->data['count'] = $this->objSoftwareModel->get_softwares_count($pid, $softtype);
         $this->data['pageNo'] = $pageNo;
 
+        //软件类型
         $tmp = array();
         foreach ($this->data['softtype'] as $s) {
             $tmp[$s['id']] = $s['name'];
@@ -60,6 +62,7 @@ class Software extends CI_Controller
 
     public function get()
     {
+        //获取单个软件的详细信息
         $id = isset($_GET['softid']) ? $_GET['softid'] : 0;
         $res = $this->objSoftwareModel->get_software($id);
         $tmp = $this->objSofttypeModel->get_softtype();
@@ -94,6 +97,7 @@ class Software extends CI_Controller
 
         $errorNo = 0;
         switch ($editType) {
+            //添加软件信息
             case 'add': {
                 $res = $this->objSoftwareModel->add_software($pid, $assetid, $kid, $name, $version, $developer, $hard, $soft, $app, $model, $datas, $userNum, $userRole, $Cgrade, $Igrade, $Agrade);
                 if ($res != false) {
@@ -101,6 +105,7 @@ class Software extends CI_Controller
                 }
                 break;
             }
+            //删除软件信息
             case 'del': {
                 $res = $this->objSoftwareModel->del_software($id);
                 if ($res != false) {
@@ -108,6 +113,7 @@ class Software extends CI_Controller
                 }
                 break;
             }
+            //编辑软件信息
             case 'edit': {
                 $res = $this->objSoftwareModel->update_software($id, $pid, $assetid, $kid, $name, $version, $developer, $hard, $soft, $app, $model, $datas, $userNum, $userRole, $Cgrade, $Igrade, $Agrade);
                 if ($res != false) {

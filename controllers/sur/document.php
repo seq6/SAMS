@@ -30,6 +30,7 @@ class Document extends CI_Controller
             $this->form();
         }
 
+        //分页
         $pid = $_SESSION['project']['pid'];
         $pageNo = isset($_GET['pageNo']) ? $_GET['pageNo'] : 1;
         $limit = 10;
@@ -62,6 +63,7 @@ class Document extends CI_Controller
 
         $errorNo = 0;
         switch ($editType) {
+            //添加新档案
             case 'add': {
                 $res = $this->objDomModel->add_dom($pid, $assetid, $dType, $name, $theDesc, $import);
                 if ($res != false) {
@@ -69,6 +71,7 @@ class Document extends CI_Controller
                 }
                 break;
             }
+            //删除档案
             case 'del': {
                 $res = $this->objDomModel->del_dom($id);
                 if ($res != false) {
@@ -76,6 +79,7 @@ class Document extends CI_Controller
                 }
                 break;
             }
+            //编辑档案
             case 'edit': {
                 $res = $this->objDomModel->update_dom($id, $pid, $assetid, $dType, $name, $theDesc, $import);
                 if ($res != false) {

@@ -53,6 +53,7 @@ class Start extends CI_Controller
             $this->form();
         }
 
+        //获取项目详细信息
         $pid = $_SESSION['project']['pid'];
         $this->data['project'] = array();
 
@@ -114,6 +115,7 @@ class Start extends CI_Controller
     public function form()
     {
         $pid = $_SESSION['project']['pid'];
+        //启动项目
         $res = $this->objProjectModel->start_project($pid);
         if ($res != false) {
             $this->data['error'] = 1;

@@ -38,26 +38,29 @@ class Login extends CI_Controller
         $pwd   = isset($_POST['password']) ? $_POST['password'] : '';
 
         switch ($said) {
-            //admin login
+            //管理员登陆
             case 'admin': {
                 $adminData = $this->objUserModel->get_admin();
                 if (md5($pwd) === $adminData['pwd']) {
+                    //登陆成功，设置会话信息，跳转项目列表界面
                     $_SESSION['login'] = array();
                     $_SESSION['login']['said'] = 'admin';
                     $_SESSION['login']['name'] = $adminData['name'];
                     header("location:project");
                 }
                 else {
+                    //登陆失败，显示提示信息
                     $this->data['error'] = 1;
                     $this->data['said'] = 'admin';
                     $this->load->view('login', $this->data);
                 }
                 break;
             }
-            //user login
+            //用户登陆
             case 'user': {
                 $userData = $this->objUserModel->get_user($email, $pwd);
                 if ($userData != false) {
+                    //登陆成功，设置session，跳转项目列表界面
                     $_SESSION['login'] = array();
                     $_SESSION['login']['said'] = 'user';
                     $_SESSION['login']['uid'] = $userData['id'];
@@ -67,6 +70,7 @@ class Login extends CI_Controller
                     header("location:project");
                 }
                 else {
+                    //登陆失败，显示提示信息
                     $this->data['error'] = 1;
                     $this->data['said'] = 'user';
                     $this->load->view('login', $this->data);

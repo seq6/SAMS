@@ -2,7 +2,7 @@
 
 /**
 * @author   zhangji
-* @desc     注册
+* @desc     注册新项目（或新用户）
 */
 
 class Signup extends CI_Controller
@@ -38,7 +38,6 @@ class Signup extends CI_Controller
 
     private function form()
     {
-        // get post
         $pName    = isset($_POST['pName'])    ? $_POST['pName']     : '';
         $theUser  = isset($_POST['theUser'])  ? $_POST['theUser']   : '';
         $uid      = isset($_POST['theUserId'])? $_POST['theUserId'] : '';
@@ -48,6 +47,7 @@ class Signup extends CI_Controller
 
         $res = false;
         switch ($theUser) {
+            //为用户添加新项目
             case 'oldUser': {
                 $pid = $this->objProjectModel->add_project($pName);
                 $this->objUserModel->add_user_pid($uid, $pid);
@@ -55,6 +55,7 @@ class Signup extends CI_Controller
                 $this->data['error'] = ($res != false) ? 1 : 2;
                 break;
             }
+            //注册新用户并关联新项目
             case 'newUser': {
                 $pid = $this->objProjectModel->add_projetc($pName);
                 $uid = $this->objUserModel->add_user($userName, $email, $password, $pid);

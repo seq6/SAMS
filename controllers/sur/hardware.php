@@ -35,6 +35,7 @@ class Hardware extends CI_Controller
             $this->form();
         }
 
+        //分页
         $pid = $_SESSION['project']['pid'];
         $hardtype = isset($_GET['ht']) ? $_GET['ht'] : 0;
         $pageNo = isset($_GET['pageNo']) ? $_GET['pageNo'] : 1;
@@ -61,6 +62,7 @@ class Hardware extends CI_Controller
 
     public function get()
     {
+        //获取单个硬件详细信息
         $id = isset($_GET['hardid']) ? $_GET['hardid'] : 0;
         $res = $this->objHardwareModel->get_hardware($id);
         
@@ -103,6 +105,7 @@ class Hardware extends CI_Controller
 
         $errorNo = 0;
         switch ($editType) {
+            //添加新硬件信息
             case 'add': {
                 $res = $this->objHardwareModel->add_hardware($pid, $assetid, $kid, $name, $model, $place, $net, $ip, $mask, $gateway, $os, $osSoft, $portType, $portNum, $main, $datas, $ha, $Cgrade, $Igrade, $Agrade);
                 if ($res != false) {
@@ -110,6 +113,7 @@ class Hardware extends CI_Controller
                 }
                 break;
             }
+            //删除硬件信息
             case 'del': {
                 $res = $this->objHardwareModel->del_hardware($id);
                 if ($res != false) {
@@ -117,6 +121,7 @@ class Hardware extends CI_Controller
                 }
                 break;
             }
+            //编辑硬件信息
             case 'edit': {
                 $res = $this->objHardwareModel->update_hardware($id, $pid, $assetid, $kid, $name, $model, $place, $net, $ip, $mask, $gateway, $os, $osSoft, $portType, $portNum, $main, $datas, $ha, $Cgrade, $Igrade, $Agrade);
                 if ($res != false) {

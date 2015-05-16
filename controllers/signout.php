@@ -14,10 +14,10 @@ class Signout extends CI_Controller
 
     public function index()
     {
-        /* unset session */
+        //更新会话信息
         $this->unset_session('login');
         $this->unset_session('project');
-
+        //跳转登陆界面
         header('location:login');
     }
 

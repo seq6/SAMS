@@ -35,6 +35,7 @@ class Sever extends CI_Controller
             $this->form();
         }
 
+        //分页
         $pid = $_SESSION['project']['pid'];
         $severtype = isset($_GET['st']) ? $_GET['st'] : 0;
         $pageNo = isset($_GET['pageNo']) ? $_GET['pageNo'] : 1;
@@ -47,6 +48,7 @@ class Sever extends CI_Controller
         $this->data['count'] = $this->objSeverModel->get_severs_count($pid, $severtype);
         $this->data['pageNo'] = $pageNo;
 
+        //服务方式
         $tmp = array();
         foreach ($this->data['severtype'] as $s) {
             $tmp[$s['id']] = $s['name'];
@@ -71,6 +73,7 @@ class Sever extends CI_Controller
 
     public function get()
     {
+        //获取单个服务资产的详细信息
         $id = isset($_GET['severid']) ? $_GET['severid'] : 0;
         $res = $this->objSeverModel->get_sever($id);
         $stype = $this->objSeverTypeModel->get_servetype();
@@ -101,6 +104,7 @@ class Sever extends CI_Controller
 
         $errorNo = 0;
         switch ($editType) {
+            //添加新服务资产
             case 'add': {
                 $res = $this->objSeverModel->add_sever($pid, $assetid, $severtype, $name, $unit, $content, $way, $device, $remarks, $import);
                 if ($res != false) {
@@ -108,6 +112,7 @@ class Sever extends CI_Controller
                 }
                 break;
             }
+            //删除服务资产
             case 'del': {
                 $res = $this->objSeverModel->del_sever($id);
                 if ($res != false) {
@@ -115,6 +120,7 @@ class Sever extends CI_Controller
                 }
                 break;
             }
+            //编辑服务资产
             case 'edit': {
                 $res = $this->objSeverModel->update_sever($id, $pid, $assetid, $severtype, $name, $unit, $content, $way, $device, $remarks, $import);
                 if ($res != false) {
