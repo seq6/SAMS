@@ -50,7 +50,7 @@ class Document extends CI_Controller
         echo json_encode($res);
     }
 
-    public function form()
+    private function form()
     {
         $pid = $_SESSION['project']['pid'];
         $editType = isset($_POST['editType']) ? $_POST['editType'] : '';

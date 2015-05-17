@@ -574,32 +574,32 @@ function set_detail_data (assetid, hardtype, name, model, place, net, ip, mask, 
     var gateway = gateway || '-';
     $('#detail-gateway').text(gateway);
 
-    var os = os || '';
+    var os = os || '-';
     $('#detail-os').text(os);
 
-    var osSoft = osSoft || '';
+    var osSoft = osSoft || '-';
     $('#detail-osSoft').text(osSoft);
 
-    var portType = portType || '';
-    var portNum = portNum || '';
+    var portType = portType || '-';
+    var portNum = portNum || '-';
     $('#detail-port').text(portType + '|' + portNum);
 
-    var main = main || '';
+    var main = main || '-';
     $('#detail-main').text(main);
 
-    var datas = datas || '';
+    var datas = datas || '-';
     $('#detail-datas').text(datas);
 
-    var ha = ha || '';
+    var ha = ha || '-';
     $('#detail-ha').text(ha);
 
-    var Cgrade = Cgrade || '';
+    var Cgrade = Cgrade || '-';
     $('#detail-Cgrade').text(Cgrade);
 
-    var Igrade = Igrade || '';
+    var Igrade = Igrade || '-';
     $('#detail-Igrade').text(Igrade);
 
-    var Agrade = Agrade || '';
+    var Agrade = Agrade || '-';
     $('#detail-Agrade').text(Agrade);
 }
 
