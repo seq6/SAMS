@@ -71,7 +71,7 @@ class Information extends CI_Controller
         $desc = isset($_POST['pjDesc']) ? $_POST['pjDesc'] : '';
 
         //判断必选
-        if (!is_array($range) || !in_array('1', $range) || !in_array('4', $range) || !in_array('6', $range)) {
+        if (!is_array($range) || !in_array('1', $range) || !in_array('2', $range) || !in_array('3', $range)) {
             $this->data['error'] = 2;
             return;
         }

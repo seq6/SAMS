@@ -322,7 +322,9 @@
           <div><strong>型号</strong></div>
           <div><strong>物理位置</strong></div>
           <div><strong>所属网络</strong></div>
-          <div><strong>IP地址/掩码/网关</strong></div>
+          <div><strong>IP地址</strong></div>
+          <div><strong>掩码</strong></div>
+          <div><strong>网关</strong></div>
           <div><strong>系统</strong></div>
           <div><strong>系统软件</strong></div>
           <div><strong>端口类型/数量</strong></div>
@@ -340,7 +342,9 @@
           <div id="detail-model">型号</div>
           <div id="detail-place">物理位置</div>
           <div id="detail-net">所属网络</div>
-          <div id="detail-ipmagw">IP地址/掩码/网关</div>
+          <div id="detail-ip">IP地址</div>
+          <div id="detail-mask">掩码</div>
+          <div id="detail-gateway">网关</div>
           <div id="detail-os">系统</div>
           <div id="detail-osSoft">系统软件</div>
           <div id="detail-port">端口类型/数量</div>
@@ -442,12 +446,18 @@ function detail (id) {
 
 function add_hard () {
     var params = get_hard_data();
+    if (params['assetid'] == '' || params['name'] == '') {
+        return alert('资产编号与资产名称不能为空');
+    }
     params['editType'] = 'add';
     return submit_form('/sur/hardware', 'post', params);
 }
 
 function edit_hard (id) {
     var params = get_hard_data();
+    if (params['assetid'] == '' || params['name'] == '') {
+        return alert('资产编号与资产名称不能为空');
+    }
     params['editType'] = 'edit';
     params['hardid'] = id;
     return submit_form('/sur/hardware', 'post', params);
@@ -532,7 +542,7 @@ function set_hard_data (assetid, hardtype, name, model, place, net, ip, mask, ga
     var datas = datas || '';
     $('#datas').val(datas);
 
-    var ha = ha || 'error!';
+    var ha = ha || '否';
     $('#ha').text(ha);
 }
 
@@ -556,9 +566,13 @@ function set_detail_data (assetid, hardtype, name, model, place, net, ip, mask, 
     $('#detail-net').text(net);
 
     var ip = ip || '-';
+    $('#detail-ip').text(ip);
+
     var mask = mask || '-';
+    $('#detail-mask').text(mask);
+
     var gateway = gateway || '-';
-    $('#detail-ipmagw').text(ip + '|' + mask + '|' + gateway);
+    $('#detail-gateway').text(gateway);
 
     var os = os || '';
     $('#detail-os').text(os);
@@ -591,7 +605,6 @@ function set_detail_data (assetid, hardtype, name, model, place, net, ip, mask, 
 
 function change_ha (ha) {
     var haid = parseInt(ha);
-    alert(ha);
     switch (haid) {
         case 0: {
             $('#ha').text('否');

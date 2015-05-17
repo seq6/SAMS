@@ -463,12 +463,18 @@ function detail (id) {
 
 function add_sever () {
     var params = get_sever_data();
+    if (params['assetid'] == '' || params['name'] == '') {
+        return alert('资产编号与资产名称不能为空');
+    }
     params['editType'] = 'add';
     return submit_form('/sur/sever', 'post', params);
 }
 
 function edit_sever (id) {
     var params = get_sever_data();
+    if (params['assetid'] == '' || params['name'] == '') {
+        return alert('资产编号与资产名称不能为空');
+    }
     params['editType'] = 'edit';
     params['severid'] = id;
     return submit_form('/sur/sever', 'post', params);

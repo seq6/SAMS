@@ -415,12 +415,18 @@ function detail (id) {
 
 function add_person () {
     var params = get_person_data();
+    if (params['assetid'] == '' || params['name'] == '') {
+        return alert('资产编号与资产名称不能为空');
+    }
     params['editType'] = 'add';
     return submit_form('/sur/person', 'post', params);
 }
 
 function edit_person (id) {
     var params = get_person_data();
+    if (params['assetid'] == '' || params['name'] == '') {
+        return alert('资产编号与资产名称不能为空');
+    }
     params['editType'] = 'edit';
     params['personid'] = id;
     return submit_form('/sur/person', 'post', params);

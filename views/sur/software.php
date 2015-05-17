@@ -432,12 +432,18 @@ function detail (id) {
 
 function add_soft () {
     var params = get_soft_data();
+    if (params['assetid'] == '' || params['name'] == '') {
+        return alert('资产编号与资产名称不能为空');
+    }
     params['editType'] = 'add';
     return submit_form('/sur/software', 'post', params);
 }
 
 function edit_soft (id) {
     var params = get_soft_data();
+    if (params['assetid'] == '' || params['name'] == '') {
+        return alert('资产编号与资产名称不能为空');
+    }
     params['editType'] = 'edit';
     params['softid'] = id;
     return submit_form('/sur/software', 'post', params);

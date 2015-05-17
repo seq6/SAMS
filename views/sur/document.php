@@ -306,12 +306,18 @@ function edit (id) {
 
 function add_document () {
     var params = get_document_data();
+    if (params['assetid'] == '' || params['name'] == '') {
+        return alert('资产编号与资产名称不能为空');
+    }
     params['editType'] = 'add';
     return submit_form('/sur/document', 'post', params);
 }
 
 function edit_document (id) {
     var params = get_document_data();
+    if (params['assetid'] == '' || params['name'] == '') {
+        return alert('资产编号与资产名称不能为空');
+    }
     params['editType'] = 'edit';
     params['domid'] = id;
     return submit_form('/sur/document', 'post', params);

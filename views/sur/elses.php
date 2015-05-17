@@ -308,12 +308,18 @@ function edit (id) {
 
 function add_elses () {
     var params = get_elses_data();
+    if (params['assetid'] == '' || params['name'] == '') {
+        return alert('资产编号与资产名称不能为空');
+    }
     params['editType'] = 'add';
     return submit_form('/sur/elses', 'post', params);
 }
 
 function edit_elses (id) {
     var params = get_elses_data();
+    if (params['assetid'] == '' || params['name'] == '') {
+        return alert('资产编号与资产名称不能为空');
+    }
     params['editType'] = 'edit';
     params['elseid'] = id;
     return submit_form('/sur/elses', 'post', params);
