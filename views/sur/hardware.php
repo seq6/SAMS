@@ -365,6 +365,8 @@
 
 <script type="text/javascript">
 
+var ht = <?php echo $ht; ?>
+
 function my_ajax (theUrl, theMethod, theData, callback) {
     $.ajax({
         type:theMethod,

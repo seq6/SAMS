@@ -517,37 +517,37 @@ function set_soft_data (assetid, name, version, developer, hard, soft, app, data
 }
 
 function set_detail_data (assetid, softtype, name, version, developer, hard, soft, app, datas, userNum, userRole, modelid, Cgrade, Igrade, Agrade) {
-    var assetid = assetid || '';
+    var assetid = assetid || '-';
     $('#detail-assetid').text(assetid);
 
     var softtype = softtype || 'error!';
     $('#detail-softtype').text(softtype);
 
-    var name = name || '';
+    var name = name || '-';
     $('#detail-name').text(name);
 
-    var version = version || '';
+    var version = version || '-';
     $('#detail-version').text(version);
 
-    var developer = developer || '';
+    var developer = developer || '-';
     $('#detail-developer').text(developer);
 
-    var hard = hard || '';
+    var hard = hard || '-';
     $('#detail-hard').text(hard);
 
-    var soft = soft || '';
+    var soft = soft || '-';
     $('#detail-soft').text(soft);
 
-    var app = app || '';
+    var app = app || '-';
     $('#detail-app').text(app);
 
-    var datas = datas || '';
+    var datas = datas || '-';
     $('#detail-datas').text(datas);
 
-    var userNum = userNum || '';
+    var userNum = userNum || '-';
     $('#detail-userNum').text(userNum);
 
-    var userRole = userRole || '';
+    var userRole = userRole || '-';
     $('#detail-userRole').text(userRole);
 
     var model = 'error!';

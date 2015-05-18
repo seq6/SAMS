@@ -8,7 +8,7 @@
   <div class="am-topbar-brand">
     <h1>
       <a href="/project"><small>安全风险评估管理系统</small></a>
-      <span class="am-badge am-badge-danger">v0.49</span>
+      <span class="am-badge am-badge-danger">v1.3</span>
     </h1>
   </div>
   <!--app name end-->
