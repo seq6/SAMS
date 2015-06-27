@@ -38,7 +38,7 @@
     <div class="am-btn-group">
       <a id="theAdmin" class="am-btn am-btn-success am-btn-sm" onclick="is_who()"><i class="am-icon-user am-icon-sm"></i> Admin 管理员</a>
       <a id="theUser" class="am-btn am-btn-warning am-btn-sm" onclick="is_who()"><i class="am-icon-users am-icon-sm"></i> User 用户</a>
-      <a href="https://github.com/zhangSTC/SAMS" class="am-btn am-btn-secondary am-btn-sm"><i class="am-icon-github am-icon-sm"></i> Github 查看源代码</a>
+      <a href="https://github.com/zhangSTC/SAMS" target="_blank" class="am-btn am-btn-secondary am-btn-sm"><i class="am-icon-github am-icon-sm"></i> Github 查看源代码</a>
     </div>
     <br>
     <br>
@@ -138,7 +138,7 @@
     }
 
     function forget_pwd () {
-        alert('忘了就忘了吧');
+        alert('请询问管理员');
     }
 </script>
 </body>
